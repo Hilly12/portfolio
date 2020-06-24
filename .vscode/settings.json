@@ -7,8 +7,8 @@
   "editor.formatOnSave": true,
   "python.linting.pycodestyleEnabled": false,
   "python.linting.pylintArgs": ["--load-plugins", "pylint_django"],
-  "python.autoComplete.extraPaths": ["./backend/src"],
+  "python.autoComplete.extraPaths": ["./api"],
   "python.linting.pylintEnabled": true,
-  "python.pythonPath": "backend/venv/bin/python",
+  "python.pythonPath": "env/bin/python",
   "python.linting.enabled": true
 }
