@@ -1,0 +1,38 @@
+.App {
+  font-family: "Montserrat" !important;
+  /* font-weight: Bold; */
+}
+
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.navbar-brand {
+  font-family: "Mono !important";
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar {
+  position: relative;
+  padding: 0.5rem 1rem;
+  /* min-height: 50px; */
+}
+
+.gradient {
+  /* background: linear-gradient(120deg, #7f70f5, #0ea0ff); */
+  /* background: linear-gradient(120deg, #00df70, #0ea0ff); */
+  /* background: linear-gradient(60deg, #b60d6f, #0ea0ff); */
+  /* background: linear-gradient(-60deg, #f857a6, #ff5858); */
+  /* background: linear-gradient(120deg, #00f260, #0575e6); */
+  /* background: linear-gradient(120deg, #7b4397 0%, #b5238a 59%, #dc2430 87%); */
+  background: linear-gradient(120deg, #7b4397 0%, #b5238a 59%, #dc2430 110%);
+  color: #fff;
+}

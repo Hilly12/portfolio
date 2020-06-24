@@ -1,0 +1,14 @@
+{
+  "editor.fontSize": 18,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Consolas', 'Courier New', monospace",
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "team.showWelcomeMessage": false,
+  "editor.formatOnSave": true,
+  "python.linting.pycodestyleEnabled": false,
+  "python.linting.pylintArgs": ["--load-plugins", "pylint_django"],
+  "python.autoComplete.extraPaths": ["./backend/src"],
+  "python.linting.pylintEnabled": true,
+  "python.pythonPath": "backend/venv/bin/python",
+  "python.linting.enabled": true
+}
