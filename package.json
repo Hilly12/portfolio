@@ -16,7 +16,6 @@
     "reactstrap": "^8.4.1"
   },
   "scripts": {
-    "postinstall": "cd frontend/gui && npm install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
