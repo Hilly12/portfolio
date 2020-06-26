@@ -1,22 +1,21 @@
 .App {
   font-family: "Montserrat" !important;
+  text-align: center;
   /* font-weight: Bold; */
+}
+
+.hide-span-mobile span {
+  display: none;
+}
+
+hidden-mobile {
+  display: none;
 }
 
 .site-layout-content {
   background: #fff;
   padding: 24px;
-  min-height: 280px;
-}
-
-.navbar-brand {
-  display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
-  line-height: inherit;
-  white-space: nowrap;
+  min-height: 500px;
 }
 
 .navbar {
@@ -31,7 +30,27 @@
   /* background: linear-gradient(60deg, #b60d6f, #0ea0ff); */
   /* background: linear-gradient(-60deg, #f857a6, #ff5858); */
   /* background: linear-gradient(120deg, #00f260, #0575e6); */
-  /* background: linear-gradient(120deg, #7b4397 0%, #b5238a 59%, #dc2430 87%); */
-  background: linear-gradient(120deg, #7b4397 0%, #b5238a 59%, #dc2430 110%);
+  /* background: linear-gradient(120deg, #7b4397 0%, #b5238a 59%, #dc2430 110%); */
+  background: linear-gradient(120deg, #65377c 0%, #961d71 59%, #b81e28 120%);
   color: #fff;
+}
+
+@media (max-width: 340px) {
+  .app-bar {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 576px) {
+  .app-bar {
+    margin-bottom: 20px;
+  }
+
+  .hide-span-mobile span {
+    display: inline;
+  }
+
+  hidden-mobile {
+    display: inherit;
+  }
 }
