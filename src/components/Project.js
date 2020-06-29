@@ -1,54 +1,41 @@
 import React, { Component } from "react";
-import { List, Avatar, Space } from "antd";
 import { Link } from "react-router-dom";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+import { Skeleton } from "antd";
 
 class Project extends Component {
   render() {
     const item = this.props.item;
+    const loading = this.props.loading;
 
     return (
-      <List.Item
-        key={item.title}
-        actions={[
-          <IconText
-            icon={StarOutlined}
-            text="156"
-            key="list-vertical-star-o"
-          />,
-          <IconText
-            icon={LikeOutlined}
-            text="156"
-            key="list-vertical-like-o"
-          />,
-          <IconText
-            icon={MessageOutlined}
-            text="2"
-            key="list-vertical-message"
-          />,
-        ]}
-        extra={
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-          />
-        }
+      <div
+        style={{ display: "flex", textAlign: "left" }}
+        className="provider-list-card needAjaxFormContainer shadowDiv"
       >
-        <List.Item.Meta
-          avatar={<Avatar src={item.avatar} />}
-          title={<Link to={`/${item.id}`}>{item.title}</Link>}
-          description={item.description}
-        />
-        {item.content}
-      </List.Item>
+        <Skeleton loading={loading}>
+          <div className="provider-list-details pos-rel ">
+            <div className="details-row">
+              <Link
+                to={`/projects/${item.id}`}
+                className="providerNameLink provider-name loud ellipsis_line fontSize16 "
+              >
+                <span>{item.title}</span>
+              </Link>
+            </div>
+            <p className="details-row descPart loud">{item.content}</p>
+            {/* <div className="tags">
+            {this.props.keywords.map((keyword) => (
+              <div className="tag">{keyword}</div>
+            ))}
+          </div> */}
+            {/* <div className="provider-right-block textAlignRit">
+              <div className="appendMsgCall">
+                <button className="btn btn-info">View</button>
+              </div>
+            </div> */}
+          </div>
+        </Skeleton>
+      </div>
     );
   }
 }

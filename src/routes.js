@@ -5,8 +5,8 @@ import ProjectDetail from "./containers/ProjectDetail";
 
 const BaseRouter = () => (
   <div>
-    <Route exact path="/" component={ProjectList} />
-    <Route exact path="/:projectid" component={ProjectDetail} />
+    <Route exact path="/projects" component={ProjectList} />
+    <Route exact path="/projects/:projectid" component={ProjectDetail} />
   </div>
 );
 

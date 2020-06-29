@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Nav, NavItem, Jumbotron, Button } from "reactstrap";
+import { Nav, NavItem } from "reactstrap";
 import { AppBar, Toolbar } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
   faCode,
-  faDragon,
+  // faDragon,
+  faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
@@ -76,36 +77,21 @@ class Header extends Component {
               </NavItem>
               <NavItem className="nav-item">
                 <NavLink
-                  to="/lit"
+                  to="/arcade"
                   className="nav-link hide-span-mobile"
                   activeStyle={{ color: "white" }}
                 >
                   <FontAwesomeIcon
                     style={{ marginRight: "5px" }}
-                    icon={faDragon}
+                    icon={faGamepad}
                   />
-                  <span>Lit Stuff</span>
+                  <span>Arcade</span>
                 </NavLink>
               </NavItem>
             </Nav>
           </div>
         </AppBar>
         <Toolbar className="app-bar" />
-        {/* <Jumbotron>
-          <h1 className="display-3">Hello, world!</h1>
-          <p className="lead">
-            This is a simple hero unit, a simple Jumbotron-style component for
-            calling extra attention to featured content or information.
-          </p>
-          <hr className="my-2" />
-          <p>
-            It uses utility classes for typography and spacing to space content
-            out within the larger container.
-          </p>
-          <p className="lead">
-            <Button color="primary">Learn More</Button>
-          </p>
-        </Jumbotron> */}
       </Fragment>
     );
   }

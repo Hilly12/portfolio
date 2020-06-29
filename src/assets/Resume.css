@@ -1,0 +1,173 @@
+.portfolio-block.cv {
+  padding-top: 70px;
+}
+
+@media (min-width: 768px) {
+  .portfolio-block {
+    padding-bottom: 100px;
+    padding-top: 100px;
+  }
+}
+
+.portfolio-block {
+  padding-bottom: 60px;
+  padding-top: 60px;
+}
+
+.portfolio-block.cv .group {
+  max-width: 800px;
+  margin: auto;
+}
+
+.portfolio-block.cv .group:not(:first-child) {
+  margin-top: 90px;
+}
+
+.row {
+  text-align: left !important;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.portfolio-info-card {
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.075);
+  height: 100%;
+}
+
+.portfolio-block.cv h2 {
+  font-weight: 700;
+  margin-bottom: 70px;
+}
+
+.portfolio-info-card h2 {
+  margin-top: 0;
+  margin-bottom: 24px !important;
+  font-size: 1.4rem;
+}
+
+.portfolio-info-card.skills h3 {
+  margin-top: 25px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+.portfolio-info-card.skills .progress {
+  height: 3px;
+}
+
+.progress,
+.progress-bar {
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+.progress {
+  height: 1rem;
+  line-height: 0;
+  font-size: 0.75rem;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    margin-bottom: 60px;
+  }
+}
+
+.heading {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .period {
+    float: right;
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+
+  .period-holder {
+    text-align: right !important;
+  }
+}
+
+.period {
+  margin-left: 0px;
+  font-size: 0.8rem;
+  float: none;
+  font-weight: 700;
+  margin-top: 4px;
+  color: #6c757d;
+  opacity: 0.8;
+}
+
+.period-holder {
+  text-align: left;
+}
+
+.education.group .organization {
+  background-color: #20c997;
+}
+
+.organization {
+  font-weight: bold;
+  font-size: 0.85em;
+  background-color: #0ea0ff;
+  display: inline-block;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 2em;
+}
+
+.text-muted {
+  font-weight: 600;
+  color: #585e63 !important;
+  text-align: left;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.item {
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+
+@media (min-width: 768px) {
+  .item {
+    font-weight: 300;
+  }
+}
+
+.portfolio-info-card {
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.075);
+  height: 100%;
+}
+
+.bullets {
+  list-style-type: disc;
+  padding-left: 12px;
+}
+
+.icon {
+  font-size: 1.3em;
+  color: #6091ef;
+  position: relative;
+  bottom: 4px;
+}

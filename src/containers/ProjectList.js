@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Project from "../components/Project";
+import "../assets/Project.css";
 import { List } from "antd";
 import axios from "axios";
 
@@ -7,14 +8,16 @@ class ProjectList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectData: [],
+      loading: true,
+      projectData: [{}, {}, {}, {}, {}],
     };
   }
 
   componentDidMount() {
     axios.get("http://127.0.0.1:8000/api/").then((response) => {
       this.setState({
-        projectData: response.data,
+        loading: false,
+        projectData: response.data.reverse(),
       });
     });
   }
@@ -23,14 +26,17 @@ class ProjectList extends Component {
     return (
       <List
         itemLayout="vertical"
-        pagination={{
-          onChange: (page) => {
-            console.log(page);
-          },
-          pageSize: 4,
-        }}
+        // pagination={{
+        //   onChange: (page) => {
+        //     console.log(page);
+        //   },
+        //   pageSize: 8,
+        //   responsive: "true",
+        // }}
         dataSource={this.state.projectData}
-        renderItem={(item) => <Project item={item} />}
+        renderItem={(item) => (
+          <Project item={item} loading={this.state.loading} />
+        )}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../assets/snake.css";
+import "../assets/Snake.css";
 
 const width = 32;
 const height = 16;
