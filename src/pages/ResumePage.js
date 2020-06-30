@@ -11,9 +11,9 @@ import {
 
 const workexp = [
   {
-    title: "Software Engineering Intern",
-    institution: "ScribeTech",
-    period: "July 2020 - August 2020",
+    title: "Some Job",
+    institution: "Someplace",
+    period: "Some point in time",
     description: ["hello", "world"],
   },
   {
@@ -81,7 +81,7 @@ class ResumePage extends Component {
               interest in Computing are Data Mining and ML, Computer Vision,
               Operations, FinTech, and Systems. On the side, I enjoy creating
               and designing games and webapps, aswell as reading about
-              businesses and politics, as a hobby.
+              businesses and politics, as hobbies.
             </p>
             <div className="work-experience group">
               <div className="heading">
