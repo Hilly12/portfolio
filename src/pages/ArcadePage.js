@@ -29,6 +29,8 @@ export default class ArcadePage extends Component {
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
                   style={{
+                    height: "auto",
+                    width: "300px",
                     backgroundColor: "transparent",
                   }}
                   actions={[

@@ -39,7 +39,7 @@ class Header extends Component {
         <AppBar className="navbar clean-navbar navbar-expand-lg navbar-dark gradient">
           <div className="container">
             <Link
-              className="navbar-brand"
+              className="navbar-brand noselect"
               style={{
                 color: "#fffffff",
                 fontFamily: "Montserrat, sans-serif",
@@ -59,7 +59,7 @@ class Header extends Component {
                     style={{ marginRight: "5px" }}
                     icon={faCode}
                   />
-                  <span>Projects</span>
+                  <span className="noselect">Projects</span>
                 </NavLink>
               </NavItem>
               <NavItem className="nav-item">
@@ -72,7 +72,7 @@ class Header extends Component {
                     style={{ marginRight: "5px" }}
                     icon={faAddressCard}
                   />
-                  <span>Resume</span>
+                  <span className="noselect">Resume</span>
                 </NavLink>
               </NavItem>
               <NavItem className="nav-item">
@@ -85,7 +85,7 @@ class Header extends Component {
                     style={{ marginRight: "5px" }}
                     icon={faGamepad}
                   />
-                  <span>Arcade</span>
+                  <span className="noselect">Arcade</span>
                 </NavLink>
               </NavItem>
             </Nav>
