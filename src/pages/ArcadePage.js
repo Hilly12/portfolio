@@ -14,6 +14,12 @@ const cards = [
     img: snek,
     linkto: "arcade/snake",
   },
+  {
+    title: "Roguelike",
+    description: "A roguelike dungeon crawler",
+    img: snek,
+    linkto: "arcade/snake",
+  },
 ];
 
 export default class ArcadePage extends Component {
@@ -24,7 +30,7 @@ export default class ArcadePage extends Component {
           className="container"
           style={{ marginTop: "50px", minHeight: "80vh" }}
         >
-          <Grid container spacing={4}>
+          <Grid container align="center" spacing={4}>
             {cards.map((card) => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card
@@ -32,18 +38,22 @@ export default class ArcadePage extends Component {
                     height: "auto",
                     width: "300px",
                     backgroundColor: "transparent",
+                    border: "solid 1px lightgrey",
                   }}
                   actions={[
                     <Link to={card.linkto}>
                       <Button>PLAY</Button>
                     </Link>,
                   ]}
-                  raised
                   hoverable
                   link
                   cover={
                     <img
-                      style={{ border: "1px solid #eeeeee" }}
+                      style={{
+                        borderLeft: "1px solid lightgrey",
+                        borderRight: "1px solid lightgrey",
+                        borderBottom: "1px solid lightgrey",
+                      }}
                       alt=""
                       src={card.img}
                     />

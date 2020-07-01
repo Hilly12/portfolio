@@ -25,8 +25,7 @@ SECRET_KEY = '_(0d9+9&i*$*u*+to*@kjt8(@)t3k9&i&f+ch08sck%%(yq_50'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aahil-portfolio.herokuapp.com',
-                 'www.aahilm.com', '127.0.0.1']
+ALLOWED_HOSTS = ['www.aahilm.com', '127.0.0.1']
 # ALLOWED_HOSTS = []
 
 
