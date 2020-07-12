@@ -1,19 +1,13 @@
 import React, { Component, Fragment } from "react";
 import Footer from "../components/Footer";
 import "../assets/Resume.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendar,
-  faUser,
-  faPhoneAlt,
-  faAt,
-} from "@fortawesome/free-solid-svg-icons";
 
 const workexp = [
   {
-    title: "Some Job",
-    institution: "Someplace",
-    period: "Some point in time",
+    title: "Software Engineering Intern",
+    institution: "Scribetech",
+    period: "July 2020 - September 2020",
+    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     description: ["hello", "world"],
   },
   {
@@ -51,6 +45,44 @@ const education = [
   },
 ];
 
+const languages = [
+  {
+    name: "Java",
+    proficiency: 100,
+  },
+  {
+    name: "Python",
+    proficiency: 85,
+  },
+  {
+    name: "C#",
+    proficiency: 75,
+  },
+  {
+    name: "Javascript",
+    proficiency: 65,
+  },
+];
+
+const frameworks = [
+  {
+    name: "Spring",
+    proficiency: 80,
+  },
+  {
+    name: "React",
+    proficiency: 75,
+  },
+  {
+    name: "Unity",
+    proficiency: 74,
+  },
+  {
+    name: "Tensorflow",
+    proficiency: 70,
+  },
+];
+
 class ResumePage extends Component {
   render() {
     return (
@@ -78,14 +110,14 @@ class ResumePage extends Component {
             >
               I'm an aspiring Software Engineer and Entreprenuer, and currently
               a student at Imperial College London. My topics of primary
-              interest in Computing are Data Mining and ML, Computer Vision,
-              Operations, FinTech, and Systems. On the side, I enjoy creating
-              and designing games and webapps, aswell as reading about
-              businesses and politics, as hobbies.
+              interest in Computing are Data Mining and ML, Vision,
+              Optimization, and Algorithmic Trading. I enjoy creating and
+              designing games and webapps, aswell as reading about businesses,
+              economics and politics, as hobbies.
             </p>
             <div className="work-experience group">
               <div className="heading">
-                <h2 className="text-center">Work Experience</h2>
+                <h2 className="text-center">Experience</h2>
               </div>
               {workexp.map((work) => {
                 return (
@@ -146,80 +178,48 @@ class ResumePage extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="skills portfolio-info-card">
-                    <h2>Skills</h2>
-                    <h3>Java</h3>
-                    <div className="progress">
-                      <div
-                        className="progress-bar"
-                        aria-valuenow={100}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                        style={{ width: "100%" }}
-                      >
-                        <span className="sr-only">100%</span>
-                      </div>
-                    </div>
-                    <h3>Python</h3>
-                    <div className="progress">
-                      <div
-                        className="progress-bar"
-                        aria-valuenow={90}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                        style={{ width: "90%" }}
-                      >
-                        <span className="sr-only">90%</span>
-                      </div>
-                    </div>
-                    <h3>C</h3>
-                    <div className="progress">
-                      <div
-                        className="progress-bar"
-                        aria-valuenow={80}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                        style={{ width: "60%" }}
-                      >
-                        <span className="sr-only">60%</span>
-                      </div>
-                    </div>
+                    <h2>Languages</h2>
+                    {languages.map((lang) => {
+                      return (
+                        <Fragment>
+                          <h3>{lang.name}</h3>
+                          <div className="progress">
+                            <div
+                              className="progress-bar"
+                              aria-valuenow={lang.proficiency}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                              style={{ width: `${lang.proficiency}%` }}
+                            >
+                              <span className="sr-only">100%</span>
+                            </div>
+                          </div>
+                        </Fragment>
+                      );
+                    })}
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="contact-info portfolio-info-card">
-                    <h2>Contact Info</h2>
-                    <div className="row p-1">
-                      <div className="col-1">
-                        <FontAwesomeIcon className="icon" icon={faCalendar} />
-                      </div>
-                      <div className="col-9">
-                        <span>12/10/1999</span>
-                      </div>
-                    </div>
-                    <div className="row p-1">
-                      <div className="col-1">
-                        <FontAwesomeIcon className="icon" icon={faUser} />
-                      </div>
-                      <div className="col-9">
-                        <span>Aahil Mehta</span>
-                      </div>
-                    </div>
-                    <div className="row p-1">
-                      <div className="col-1">
-                        <FontAwesomeIcon className="icon" icon={faPhoneAlt} />
-                      </div>
-                      <div className="col-9">
-                        <span>+44 7490195577</span>
-                      </div>
-                    </div>
-                    <div className="row p-1">
-                      <div className="col-1">
-                        <FontAwesomeIcon className="icon" icon={faAt} />
-                      </div>
-                      <div className="col-9">
-                        <span>aahilmehta12@gmail.com</span>
-                      </div>
-                    </div>
+                  <div className="skills portfolio-info-card">
+                    <h2>Technologies</h2>
+                    {frameworks.map((lang) => {
+                      return (
+                        <Fragment>
+                          <h3>{lang.name}</h3>
+                          <div className="progress">
+                            <div
+                              className="progress-bar"
+                              aria-valuenow={lang.proficiency}
+                              aria-valuemin={0}
+                              aria-valuemax={100}
+                              style={{ width: `${lang.proficiency}%` }}
+                            >
+                              <span className="sr-only">100%</span>
+                            </div>
+                          </div>
+                        </Fragment>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

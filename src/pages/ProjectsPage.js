@@ -7,7 +7,7 @@ class ProjectsPage extends Component {
   render() {
     return (
       <Fragment>
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" style={{ minHeight: "100vh" }}>
           <div style={{ marginTop: "40px" }} />
           <div className="container">
             <BaseRouter />

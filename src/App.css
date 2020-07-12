@@ -55,6 +55,11 @@ hidden-mobile {
   }
 }
 
+.game-card {
+  background-color: transparent !important;
+  border: solid 1px lightgrey !important;
+}
+
 /* button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,

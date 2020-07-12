@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
   faCode,
-  // faDragon,
-  faGamepad,
+  faDragon,
+  // faGamepad,
 } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
@@ -83,9 +83,9 @@ class Header extends Component {
                 >
                   <FontAwesomeIcon
                     style={{ marginRight: "5px" }}
-                    icon={faGamepad}
+                    icon={faDragon}
                   />
-                  <span className="noselect">Arcade</span>
+                  <span className="noselect">Lit Stuff</span>
                 </NavLink>
               </NavItem>
             </Nav>
