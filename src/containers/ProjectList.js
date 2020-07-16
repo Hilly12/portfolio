@@ -14,7 +14,7 @@ class ProjectList extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://127.0.0.1:8000/api/").then((response) => {
+    axios.get("https://www.aahilm.com/api/").then((response) => {
       this.setState({
         loading: false,
         projectData: response.data.reverse(),
