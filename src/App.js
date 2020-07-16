@@ -13,12 +13,6 @@ function App() {
       <CssBaseline />
       <Header />
       <Main />
-
-      {/* <Layout className="layout" style={{ textAlign: "center" }}>
-         <MainContent>
-           <BaseRouter />
-        </MainContent> 
-      </Layout> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 import { Card } from "antd";
 import axios from "axios";
 
@@ -21,9 +21,14 @@ class ProjectDetail extends Component {
 
   render() {
     return (
-      <Card title={this.state.projectData.title}>
-        <p>{this.state.projectData.content}</p>
-      </Card>
+      <Fragment>
+        <h2 style={{fontWeight:"600", color: "#555555"}}>{this.state.projectData.title} </h2>
+        <br/>
+        <p className="details-row descPart loud">{this.state.projectData.content}</p>
+      </Fragment>
+      // <Card title={this.state.projectData.title}>
+      //   <p>{this.state.projectData.content}</p>
+      // </Card>
     );
   }
 }
