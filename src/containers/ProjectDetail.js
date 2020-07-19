@@ -16,7 +16,7 @@ class ProjectDetail extends Component {
     // https://www.aahilm.com/api/
 
     const projectid = this.props.match.params.projectid;
-    axios.get(`http://127.0.0.1:8000/api/${projectid}`).then((response) => {
+    axios.get(`https://www.aahilm.com/api/${projectid}`).then((response) => {
       this.setState({
         loading: false,
         projectData: response.data,
