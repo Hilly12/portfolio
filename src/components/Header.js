@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
-import { NavLink, Link } from "react-router-dom";
-import { Nav, NavItem } from "reactstrap";
-import { AppBar, Toolbar } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, {Component, Fragment} from "react";
+import {NavLink, Link} from "react-router-dom";
+import {Nav, NavItem} from "reactstrap";
+import {AppBar, Toolbar} from "@material-ui/core";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
   faCode,
@@ -77,7 +77,7 @@ class Header extends Component {
               </NavItem>
               <NavItem className="nav-item">
                 <NavLink
-                  to="/arcade"
+                  to="/sandbox"
                   className="nav-link hide-span-mobile"
                   activeStyle={{ color: "white" }}
                 >
@@ -85,13 +85,13 @@ class Header extends Component {
                     style={{ marginRight: "5px" }}
                     icon={faDragon}
                   />
-                  <span className="noselect">Lit Stuff</span>
+                  <span className="noselect">Sandbox</span>
                 </NavLink>
               </NavItem>
             </Nav>
           </div>
         </AppBar>
-        <Toolbar className="app-bar" />
+        <Toolbar className="app-bar"/>
       </Fragment>
     );
   }

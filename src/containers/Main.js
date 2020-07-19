@@ -13,8 +13,8 @@ class Main extends React.Component {
         <Route exact path="/" component={LandingPage} />
         <Route path="/projects" component={ProjectsPage} />
         <Route path="/resume" component={ResumePage} />
-        <Route exact path="/arcade" component={ArcadePage} />
-        <Route exact path="/arcade/snake" component={Snake} />
+        <Route exact path="/sandbox" component={ArcadePage} />
+        <Route exact path="/sandbox/snake" component={Snake} />
       </Switch>
     );
   }

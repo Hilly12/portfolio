@@ -1,19 +1,24 @@
 import React, {Component, Fragment} from "react";
-import { Card } from "antd";
 import axios from "axios";
+import {Skeleton} from "antd";
 
 class ProjectDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       projectData: {},
     };
   }
 
   componentDidMount() {
+    // http://127.0.0.1:8000/api/
+    // https://www.aahilm.com/api/
+
     const projectid = this.props.match.params.projectid;
-    axios.get(`https://www.aahilm.com/api/${projectid}`).then((response) => {
+    axios.get(`http://127.0.0.1:8000/api/${projectid}`).then((response) => {
       this.setState({
+        loading: false,
         projectData: response.data,
       });
     });
@@ -21,11 +26,11 @@ class ProjectDetail extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Skeleton loading={this.state.loading}>
         <h2 style={{fontWeight:"600", color: "#555555"}}>{this.state.projectData.title} </h2>
         <br/>
-        <p className="details-row descPart loud">{this.state.projectData.content}</p>
-      </Fragment>
+        <div style={{textAlign: "justify"}}>{this.state.projectData.content}</div>
+      </Skeleton>
       // <Card title={this.state.projectData.title}>
       //   <p>{this.state.projectData.content}</p>
       // </Card>

@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import {Swipeable} from "react-swipeable";
 import "../assets/Snake.css";
 
 const width = 32;
@@ -36,9 +37,9 @@ for (let x = 0; x < width; x++) {
 function getRandomCoordinates(state) {
   if (state) {
     /* For variation to avoid glitch */
-    var x = Math.floor(Math.random() * (width - 2)) + 1;
-    var y = Math.floor(Math.random() * (height - 2)) + 1;
-    var valid = false;
+    let x = Math.floor(Math.random() * (width - 2)) + 1;
+    let y = Math.floor(Math.random() * (height - 2)) + 1;
+    let valid = false;
     while (!valid) {
       x = Math.floor(Math.random() * (width - 2)) + 1;
       y = Math.floor(Math.random() * (height - 2)) + 1;
@@ -85,32 +86,35 @@ class Snake extends Component {
 
   render() {
     return (
-      <div className="game-board-wrapper">
-        <div className="game-board-wrapper-inner">
-          <div>
-            {this.state.gameState === 2
-              ? "Game Over! Press Space to play again"
-              : this.state.gameState === 1
-              ? `Score: ${this.state.score}`
-              : "Press Space to Play"}
+      <Swipeable onSwipedLeft={this.moveLeft.bind(this)} onSwipedRight={this.moveRight.bind(this)}
+                 onSwipedUp={this.moveUp.bind(this)} onSwipedDown={this.moveDown.bind(this)} trackMouse={true}>
+        <div onClick={this.spaceDown.bind(this)} className="game-board-wrapper">
+          <div className="game-board-wrapper-inner">
+            <div>
+              {this.state.gameState === 2
+                ? "Game Over! Press Space to play again"
+                : this.state.gameState === 1
+                  ? `Score: ${this.state.score}`
+                  : "Press Space or Tap to Play"}
+            </div>
+            <div className="game-board">
+              {draw(blank, "blank")}
+              {draw(board, "board")}
+              {draw([this.state.fruit], "food")}
+              {draw(this.state.snake, "snake")}
+              {this.state.specialFruit !== undefined
+                ? draw([this.state.specialFruit], "spfood")
+                : null}
+            </div>
+            <div>
+              {this.state.specialFruit !== undefined
+                ? `Lifetime: ${this.state.lifetime}`
+                : null}
+            </div>
           </div>
-          <div className="game-board">
-            {draw(blank, "blank")}
-            {draw(board, "board")}
-            {draw([this.state.fruit], "food")}
-            {draw(this.state.snake, "snake")}
-            {this.state.specialFruit !== undefined
-              ? draw([this.state.specialFruit], "spfood")
-              : null}
-          </div>
-          <div>
-            {this.state.specialFruit !== undefined
-              ? `Lifetime: ${this.state.lifetime}`
-              : null}
-          </div>
+          <div className="pad"/>
         </div>
-        <div className="pad" />
-      </div>
+      </Swipeable>
     );
   }
 
@@ -120,7 +124,7 @@ class Snake extends Component {
   }
 
   /* Check collisions */
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, SS) {
     if (this.state.gameState !== 1) {
       return;
     }
@@ -247,29 +251,49 @@ class Snake extends Component {
   };
 
   onKeyDown = (e) => {
-    e = e || window.event;
+    e = e || window["event"];
     switch (e.keyCode) {
       case 38:
-        this.setState({ direction: "u" });
+        this.moveUp();
         break;
       case 40:
-        this.setState({ direction: "d" });
+        this.moveDown();
         break;
       case 37:
-        this.setState({ direction: "l" });
+        this.moveLeft();
         break;
       case 39:
-        this.setState({ direction: "r" });
+        this.moveRight();
         break;
       case 32:
-        if (this.state.gameState !== 1) {
-          this.onNewGame();
-        }
+        this.spaceDown();
         break;
       default:
         break;
     }
   };
+
+  spaceDown() {
+    if (this.state.gameState !== 1) {
+      this.onNewGame();
+    }
+  }
+
+  moveLeft() {
+    this.setState({ direction: "l" });
+  }
+
+  moveRight() {
+    this.setState({ direction: "r" });
+  }
+
+  moveUp() {
+    this.setState({ direction: "u" });
+  }
+
+  moveDown() {
+    this.setState({ direction: "d" });
+  }
 }
 
 export default Snake;

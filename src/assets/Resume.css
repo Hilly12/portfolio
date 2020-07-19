@@ -115,6 +115,7 @@ h3 {
 
 .period-holder {
   text-align: left;
+  margin-bottom: 5px;
 }
 
 .education.group .organization {
@@ -128,6 +129,7 @@ h3 {
   display: inline-block;
   color: #fff;
   padding: 2px 8px;
+  margin-right: 4px;
   border-radius: 2em;
 }
 
@@ -162,7 +164,7 @@ p {
 
 .bullets {
   list-style-type: disc;
-  padding-left: 12px;
+  padding-left: 16px;
 }
 
 .icon {
@@ -170,4 +172,24 @@ p {
   color: #6091ef;
   position: relative;
   bottom: 4px;
+}
+
+.tip {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  th:nth-child(4) {
+    display: none;
+  }
+
+  td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (min-width: 1060px) {
+  .tip {
+    pointer-events: initial;
+  }
 }

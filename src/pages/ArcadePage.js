@@ -13,13 +13,13 @@ const cards = [
     title: "Snake",
     description: "The classic",
     img: snek,
-    linkto: "arcade/snake",
+    linkto: "sandbox/snake",
   },
   {
     title: "Roguelike",
     description: "A roguelike dungeon crawler",
     img: rog,
-    linkto: "arcade/roguelike",
+    linkto: "sandbox/roguelike",
   },
 ];
 
