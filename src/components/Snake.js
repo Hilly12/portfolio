@@ -20,7 +20,7 @@ const board = [];
 const spRate = 7;
 // http://127.0.0.1:8000/scores/
 // https://www.aahilm.com/scores/
-const server = "http://127.0.0.1:8000/scores/"
+const server = "https://www.aahilm.com/scores/"
 
 const initialState = {
   snake: [
