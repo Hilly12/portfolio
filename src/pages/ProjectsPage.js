@@ -9,7 +9,7 @@ class ProjectsPage extends Component {
       <Fragment>
         <Container maxWidth="lg" style={{ minHeight: "100vh" }}>
           <div style={{ marginTop: "40px" }} />
-          <div className="container">
+          <div className="container dark">
             <BaseRouter />
           </div>
           <div style={{ margin: "1%" }} />

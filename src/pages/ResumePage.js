@@ -233,7 +233,9 @@ const modules = [
     code: "CO145",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/145/",
     name: "Mathematical Methods",
-    description: "Sequences and Series Convergence Tests, Power Series, Linear Algebra"
+    description: "Sequences and Series including Limits and Tests, Power Series; and Linear Algebra including" +
+      " Gaussian Elimination, Linear Independence, Vector Spaces, Eigenvalues and Diagonalization," +
+      " Intersection of Subspaces, Orthogonality, Projections"
   },
   {
     completed: true,
@@ -247,10 +249,11 @@ const modules = [
     code: "CO161",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/161/",
     name: "Laboratory 1",
-    description: "Haskell: Cryptography, Text Processing, Fractal Drawing, Expression evaluation and calculus;" +
-      " Java: Trees, Chess Engine for just Pawns, Picture Processing, Functional Programming," +
-      " Discrete Event Simulation, Turtle Interpreter, Spreadsheet, Advanced Concurrency, Matrix Multiplication," +
-      " Red Black Trees; C: ARM Emulator, ARM Assembler, Lighting up LED on Raspberry Pi"
+    description: "Haskell: Sequences, Cryptography, Text Processing, Fractal Drawing, Expression Evaluation" +
+      " and Differentiation; Java: Trees, Chess Engine for Pawns, Picture Processing, Functional Programming," +
+      " Discrete Event Simulation, Turtle Interpreter, Spreadsheet Processing, Social Network Model," +
+      " Concurrent Matrix Multiplication, Red Black Trees; C: ARM Emulator, ARM Assembler," +
+      " Lighting up LED on Raspberry Pi"
   },
   {
     completed: true,
@@ -375,15 +378,30 @@ const modules = [
     code: "CO273",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/273/",
     name: "An Introduction to Law for Computer Scientists",
-    description: "Software Copyright, Contracts, Data Protection, Sources of Law"
+    description: "Intellectual Property and Software Copyright, Contracts, Data Protection, Regulation, GDPR," +
+      " Google Right to be Forgotten Case Study, Statute, Common Law, "
   },
   {
     completed: true,
     code: "CO276",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/276/",
     name: "Introduction to Prolog",
-    description: "Prolog Concepts, Constructs, Deterministic and Non-Deterministic Evaluation, Unification, Lists" +
+    description: "Prolog Concepts and Constructs, Deterministic and Non-Deterministic Evaluation, Unification, Lists" +
       " Arithmetics, Negation, Control, Aggregation"
+  },
+  {
+    completed: false,
+    code: "CO332",
+    link: "https://www.imperial.ac.uk/computing/current-students/courses/332/",
+    name: "Advanced Computer Architecture",
+    description: ""
+  },
+  {
+    completed: false,
+    code: "CO337",
+    link: "https://www.imperial.ac.uk/computing/current-students/courses/337/",
+    name: "Simulation and Modelling",
+    description: ""
   },
   {
     completed: false,
@@ -433,9 +451,9 @@ class ResumePage extends Component {
               <div className="heading">
                 <h2 className="text-center">Experience</h2>
               </div>
-              {workexp.map((work) => {
+              {workexp.map((work, key) => {
                 return (
-                  <div className="item">
+                  <div key={key} className="item">
                     <div className="row">
                       <div className="col-md-6">
                         <h3>{work.title}</h3>
@@ -450,13 +468,13 @@ class ResumePage extends Component {
                         <span className="period">{work.period}</span>
                       </div>
                     </div>
-                    <p className="text-muted">
-                      <ul className="bullets">
-                        {work.description.map((text) => {
-                          return <li>{text}</li>;
+                    <ul className="bullets">
+                      <p className="text-muted">
+                        {work.description.map((text, key) => {
+                          return <li key={key}>{text}</li>;
                         })}
-                      </ul>
-                    </p>
+                      </p>
+                    </ul>
                   </div>
                 );
               })}
@@ -468,9 +486,9 @@ class ResumePage extends Component {
                 <div className="col-md-6">
                   <div className="skills portfolio-info-card">
                     <h2>Languages</h2>
-                    {languages.map((lang) => {
+                    {languages.map((lang, key) => {
                       return (
-                        <Fragment>
+                        <Fragment key={key}>
                           <h3>{lang.name}</h3>
                           <div className="progress">
                             <div
@@ -491,9 +509,9 @@ class ResumePage extends Component {
                 <div className="col-md-6">
                   <div className="skills portfolio-info-card">
                     <h2>Technologies</h2>
-                    {frameworks.map((lang) => {
+                    {frameworks.map((lang, key) => {
                       return (
-                        <Fragment>
+                        <Fragment key={key}>
                           <h3>{lang.name}</h3>
                           <div className="progress">
                             <div
@@ -519,9 +537,9 @@ class ResumePage extends Component {
               <div className="heading">
                 <h2 className="text-center">Education</h2>
               </div>
-              {education.map((edu) => {
+              {education.map((edu, key) => {
                 return (
-                  <div className="item">
+                  <div key={key} className="item">
                     <div className="row">
                       <div className="col-md-6">
                         <h3>{edu.title}</h3>
@@ -531,13 +549,13 @@ class ResumePage extends Component {
                         <span className="period">{edu.period}</span>
                       </div>
                     </div>
-                    <p className="text-muted">
-                      <ul className="bullets">
-                        {edu.description.map((text) => {
-                          return <li>{text}</li>;
+                    <ul className="bullets">
+                      <p className="text-muted">
+                        {edu.description.map((text, key) => {
+                          return <li key={key}>{text}</li>;
                         })}
-                      </ul>
-                    </p>
+                      </p>
+                    </ul>
                   </div>
                 );
               })}
@@ -548,9 +566,9 @@ class ResumePage extends Component {
               <div className="heading">
                 <h2 className="text-center">Awards and Achievements</h2>
               </div>
-              {awards.map((award) => {
+              {awards.map((award, key) => {
                 return (
-                  <CustomTooltip tooltip={award.tip}>
+                  <CustomTooltip key={key} tooltip={award.tip}>
                     {award.text}
                   </CustomTooltip>
                 );
@@ -582,10 +600,10 @@ class ResumePage extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {modules.map((module) => {
+                {modules.map((module, key) => {
                   return (
-                    <tr>
-                      <td scope="row">
+                    <tr key={key}>
+                      <td>
                         {module.completed ?
                           <FontAwesomeIcon className="text-success" icon={completedIcon}/> :
                           <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>}

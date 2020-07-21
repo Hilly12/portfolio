@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Card } from "antd";
 import { Grid } from "@material-ui/core";
 import Footer from "../components/Footer";
+import "../assets/Arcade.css"
 import snek from "../assets/images/snek.png";
 import rog from "../assets/images/rog.jpg";
 
@@ -28,7 +29,7 @@ export default class ArcadePage extends Component {
     return (
       <Fragment>
         <div
-          className="container"
+          className="container stop-scroll-refresh"
           style={{ marginTop: "50px", minHeight: "100vh" }}
         >
           <Grid container align="center" spacing={3}>

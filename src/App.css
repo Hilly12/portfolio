@@ -55,11 +55,6 @@ hidden-mobile {
   }
 }
 
-.game-card {
-  background-color: transparent !important;
-  border: solid 1px lightgrey !important;
-}
-
 /* button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
@@ -76,62 +71,4 @@ hidden-mobile {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-}
-
-.game-board-wrapper {
-  position: relative;
-  margin-left: 2.5%;
-  margin-top: 20vh;
-  width: 95%;
-  height: 0;
-  padding-bottom: 50%;
-}
-
-@media (min-width: 595px) {
-  .game-board-wrapper {
-    margin-top: 15vh;
-  }
-}
-
-.game-board-wrapper-inner {
-  text-align: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-@media (min-width: 1024px) {
-  .game-board-wrapper {
-    position: relative;
-    margin-top: 7.5%;
-    margin-left: 10%;
-    /* margin: 50px; */
-    width: 80%;
-    height: 0;
-    padding-bottom: 40%;
-  }
-
-  .game-board-wrapper-inner {
-    text-align: center;
-    padding: 0 50px 50px 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-}
-
-@media (min-width: 1298px) {
-  .game-board-wrapper {
-    position: relative;
-    margin-top: 2.5%;
-    margin-left: 10%;
-    /* margin: 50px; */
-    width: 80%;
-    height: 0;
-    padding-bottom: 40%;
-  }
 }

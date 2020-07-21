@@ -5,14 +5,36 @@ import "./assets/bootstrap.min.css";
 import "./assets/Montserrat.css";
 import Header from "./components/Header";
 import Main from "./containers/Main";
-import { CssBaseline } from "@material-ui/core";
+import {createMuiTheme, CssBaseline} from "@material-ui/core";
+import {ThemeProvider} from "@material-ui/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#007bff"
+    },
+    secondary: {
+      main: "#aa288c"
+    },
+    success: {
+      main: "#4caf50"
+    }
+  },
+  typography: {
+    fontFamily: "Montserrat",
+    fontSize: 12
+  }
+});
+
 
 function App() {
   return (
     <div className="App">
-      <CssBaseline />
-      <Header />
-      <Main />
+      <CssBaseline/>
+      <Header/>
+      <ThemeProvider theme={theme}>
+        <Main/>
+      </ThemeProvider>
     </div>
   );
 }
