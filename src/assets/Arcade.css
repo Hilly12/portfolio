@@ -1,7 +1,3 @@
-.stop-scroll-refresh {
-    overscroll-behavior: contain;
-}
-
 .game-card {
     background-color: transparent !important;
     border: solid 1px lightgrey !important;

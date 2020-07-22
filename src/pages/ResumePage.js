@@ -592,7 +592,7 @@ class ResumePage extends Component {
               </div>
               <Table style={{ textAlign: "left" }}>
                 <thead>
-                <tr>
+                <tr className="module">
                   <th/>
                   <th>Code</th>
                   <th>Name</th>
@@ -602,7 +602,7 @@ class ResumePage extends Component {
                 <tbody>
                 {modules.map((module, key) => {
                   return (
-                    <tr key={key}>
+                    <tr className="module" key={key}>
                       <td>
                         {module.completed ?
                           <FontAwesomeIcon className="text-success" icon={completedIcon}/> :

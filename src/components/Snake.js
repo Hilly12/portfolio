@@ -12,15 +12,16 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrown} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
+// http://127.0.0.1:8000/scores/
+// https://www.aahilm.com/scores/
+const server = "https://www.aahilm.com/scores/"
+
 const width = 32;
 const height = 16;
 const sq = 3.125;
 const blank = [];
 const board = [];
 const spRate = 7;
-// http://127.0.0.1:8000/scores/
-// https://www.aahilm.com/scores/
-const server = "https://www.aahilm.com/scores/"
 
 const initialState = {
   snake: [
@@ -237,7 +238,7 @@ class Snake extends Component {
             </div>
             <div style={{ paddingTop: "1px" }}>
               {this.state.gameState.specialFruit !== undefined
-                ? `Lifetime: ${this.state.gameState.lifetime}`
+                ? `Lifetime: ${this.state.gameState.lifetime} `
                 : null}
               {this.state.gameState.gameState !== 1
                 ? <Link onClick={this.toggleHighScores} to="snake" style={{ zIndex: "20" }}>View Leaderboard</Link>
@@ -266,7 +267,7 @@ class Snake extends Component {
                         <FontAwesomeIcon style={{ color: "#d4af37" }} icon={faCrown}/>
                         : (index === 1 ? <FontAwesomeIcon style={{ color: "#aaa9ad" }} icon={faCrown}/>
                           : (index === 2 ? <FontAwesomeIcon style={{ color: "#b08d57" }} icon={faCrown}/>
-                            : null))}
+                            : <FontAwesomeIcon style={{ color: "#e5e4e2" }} icon={faCrown}/>))}
                     </th>
                     <th>{index + 1}</th>
                     <td>{this.state.leaderboardLoading ? <Skeleton/> : entry.username}</td>

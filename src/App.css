@@ -12,6 +12,10 @@ hidden-mobile {
   display: none;
 }
 
+.body {
+  overscroll-behavior: contain;
+}
+
 .site-layout-content {
   background: #fff;
   padding: 24px;

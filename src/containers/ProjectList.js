@@ -9,7 +9,7 @@ class ProjectList extends Component {
     super(props);
     this.state = {
       loading: true,
-      projectData: [{}, {}, {}, {}, {}],
+      projectData: [{}, {}, {}, {}, {}, {}, {}, {}],
     };
   }
 
