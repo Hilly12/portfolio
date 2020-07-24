@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Swipeable } from "react-swipeable";
+import React, {Component} from "react";
+import {Swipeable} from "react-swipeable";
 import "../assets/Snake.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Modal from "./Modal";
-import { Button, Form, FormGroup, Spinner, Table } from "reactstrap";
+import {Button, Form, FormGroup, Spinner, Table} from "reactstrap";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCrown} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 // http://127.0.0.1:8000/api/scores/
@@ -261,75 +261,75 @@ class Snake extends Component {
               ) : null}
             </div>
           </div>
-          <div className="pad" />
+          <div className="pad"/>
         </div>
         {this.state.gameState.scoreModal ? (
           <Modal title="Leaderboard" toggle={this.toggleHighScores}>
             <Table style={{ textAlign: "left", margin: "auto" }}>
               <thead>
-                <tr>
-                  <th width={10} />
-                  <th width={10} />
-                  <th>Name</th>
-                  <th>Score</th>
-                </tr>
+              <tr>
+                <th width={10}/>
+                <th width={10}/>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
               </thead>
               <tbody>
-                {this.state.leaderboard.map((entry, index) => {
-                  return (
-                    <tr key={index}>
-                      <th>
-                        {index === 0 ? (
-                          <FontAwesomeIcon
-                            style={{ color: "#d4af37" }}
-                            icon={faCrown}
-                          />
-                        ) : index === 1 ? (
-                          <FontAwesomeIcon
-                            style={{ color: "#aaa9ad" }}
-                            icon={faCrown}
-                          />
-                        ) : index === 2 ? (
-                          <FontAwesomeIcon
-                            style={{ color: "#b08d57" }}
-                            icon={faCrown}
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            style={{ color: "#e5e4e2" }}
-                            icon={faCrown}
-                          />
-                        )}
-                      </th>
-                      <th>{index + 1}</th>
-                      <td>
-                        {this.state.leaderboardLoading ? (
-                          <Skeleton />
-                        ) : (
-                          entry.username
-                        )}
-                      </td>
-                      <td>
-                        {this.state.leaderboardLoading ? (
-                          <Skeleton />
-                        ) : (
-                          entry.score
-                        )}
-                      </td>
-                    </tr>
-                  );
-                })}
+              {this.state.leaderboard.map((entry, index) => {
+                return (
+                  <tr key={index}>
+                    <th>
+                      {index === 0 ? (
+                        <FontAwesomeIcon
+                          style={{ color: "#d4af37" }}
+                          icon={faCrown}
+                        />
+                      ) : index === 1 ? (
+                        <FontAwesomeIcon
+                          style={{ color: "#aaa9ad" }}
+                          icon={faCrown}
+                        />
+                      ) : index === 2 ? (
+                        <FontAwesomeIcon
+                          style={{ color: "#b08d57" }}
+                          icon={faCrown}
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          style={{ color: "#e5e4e2" }}
+                          icon={faCrown}
+                        />
+                      )}
+                    </th>
+                    <th>{index + 1}</th>
+                    <td>
+                      {this.state.leaderboardLoading ? (
+                        <Skeleton/>
+                      ) : (
+                        entry.username
+                      )}
+                    </td>
+                    <td>
+                      {this.state.leaderboardLoading ? (
+                        <Skeleton/>
+                      ) : (
+                        entry.score
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
               </tbody>
             </Table>
           </Modal>
         ) : null}
         {this.state.gameState.gameOverModal ? (
           <Modal title="Game Over" toggle={this.toggleGameOver}>
-            <br />
+            <br/>
             <p className="text-muted" style={{ textAlign: "center" }}>
               You scored {this.state.gameState.score} points
             </p>
-            <br />
+            <br/>
             <Form>
               <FormGroup>
                 <TextField
@@ -362,11 +362,11 @@ class Snake extends Component {
               >
                 Submit to Leaderboard
                 {this.state.loading ? (
-                  <Spinner className="ml-1" size="sm" />
+                  <Spinner className="ml-1" size="sm"/>
                 ) : null}
               </Button>
             </Form>
-            <br />
+            <br/>
           </Modal>
         ) : null}
         <Snackbar
@@ -400,8 +400,8 @@ class Snake extends Component {
     }
     /* Collision with border */
     let head = this.state.gameState.snake[
-      this.state.gameState.snake.length - 1
-    ];
+    this.state.gameState.snake.length - 1
+      ];
     let x = head[0];
     let y = head[1];
     if (x < 1 || y < 1 || x >= width - 1 || y >= height - 1) {
