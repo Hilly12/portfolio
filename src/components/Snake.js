@@ -1,20 +1,20 @@
-import React, {Component} from "react";
-import {Swipeable} from "react-swipeable";
+import React, { Component } from "react";
+import { Swipeable } from "react-swipeable";
 import "../assets/Snake.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Modal from "./Modal";
-import {Button, Form, FormGroup, Spinner, Table} from "reactstrap";
+import { Button, Form, FormGroup, Spinner, Table } from "reactstrap";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 import Skeleton from "@material-ui/lab/Skeleton";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCrown} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-// http://127.0.0.1:8000/scores/
-// https://www.aahilm.com/scores/
-const server = "https://www.aahilm.com/scores/"
+// http://127.0.0.1:8000/api/scores/
+// https://www.aahilm.com/api/scores/
+const server = "https://www.aahilm.com/api/scores/";
 
 const width = 32;
 const height = 16;
@@ -111,7 +111,7 @@ class Snake extends Component {
       leaderboardLoading: true,
       success: false,
       leaderboard: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-      gameState: initialState
+      gameState: initialState,
     };
   }
 
@@ -124,71 +124,73 @@ class Snake extends Component {
         leaderboard: response.data,
       });
       this.setState({
-        leaderboard: this.state.leaderboard.sort((a, b) => b.score - a.score)
-      })
+        leaderboard: this.state.leaderboard.sort((a, b) => b.score - a.score),
+      });
     });
   }
 
-
   toggleHighScores() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        scoreModal: !this.state.gameState.scoreModal
-      }
+        scoreModal: !this.state.gameState.scoreModal,
+      },
     }));
   }
 
   toggleGameOver() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        gameOverModal: !this.state.gameState.gameOverModal
-      }
+        gameOverModal: !this.state.gameState.gameOverModal,
+      },
     }));
   }
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
     let ascii = /^[ -~]+$/;
     if (e.target.value.toLowerCase().includes("fuck")) {
       this.setState({
         error: true,
-        helperText: "Please avoid profanity"
-      })
+        helperText: "Please avoid profanity",
+      });
     } else if (e.target.value !== "" && !ascii.test(e.target.value)) {
       this.setState({
         error: true,
-        helperText: "Please use only ASCII characters"
-      })
+        helperText: "Please use only ASCII characters",
+      });
     } else {
       this.setState({
         error: false,
-        helperText: " "
-      })
+        helperText: " ",
+      });
     }
   };
 
   submitScore() {
     this.setState({
       loading: true,
-      leaderboardLoading: true
+      leaderboardLoading: true,
     });
 
-    axios.post(server, {
-      username: this.state.dname,
-      score: this.state.gameState.score
-    }).then((response) => {
-      console.log(response);
-      this.success();
-    }).catch((error) => {
-      console.log(error);
-      this.setState({
-        loading: false,
-        leaderboardLoading: false
+    axios
+      .post(server, {
+        username: this.state.dname,
+        score: this.state.gameState.score,
+      })
+      .then((response) => {
+        console.log(response);
+        this.success();
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          loading: false,
+          leaderboardLoading: false,
+        });
+        alert("Unable to connect to server");
       });
-      alert("Unable to connect to server");
-    });
   }
 
   success() {
@@ -196,29 +198,37 @@ class Snake extends Component {
     this.setState({
       success: true,
       loading: false,
-    })
-    this.setState(prevState => ({
+    });
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
         gameOverModal: false,
-      }
+      },
     }));
-  };
+  }
 
   dismissSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     this.setState({
       success: false,
-    })
+    });
   };
 
   render() {
     return (
-      <Swipeable onSwipedLeft={this.moveLeft.bind(this)} onSwipedRight={this.moveRight.bind(this)}
-                 onSwipedUp={this.moveUp.bind(this)} onSwipedDown={this.moveDown.bind(this)} trackMouse={false}>
-        <div onDoubleClick={this.spaceDown.bind(this)} className="game-board-wrapper">
+      <Swipeable
+        onSwipedLeft={this.moveLeft.bind(this)}
+        onSwipedRight={this.moveRight.bind(this)}
+        onSwipedUp={this.moveUp.bind(this)}
+        onSwipedDown={this.moveDown.bind(this)}
+        trackMouse={false}
+      >
+        <div
+          onDoubleClick={this.spaceDown.bind(this)}
+          className="game-board-wrapper"
+        >
           <div className="game-board-wrapper-inner">
             <div style={{ marginTop: "-1.6em" }}>
               {this.state.gameState.gameState === 1
@@ -240,70 +250,136 @@ class Snake extends Component {
               {this.state.gameState.specialFruit !== undefined
                 ? `Lifetime: ${this.state.gameState.lifetime} `
                 : null}
-              {this.state.gameState.gameState !== 1
-                ? <Link onClick={this.toggleHighScores} to="snake" style={{ zIndex: "20" }}>View Leaderboard</Link>
-                : null}
+              {this.state.gameState.gameState !== 1 ? (
+                <Link
+                  onClick={this.toggleHighScores}
+                  to="snake"
+                  style={{ zIndex: "20" }}
+                >
+                  View Leaderboard
+                </Link>
+              ) : null}
             </div>
           </div>
-          <div className="pad"/>
+          <div className="pad" />
         </div>
-        {this.state.gameState.scoreModal ?
+        {this.state.gameState.scoreModal ? (
           <Modal title="Leaderboard" toggle={this.toggleHighScores}>
             <Table style={{ textAlign: "left", margin: "auto" }}>
               <thead>
-              <tr>
-                <th width={10}/>
-                <th width={10}/>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
+                <tr>
+                  <th width={10} />
+                  <th width={10} />
+                  <th>Name</th>
+                  <th>Score</th>
+                </tr>
               </thead>
               <tbody>
-              {this.state.leaderboard.map((entry, index) => {
-                return (
-                  <tr key={index}>
-                    <th>
-                      {index === 0 ?
-                        <FontAwesomeIcon style={{ color: "#d4af37" }} icon={faCrown}/>
-                        : (index === 1 ? <FontAwesomeIcon style={{ color: "#aaa9ad" }} icon={faCrown}/>
-                          : (index === 2 ? <FontAwesomeIcon style={{ color: "#b08d57" }} icon={faCrown}/>
-                            : <FontAwesomeIcon style={{ color: "#e5e4e2" }} icon={faCrown}/>))}
-                    </th>
-                    <th>{index + 1}</th>
-                    <td>{this.state.leaderboardLoading ? <Skeleton/> : entry.username}</td>
-                    <td>{this.state.leaderboardLoading ? <Skeleton/> : entry.score}</td>
-                  </tr>
-                );
-              })}
+                {this.state.leaderboard.map((entry, index) => {
+                  return (
+                    <tr key={index}>
+                      <th>
+                        {index === 0 ? (
+                          <FontAwesomeIcon
+                            style={{ color: "#d4af37" }}
+                            icon={faCrown}
+                          />
+                        ) : index === 1 ? (
+                          <FontAwesomeIcon
+                            style={{ color: "#aaa9ad" }}
+                            icon={faCrown}
+                          />
+                        ) : index === 2 ? (
+                          <FontAwesomeIcon
+                            style={{ color: "#b08d57" }}
+                            icon={faCrown}
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            style={{ color: "#e5e4e2" }}
+                            icon={faCrown}
+                          />
+                        )}
+                      </th>
+                      <th>{index + 1}</th>
+                      <td>
+                        {this.state.leaderboardLoading ? (
+                          <Skeleton />
+                        ) : (
+                          entry.username
+                        )}
+                      </td>
+                      <td>
+                        {this.state.leaderboardLoading ? (
+                          <Skeleton />
+                        ) : (
+                          entry.score
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
-          </Modal> :
-          null}
-        {this.state.gameState.gameOverModal ?
+          </Modal>
+        ) : null}
+        {this.state.gameState.gameOverModal ? (
           <Modal title="Game Over" toggle={this.toggleGameOver}>
-            <br/>
-            <p className="text-muted" style={{ textAlign: "center" }}>You scored {this.state.gameState.score} points</p>
-            <br/>
+            <br />
+            <p className="text-muted" style={{ textAlign: "center" }}>
+              You scored {this.state.gameState.score} points
+            </p>
+            <br />
             <Form>
               <FormGroup>
-                <TextField disabled={this.state.gameState.score < this.state.thresholdScore || this.state.loading}
-                           value={this.state.dname} helperText={this.state.helperText} id="dname" color="primary"
-                           size="small" label="Name" variant="outlined" onChange={this.onChange}
-                           error={this.state.error} autoComplete="off"/>
+                <TextField
+                  disabled={
+                    this.state.gameState.score < this.state.thresholdScore ||
+                    this.state.loading
+                  }
+                  value={this.state.dname}
+                  helperText={this.state.helperText}
+                  id="dname"
+                  color="primary"
+                  size="small"
+                  label="Name"
+                  variant="outlined"
+                  onChange={this.onChange}
+                  error={this.state.error}
+                  autoComplete="off"
+                />
               </FormGroup>
-              <Button color="primary"
-                      disabled={this.state.gameState.score < this.state.thresholdScore || this.state.loading
-                      || this.state.error || this.state.dname.trim() === ""}
-                      onClick={this.submitScore} size="sm">
+              <Button
+                color="primary"
+                disabled={
+                  this.state.gameState.score < this.state.thresholdScore ||
+                  this.state.loading ||
+                  this.state.error ||
+                  this.state.dname.trim() === ""
+                }
+                onClick={this.submitScore}
+                size="sm"
+              >
                 Submit to Leaderboard
-                {this.state.loading ? <Spinner className="ml-1" size="sm"/> : null}
+                {this.state.loading ? (
+                  <Spinner className="ml-1" size="sm" />
+                ) : null}
               </Button>
             </Form>
-            <br/>
+            <br />
           </Modal>
-          : null}
-        <Snackbar open={this.state.success} autoHideDuration={2000} onClose={this.dismissSnackbar}>
-          <Alert elevation={6} variant="filled" severity="success" onClose={this.dismissSnackbar}>
+        ) : null}
+        <Snackbar
+          open={this.state.success}
+          autoHideDuration={2000}
+          onClose={this.dismissSnackbar}
+        >
+          <Alert
+            elevation={6}
+            variant="filled"
+            severity="success"
+            onClose={this.dismissSnackbar}
+          >
             Score successfully submitted
           </Alert>
         </Snackbar>
@@ -323,7 +399,9 @@ class Snake extends Component {
       return;
     }
     /* Collision with border */
-    let head = this.state.gameState.snake[this.state.gameState.snake.length - 1];
+    let head = this.state.gameState.snake[
+      this.state.gameState.snake.length - 1
+    ];
     let x = head[0];
     let y = head[1];
     if (x < 1 || y < 1 || x >= width - 1 || y >= height - 1) {
@@ -344,11 +422,11 @@ class Snake extends Component {
     head = this.state.gameState.snake[this.state.gameState.snake.length - 1];
     let fruit = this.state.gameState.fruit;
     if (head[0] === fruit[0] && head[1] === fruit[1]) {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         gameState: {
           ...prevState.gameState,
-          fruit: getRandomCoordinates(this.state.gameState)
-        }
+          fruit: getRandomCoordinates(this.state.gameState),
+        },
       }));
       this.onEatFruit(50);
     }
@@ -358,20 +436,20 @@ class Snake extends Component {
       head = this.state.gameState.snake[this.state.gameState.snake.length - 1];
       let sp = this.state.gameState.specialFruit;
       if (head[0] === sp[0] && head[1] === sp[1]) {
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           gameState: {
             ...prevState.gameState,
             specialFruit: undefined,
-          }
+          },
         }));
         this.onEatFruit(400);
       } else {
         if (this.state.gameState.lifetime <= 0) {
-          this.setState(prevState => ({
+          this.setState((prevState) => ({
             gameState: {
               ...prevState.gameState,
               specialFruit: undefined,
-            }
+            },
           }));
         }
       }
@@ -382,20 +460,20 @@ class Snake extends Component {
     /* Enlarge */
     let newSnake = [...this.state.gameState.snake];
     newSnake.unshift([]);
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        snake: newSnake
-      }
+        snake: newSnake,
+      },
     }));
 
     /* Increment Score */
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
         score: this.state.gameState.score + score,
         fruits: this.state.gameState.fruits + 1,
-      }
+      },
     }));
 
     /* Speed up */
@@ -406,23 +484,26 @@ class Snake extends Component {
     // }
 
     /* Spawn Special Fruit */
-    if (this.state.gameState.fruits !== 0 && this.state.gameState.fruits % spRate === 0) {
-      this.setState(prevState => ({
+    if (
+      this.state.gameState.fruits !== 0 &&
+      this.state.gameState.fruits % spRate === 0
+    ) {
+      this.setState((prevState) => ({
         gameState: {
           ...prevState.gameState,
           specialFruit: getRandomCoordinates(this.state.gameState),
           lifetime: 50,
-        }
+        },
       }));
     }
   }
 
   onGameOver() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
         gameState: 2,
-      }
+      },
     }));
     this.toggleGameOver();
     // setTimeout(this.toggleGameOver, 300);
@@ -431,13 +512,13 @@ class Snake extends Component {
 
   onNewGame() {
     this.setState({
-      gameState: initialState
+      gameState: initialState,
     });
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
         gameState: 1,
-      }
+      },
     }));
   }
 
@@ -466,12 +547,12 @@ class Snake extends Component {
     }
     snake.push(head);
     snake.shift();
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
         lifetime: this.state.gameState.lifetime - 1,
         snake: snake,
-      }
+      },
     }));
   };
 
@@ -479,17 +560,17 @@ class Snake extends Component {
     e = e || window["event"];
     switch (e.keyCode) {
       case 27:
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           gameState: {
             ...prevState.gameState,
             gameOverModal: false,
-          }
+          },
         }));
-        this.setState(prevState => ({
+        this.setState((prevState) => ({
           gameState: {
             ...prevState.gameState,
             scoreModal: false,
-          }
+          },
         }));
         break;
       case 38:
@@ -513,44 +594,47 @@ class Snake extends Component {
   };
 
   spaceDown() {
-    if (this.state.gameState.gameState !== 1 && !this.state.gameState.gameOverModal) {
+    if (
+      this.state.gameState.gameState !== 1 &&
+      !this.state.gameState.gameOverModal
+    ) {
       this.onNewGame();
     }
   }
 
   moveLeft() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        direction: "l"
-      }
+        direction: "l",
+      },
     }));
   }
 
   moveRight() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        direction: "r"
-      }
+        direction: "r",
+      },
     }));
   }
 
   moveUp() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        direction: "u"
-      }
+        direction: "u",
+      },
     }));
   }
 
   moveDown() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       gameState: {
         ...prevState.gameState,
-        direction: "d"
-      }
+        direction: "d",
+      },
     }));
   }
 }
