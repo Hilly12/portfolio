@@ -63,12 +63,12 @@ const languages = [
     proficiency: 85,
   },
   {
-    name: "C#",
+    name: "Javascript",
     proficiency: 75,
   },
   {
-    name: "Javascript",
-    proficiency: 65,
+    name: "C#",
+    proficiency: 70,
   },
 ];
 
@@ -136,11 +136,7 @@ const awards = [
   },
   {
     text: "British Maths Olympiad Qualifier",
-    tip: "1000 highest performers in the country selected."
-  },
-  {
-    text: "2 Golds in UKMT Senior Maths Challenge",
-    tip: "Additionally Merit in Senior Kangaroo"
+    tip: "1000 highest performers in the country selected. Top "
   },
   {
     text: "Team Maths Challenge National Final Qualifier",
@@ -148,7 +144,7 @@ const awards = [
   },
   {
     text: "Gold in Chemistry Olympiad",
-    tip: "Additionally Gold in Cambridge Chemistry Challenge"
+    tip: "Awarded to the top 8.1% candidates"
   },
 ]
 

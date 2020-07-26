@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Skeleton } from "antd";
 
@@ -37,9 +37,9 @@ class ProjectDetail extends Component {
           {this.state.projectData.content}
         </div>
       </Skeleton>
-      // <Card title={this.state.projectData.title}>
+      // <ProgressiveImage title={this.state.projectData.title}>
       //   <p>{this.state.projectData.content}</p>
-      // </Card>
+      // </ProgressiveImage>
     );
   }
 }

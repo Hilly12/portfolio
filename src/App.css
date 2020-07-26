@@ -1,5 +1,5 @@
 .App {
-  font-family: "Montserrat" !important;
+  font-family: "Montserrat", serif !important;
   text-align: center;
   /* font-weight: Bold; */
 }
@@ -71,4 +71,20 @@ hidden-mobile {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.link {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.btn-xxs {
+  border: none;
+  box-shadow: none !important;
+  outline: none !important;
 }

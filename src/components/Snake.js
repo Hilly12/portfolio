@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {Swipeable} from "react-swipeable";
 import "../assets/Snake.css";
-import {Link} from "react-router-dom";
 import Modal from "./Modal";
-import {Button, Form, FormGroup, Spinner, Table} from "reactstrap";
+import {Button, ButtonGroup, Form, FormGroup, Spinner, Table} from "reactstrap";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
@@ -33,11 +32,11 @@ const initialState = {
   lifetime: 0,
   fruits: 0,
   score: 0,
-  refreshRate: 100,
   direction: "r",
   gameState: 0,
   gameOverModal: false,
   scoreModal: false,
+  settingsModal: false,
 };
 
 for (let x = 0; x < width; x++) {
@@ -98,18 +97,28 @@ class Snake extends Component {
     super(props);
     this.toggleHighScores = this.toggleHighScores.bind(this);
     this.toggleGameOver = this.toggleGameOver.bind(this);
+    this.toggleSettings = this.toggleSettings.bind(this);
     this.submitScore = this.submitScore.bind(this);
     this.success = this.success.bind(this);
     this.loadLeaderboard = this.loadLeaderboard.bind(this);
+    this.saveSettings = this.saveSettings.bind(this);
+    this.saveSuccess = this.saveSuccess.bind(this);
     this.dismissSnackbar = this.dismissSnackbar.bind(this);
     this.state = {
+      cookies: false,
       dname: "",
       error: false,
       helperText: " ",
       thresholdScore: 500,
       loading: false,
+      saveLoading: false,
       leaderboardLoading: true,
       success: false,
+      changes: "",
+      refreshRate: 100,
+      difficulty: 2,
+      scoreDelta: 50,
+      specialMultiplier: 8,
       leaderboard: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
       gameState: initialState,
     };
@@ -147,6 +156,20 @@ class Snake extends Component {
     }));
   }
 
+  toggleSettings() {
+    if (!this.state.gameState.settingsModal) {
+      this.setState({
+        diff: this.state.difficulty,
+      });
+    }
+    this.setState((prevState) => ({
+      gameState: {
+        ...prevState.gameState,
+        settingsModal: !this.state.gameState.settingsModal,
+      },
+    }));
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
     let ascii = /^[ -~]+$/;
@@ -174,28 +197,26 @@ class Snake extends Component {
       leaderboardLoading: true,
     });
 
-    axios
-      .post(server, {
-        username: this.state.dname,
-        score: this.state.gameState.score,
-      })
-      .then((response) => {
-        console.log(response);
-        this.success();
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({
-          loading: false,
-          leaderboardLoading: false,
-        });
-        alert("Unable to connect to server");
+    axios.post(server, {
+      username: this.state.dname,
+      score: this.state.gameState.score,
+    }).then((response) => {
+      console.log(response);
+      this.success();
+    }).catch((error) => {
+      console.log(error);
+      this.setState({
+        loading: false,
+        leaderboardLoading: false,
       });
+      alert("Unable to connect to server");
+    });
   }
 
   success() {
     this.loadLeaderboard();
     this.setState({
+      changes: "Score submitted",
       success: true,
       loading: false,
     });
@@ -215,6 +236,32 @@ class Snake extends Component {
       success: false,
     });
   };
+
+  saveSettings() {
+    this.setState({
+      saveLoading: true,
+    })
+    if (this.state.cookies) {
+      localStorage.setItem('difficulty', this.state.diff);
+    }
+    setTimeout(this.saveSuccess, 200);
+  }
+
+  saveSuccess() {
+    this.setState({
+      saveLoading: false,
+      changes: "Saved changes",
+      success: true,
+      difficulty: this.state.diff
+    })
+    this.setState((prevState) => ({
+      gameState: {
+        ...prevState.gameState,
+        settingsModal: false
+      },
+    }));
+    this.updateVars();
+  }
 
   render() {
     return (
@@ -247,17 +294,22 @@ class Snake extends Component {
               </div>
             </div>
             <div style={{ paddingTop: "1px" }}>
-              {this.state.gameState.specialFruit !== undefined
+              {this.state.gameState.specialFruit !== undefined && this.state.gameState.gameState === 1
                 ? `Lifetime: ${this.state.gameState.lifetime} `
                 : null}
               {this.state.gameState.gameState !== 1 ? (
-                <Link
-                  onClick={this.toggleHighScores}
-                  to="snake"
-                  style={{ zIndex: "20" }}
-                >
-                  View Leaderboard
-                </Link>
+                <div style={{ display: "flex" }}>
+                  <div style={{ width: "100%" }}>
+                    <span className="link" onClick={this.toggleHighScores}>
+                      View Leaderboard
+                    </span>
+                  </div>
+                  <div style={{ position: "absolute", right: '10px' }}>
+                    <span className="link" onClick={this.toggleSettings}>
+                      Settings
+                    </span>
+                  </div>
+                </div>
               ) : null}
             </div>
           </div>
@@ -329,14 +381,17 @@ class Snake extends Component {
             <p className="text-muted" style={{ textAlign: "center" }}>
               You scored {this.state.gameState.score} points
             </p>
+            {this.state.gameState.score < this.state.thresholdScore ?
+              <p className="text-muted" style={{ textAlign: "center" }}>
+                Score over {this.state.thresholdScore} to qualify for the leaderboard
+              </p> :
+              null}
+
             <br/>
             <Form>
               <FormGroup>
                 <TextField
-                  disabled={
-                    this.state.gameState.score < this.state.thresholdScore ||
-                    this.state.loading
-                  }
+                  disabled={this.state.gameState.score < this.state.thresholdScore || this.state.loading}
                   value={this.state.dname}
                   helperText={this.state.helperText}
                   id="dname"
@@ -369,6 +424,35 @@ class Snake extends Component {
             <br/>
           </Modal>
         ) : null}
+        {this.state.gameState.settingsModal ? (
+          <Modal title="Settings" toggle={this.toggleSettings}>
+            <Form>
+              <FormGroup>
+                <ButtonGroup size="sm">
+                  <Button outline onClick={() => this.setState({ diff: 1 })} active={this.state.diff === 1}
+                          color="primary" className="button-group">Easy</Button>
+                  <Button outline onClick={() => this.setState({ diff: 2 })} active={this.state.diff === 2}
+                          color="primary" className="button-group">Medium</Button>
+                  <Button outline onClick={() => this.setState({ diff: 3 })} active={this.state.diff === 3}
+                          color="primary" className="button-group">Hard</Button>
+                  <Button outline onClick={() => this.setState({ diff: 4 })} active={this.state.diff === 4}
+                          color="primary" className="button-group">Insane</Button>
+                </ButtonGroup>
+              </FormGroup>
+              <Button
+                color="primary"
+                onClick={this.saveSettings}
+                size="sm"
+              >
+                Save Changes
+                {this.state.saveLoading ? (
+                  <Spinner className="ml-1" size="sm"/>
+                ) : null}
+              </Button>
+            </Form>
+            <br/>
+          </Modal>
+        ) : null}
         <Snackbar
           open={this.state.success}
           autoHideDuration={2000}
@@ -380,7 +464,7 @@ class Snake extends Component {
             severity="success"
             onClose={this.dismissSnackbar}
           >
-            Score successfully submitted
+            {this.state.changes}
           </Alert>
         </Snackbar>
       </Swipeable>
@@ -389,7 +473,19 @@ class Snake extends Component {
 
   componentDidMount() {
     this.loadLeaderboard();
-    setInterval(this.moveSnake, this.state.gameState.refreshRate);
+
+    const cookies = JSON.parse(localStorage.getItem('cookies'));
+    if (cookies) {
+      const difficulty = JSON.parse(localStorage.getItem('difficulty'));
+      if (difficulty) {
+        this.setState({
+          difficulty: difficulty
+        });
+      } else {
+        localStorage.setItem('difficulty', this.state.difficulty);
+      }
+    }
+
     document.onkeydown = this.onKeyDown;
   }
 
@@ -428,7 +524,7 @@ class Snake extends Component {
           fruit: getRandomCoordinates(this.state.gameState),
         },
       }));
-      this.onEatFruit(50);
+      this.onEatFruit(this.state.scoreDelta);
     }
 
     /* Collision with special fruit */
@@ -442,7 +538,7 @@ class Snake extends Component {
             specialFruit: undefined,
           },
         }));
-        this.onEatFruit(400);
+        this.onEatFruit(this.state.scoreDelta * this.state.specialMultiplier);
       } else {
         if (this.state.gameState.lifetime <= 0) {
           this.setState((prevState) => ({
@@ -505,14 +601,17 @@ class Snake extends Component {
         gameState: 2,
       },
     }));
+    clearInterval(this.state.interval);
     this.toggleGameOver();
     // setTimeout(this.toggleGameOver, 300);
     // alert(`Game Over. Snake length is ${this.state.snake.length}`);
   }
 
   onNewGame() {
+    this.updateVars();
     this.setState({
       gameState: initialState,
+      interval: setInterval(this.moveSnake, this.state.refreshRate)
     });
     this.setState((prevState) => ({
       gameState: {
@@ -520,6 +619,41 @@ class Snake extends Component {
         gameState: 1,
       },
     }));
+  }
+
+  updateVars() {
+    switch (this.state.difficulty) {
+      case 1:
+        this.setState({
+          refreshRate: 200,
+          scoreDelta: 20,
+          specialMultiplier: 10
+        });
+        break;
+      case 2:
+        this.setState({
+          refreshRate: 100,
+          scoreDelta: 50,
+          specialMultiplier: 10
+        });
+        break;
+      case 3:
+        this.setState({
+          refreshRate: 70,
+          scoreDelta: 100,
+          specialMultiplier: 10
+        });
+        break;
+      case 4:
+        this.setState({
+          refreshRate: 40,
+          scoreDelta: 200,
+          specialMultiplier: 20
+        });
+        break;
+      default:
+        break;
+    }
   }
 
   moveSnake = () => {
@@ -564,12 +698,8 @@ class Snake extends Component {
           gameState: {
             ...prevState.gameState,
             gameOverModal: false,
-          },
-        }));
-        this.setState((prevState) => ({
-          gameState: {
-            ...prevState.gameState,
             scoreModal: false,
+            settingsModal: false
           },
         }));
         break;
