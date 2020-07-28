@@ -188,7 +188,7 @@ p {
   }
 }
 
-@media (min-width: 1060px) {
+@media (min-width: 1200px) {
   .tip {
     pointer-events: initial;
   }
@@ -236,6 +236,12 @@ p {
 
 .fa-github {
   background: black !important;
-  opacity: 0.85;
+  opacity: 0.83;
+  color: white;
+}
+
+.fa-file {
+  background: #555555 !important;
+  opacity: 0.9;
   color: white;
 }

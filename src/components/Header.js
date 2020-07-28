@@ -108,7 +108,7 @@ class Header extends Component {
             </Nav>
           </div>
         </AppBar>
-        <Toolbar className="app-bar"/>
+        <Toolbar/>
       </Fragment>
     );
   }

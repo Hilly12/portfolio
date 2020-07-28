@@ -1,20 +1,23 @@
-import React, { Component, Fragment } from "react";
-import { Container } from "@material-ui/core";
+import React, {Component, Fragment} from "react";
 import Footer from "../components/Footer";
 import BaseRouter from "../routes.js";
 
 class ProjectsPage extends Component {
+
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
+
   render() {
     return (
       <Fragment>
-        <Container maxWidth="lg" style={{ minHeight: "100vh" }}>
-          <div style={{ marginTop: "40px" }} />
-          <div className="container dark">
-            <BaseRouter />
+        <div className="container" style={{ minHeight: "100vh" }}>
+          <div style={{ marginTop: "20px" }}/>
+          <div className="container ">
+            <BaseRouter/>
           </div>
-          <div style={{ margin: "1%" }} />
-        </Container>
-        <Footer />
+        </div>
+        <Footer/>
       </Fragment>
     );
   }

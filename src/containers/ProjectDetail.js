@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 import axios from "axios";
-import { Skeleton } from "antd";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -23,20 +23,27 @@ class ProjectDetail extends Component {
           loading: false,
           projectData: response.data,
         });
+      }).catch(e => {
+      this.setState({
+        loading: true
       });
+    });
   }
 
   render() {
+    if (this.state.loading) {
+      return <LinearProgress/>
+    }
     return (
-      <Skeleton loading={this.state.loading}>
+      <Fragment>
         <h2 style={{ fontWeight: "600", color: "#555555" }}>
           {this.state.projectData.title}{" "}
         </h2>
-        <br />
+        <br/>
         <div style={{ textAlign: "justify" }}>
           {this.state.projectData.content}
         </div>
-      </Skeleton>
+      </Fragment>
       // <ProgressiveImage title={this.state.projectData.title}>
       //   <p>{this.state.projectData.content}</p>
       // </ProgressiveImage>

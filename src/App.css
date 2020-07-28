@@ -35,17 +35,7 @@ hidden-mobile {
   color: #fff;
 }
 
-@media (max-width: 340px) {
-  .app-bar {
-    margin-bottom: 40px;
-  }
-}
-
 @media (min-width: 576px) {
-  .app-bar {
-    margin-bottom: 20px;
-  }
-
   .hide-span-mobile span {
     display: inline;
   }

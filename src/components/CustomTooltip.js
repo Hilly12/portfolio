@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {withStyles} from "@material-ui/core";
 import Tooltip from "@material-ui/core/Tooltip";
 
@@ -14,13 +14,13 @@ const LightTooltip = withStyles((theme) => ({
 
 export default function CustomTooltip(props) {
   return (
-    <div className="tip">
+    <Fragment>
       <LightTooltip title={props.tooltip} placement="right">
-      <span style={{ fontWeight: "600", color: "#585e63" }}>
-        {props.children}
-        <p/>
-      </span>
+        <span className="tip" style={{ fontWeight: "600", color: "#585e63" }}>
+          {props.children}
+        </span>
       </LightTooltip>
-    </div>
+      <p/>
+    </Fragment>
   );
 };

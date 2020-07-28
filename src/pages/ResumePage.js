@@ -10,6 +10,7 @@ import {faLinkedinIn} from "@fortawesome/free-brands-svg-icons/faLinkedinIn";
 import Avatar from "@material-ui/core/Avatar";
 import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
+import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 
 const bio = () => {
   return (
@@ -17,7 +18,7 @@ const bio = () => {
       I'm an aspiring Software Engineer, and currently a student at Imperial College London. My topics of primary
       interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
       time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
-      politics to broaden my perspective.
+      politics to broaden my perspectives.
     </Fragment>
   );
 }
@@ -27,7 +28,6 @@ const workexp = [
     title: "Software Engineering Intern",
     institution: "Scribetech",
     period: "July 2020 - September 2020",
-    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     description: ["Smart Editor"],
   },
   {
@@ -43,8 +43,6 @@ const workexp = [
     title: "Data Science Work Experience",
     institution: "MET Office",
     period: "May 2017 - July 2017",
-    link:
-      "https://royalsociety.org/science-events-and-lectures/2017/summer-science-exhibition/exhibits/a-model-earth/",
     description: [
       "Collaboration with the Crescendo project team to analyze global temperature and rainfall data",
       "Created an informative animated plot in Python using Iris, Matplotlib libraries",
@@ -144,7 +142,7 @@ const awards = [
   },
   {
     text: "Gold in Chemistry Olympiad",
-    tip: "Awarded to the top 8.1% candidates"
+    tip: "Awarded to the top 8.1% performers in the UK"
   },
 ]
 
@@ -411,17 +409,34 @@ const modules = [
 const hobbies = () => {
   return (
     <Fragment>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In motu et in statu corporis nihil inest, quod animadvertendum esse ipsa natura iudicet? Experiamur igitur, inquit, etsi habet haec Stoicorum ratio difficilius quiddam et obscurius. Haec igitur Epicuri non probo, inquam. Sed residamus, inquit, si placet. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis vitia posuisse contraria. </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In motu et in statu corporis nihil inest, quod
+        animadvertendum esse ipsa natura iudicet? Experiamur igitur, inquit, etsi habet haec Stoicorum ratio difficilius
+        quiddam et obscurius. Haec igitur Epicuri non probo, inquam. Sed residamus, inquit, si placet. Nunc ita
+        separantur, ut disiuncta sint, quo nihil potest esse perversius. Virtutibus igitur rectissime mihi videris et ad
+        consuetudinem nostrae orationis vitia posuisse contraria. </p>
 
-      <p>Qua igitur re ab deo vincitur, si aeternitate non vincitur? Piso, familiaris noster, et alia multa et hoc loco Stoicos irridebat: Quid enim? Nec vero sum nescius esse utilitatem in historia, non modo voluptatem. Isto modo, ne si avia quidem eius nata non esset. <a href="http://loripsum.net/" target="_blank">Nobis aliter videtur, recte secusne, postea;</a> Et quidem iure fortasse, sed tamen non gravissimum est testimonium multitudinis. <i>Bonum patria: miserum exilium.</i> Ita enim vivunt quidam, ut eorum vita refellatur oratio. Sed quod proximum fuit non vidit. Odium autem et invidiam facile vitabis. </p>
+      <p>Qua igitur re ab deo vincitur, si aeternitate non vincitur? Piso, familiaris noster, et alia multa et hoc loco
+        Stoicos irridebat: Quid enim? Nec vero sum nescius esse utilitatem in historia, non modo voluptatem. Isto modo,
+        ne si avia quidem eius nata non esset. <a href="http://loripsum.net/">Nobis aliter videtur,
+          recte secusne, postea;</a> Et quidem iure fortasse, sed tamen non gravissimum est testimonium
+        multitudinis. <i>Bonum patria: miserum exilium.</i> Ita enim vivunt quidam, ut eorum vita refellatur oratio. Sed
+        quod proximum fuit non vidit. Odium autem et invidiam facile vitabis. </p>
 
-      <p>Duo Reges: constructio interrete. <b>Iubet igitur nos Pythius Apollo noscere nosmet ipsos.</b> <a href="http://loripsum.net/" target="_blank">Ut pulsi recurrant?</a> <a href="http://loripsum.net/" target="_blank">De vacuitate doloris eadem sententia erit.</a> Solum praeterea formosum, solum liberum, solum civem, stultost; Esse enim quam vellet iniquus iustus poterat inpune. Summus dolor plures dies manere non potest? </p>
-      
+      <p>Duo Reges: constructio interrete. <b>Iubet igitur nos Pythius Apollo noscere nosmet ipsos.</b> <a
+        href="http://loripsum.net/">Ut pulsi recurrant?</a> <a href="http://loripsum.net/">De vacuitate doloris
+        eadem sententia erit.</a> Solum praeterea formosum, solum liberum, solum civem, stultost; Esse enim quam vellet
+        iniquus iustus poterat inpune. Summus dolor plures dies manere non potest? </p>
+
     </Fragment>
   );
 }
 
 class ResumePage extends Component {
+
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
+
   render() {
     return (
       <Fragment>
@@ -445,17 +460,23 @@ class ResumePage extends Component {
             <br/>
             <br/>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank">
+              <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
                 <Avatar className="fa fa-linkedin">
                   <FontAwesomeIcon icon={faLinkedinIn}/>
                 </Avatar>
               </a>
-              <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank">
+              <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank"
+                 rel="noopener noreferrer">
                 <Avatar className="fa fa-facebook">
                   <FontAwesomeIcon icon={faFacebookF}/>
                 </Avatar>
               </a>
-              <a href="https://github.com/Hilly12" target="_blank">
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
+                <Avatar className="fa fa-file">
+                  <FontAwesomeIcon icon={faFileAlt}/>
+                </Avatar>
+              </a>
+              <a href="https://github.com/Hilly12" target="_blank" rel="noopener noreferrer">
                 <Avatar className="fa fa-github">
                   <FontAwesomeIcon size="lg" icon={faGithub}/>
                 </Avatar>
@@ -596,12 +617,12 @@ class ResumePage extends Component {
               <div className="heading">
                 <h2 className="text-center">Hobbies</h2>
               </div>
-              <p className="text-muted" style={{
+              <div className="text-muted" style={{
                 margin: "auto",
                 textAlign: 'justify'
               }}>
                 {hobbies()}
-              </p>
+              </div>
             </div>
 
             {/* Classes */}
