@@ -476,6 +476,9 @@ class Snake extends Component {
 
     const cookies = JSON.parse(localStorage.getItem('cookies'));
     if (cookies) {
+      this.setState({
+        cookies: true
+      })
       const difficulty = JSON.parse(localStorage.getItem('difficulty'));
       if (difficulty) {
         this.setState({

@@ -13,20 +13,23 @@ function CookieBanner(props) {
       left: "0",
       bottom: "0",
       width: "100%",
-      zIndex: 2,
-      display: "inline-flex"
+      zIndex: '2',
+      display: "inline-flex",
+      paddingBottom: '20px'
     }}>
       <button className="btn-xxs btn-danger btn-popup-close" onClick={props.toggle}>x</button>
-      <div style={{textAlign: "left", marginRight: "20px"}}>
-        <h6 style={{ lineHeight: "10px"}}>Cookie Consent</h6>
-        <p style={{fontSize: '12px'}}>
-          By continuing to browse or clicking 'Accept', you agree to the storing of cookies on your device to enhance
-          your site experience.
-        </p>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: "left",
+        marginRight: "30px"
+      }}>
+        This website uses cookies to improve your experience.
       </div>
-      <div style={{justifyContent: "centser"}}>
-        <Button onClick={props.toggle} size="sm" color="primary" className="text-nowrap" style={{marginTop: "5%"}}>
-          Accept and close
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Button onClick={props.toggle} size="sm" color="primary" className="text-nowrap" style={{ minWidth: '100px' }}>
+          Got it!
         </Button>
       </div>
     </div>

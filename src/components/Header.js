@@ -16,8 +16,11 @@ class Header extends Component {
 
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleClose = this.toggleClose.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.state = {
       isOpen: false,
+      width: 0,
+      height: 0
     };
   }
 
@@ -33,6 +36,20 @@ class Header extends Component {
     });
   }
 
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+
   render() {
     return (
       <Fragment>
@@ -46,7 +63,7 @@ class Header extends Component {
               }}
               to={"/"}
             >
-              Aahil Mehta
+              Aahil {this.state.width >= 345 ? 'Mehta' : null}
             </Link>
             <Nav className="nav navbar-nav">
               <NavItem className="nav-item">

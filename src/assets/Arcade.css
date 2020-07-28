@@ -113,8 +113,16 @@
 
 @media (min-width: 576px) {
     .card-img-custom:hover {
-        -webkit-transform: scale(1.05);
-        transform: scale(1.05);
+        -webkit-transform: scale(1.03);
+        transform: scale(1.03);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, .2) !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .card-img-custom:hover {
+        -webkit-transform: scale(1.01);
+        transform: scale(1.01);
         box-shadow: 0 10px 10px rgba(0, 0, 0, .2) !important;
     }
 }

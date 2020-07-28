@@ -4,20 +4,20 @@ import "../assets/Resume.css";
 import {Table} from "reactstrap";
 import CustomTooltip from "../components/CustomTooltip";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle as completedIcon,
-  faClock as pendingIcon
-} from "@fortawesome/free-solid-svg-icons";
+import {faClock as pendingIcon,} from "@fortawesome/free-solid-svg-icons/faClock";
+import {faCheckCircle as completedIcon} from "@fortawesome/free-solid-svg-icons/faCheckCircle"
+import {faLinkedinIn} from "@fortawesome/free-brands-svg-icons/faLinkedinIn";
+import Avatar from "@material-ui/core/Avatar";
+import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
+import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 
 const bio = () => {
   return (
     <Fragment>
-      I'm an aspiring Software Engineer and Entrepreneur, and currently
-      a student at Imperial College London. My topics of primary
-      interest in Computing are Data Mining and ML, Vision,
-      Optimization, and Algorithmic Trading. I enjoy creating and
-      designing games and webapps, as well as reading about businesses,
-      economics and politics, as hobbies.
+      I'm an aspiring Software Engineer, and currently a student at Imperial College London. My topics of primary
+      interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
+      time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
+      politics to broaden my perspective.
     </Fragment>
   );
 }
@@ -28,7 +28,7 @@ const workexp = [
     institution: "Scribetech",
     period: "July 2020 - September 2020",
     link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    description: ["hello", "world"],
+    description: ["Smart Editor"],
   },
   {
     title: "Teaching Assistant for CO120.x",
@@ -135,8 +135,8 @@ const awards = [
     tip: "Subject Prize"
   },
   {
-    text: "British Maths Olympiad Qualifier",
-    tip: "1000 highest performers in the country selected. Top "
+    text: "Senior Maths Challenge Best In Year and British Maths Olympiad Qualifier",
+    tip: "1000 highest performers in the UK selected"
   },
   {
     text: "Team Maths Challenge National Final Qualifier",
@@ -411,10 +411,12 @@ const modules = [
 const hobbies = () => {
   return (
     <Fragment>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-      risus ligula, iaculis ut metus sit amet, luctus pharetra mauris.
-      Aliquam purus felis, pretium vel pretium vitae, dapibus sodales
-      ante. Suspendisse potenti. Duis nunc eros.
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In motu et in statu corporis nihil inest, quod animadvertendum esse ipsa natura iudicet? Experiamur igitur, inquit, etsi habet haec Stoicorum ratio difficilius quiddam et obscurius. Haec igitur Epicuri non probo, inquam. Sed residamus, inquit, si placet. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Virtutibus igitur rectissime mihi videris et ad consuetudinem nostrae orationis vitia posuisse contraria. </p>
+
+      <p>Qua igitur re ab deo vincitur, si aeternitate non vincitur? Piso, familiaris noster, et alia multa et hoc loco Stoicos irridebat: Quid enim? Nec vero sum nescius esse utilitatem in historia, non modo voluptatem. Isto modo, ne si avia quidem eius nata non esset. <a href="http://loripsum.net/" target="_blank">Nobis aliter videtur, recte secusne, postea;</a> Et quidem iure fortasse, sed tamen non gravissimum est testimonium multitudinis. <i>Bonum patria: miserum exilium.</i> Ita enim vivunt quidam, ut eorum vita refellatur oratio. Sed quod proximum fuit non vidit. Odium autem et invidiam facile vitabis. </p>
+
+      <p>Duo Reges: constructio interrete. <b>Iubet igitur nos Pythius Apollo noscere nosmet ipsos.</b> <a href="http://loripsum.net/" target="_blank">Ut pulsi recurrant?</a> <a href="http://loripsum.net/" target="_blank">De vacuitate doloris eadem sententia erit.</a> Solum praeterea formosum, solum liberum, solum civem, stultost; Esse enim quam vellet iniquus iustus poterat inpune. Summus dolor plures dies manere non potest? </p>
+      
     </Fragment>
   );
 }
@@ -437,10 +439,28 @@ class ResumePage extends Component {
               width: "75%",
               margin: "auto",
               marginBottom: "-20px",
+              textAlign: 'justify',
               paddingTop: "1em",
             }}>{bio()}</p>
             <br/>
             <br/>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank">
+                <Avatar className="fa fa-linkedin">
+                  <FontAwesomeIcon icon={faLinkedinIn}/>
+                </Avatar>
+              </a>
+              <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank">
+                <Avatar className="fa fa-facebook">
+                  <FontAwesomeIcon icon={faFacebookF}/>
+                </Avatar>
+              </a>
+              <a href="https://github.com/Hilly12" target="_blank">
+                <Avatar className="fa fa-github">
+                  <FontAwesomeIcon size="lg" icon={faGithub}/>
+                </Avatar>
+              </a>
+            </div>
 
             {/* Experience */}
             <div className="work-experience group">
@@ -576,7 +596,10 @@ class ResumePage extends Component {
               <div className="heading">
                 <h2 className="text-center">Hobbies</h2>
               </div>
-              <p className="text-center text-muted">
+              <p className="text-muted" style={{
+                margin: "auto",
+                textAlign: 'justify'
+              }}>
                 {hobbies()}
               </p>
             </div>
