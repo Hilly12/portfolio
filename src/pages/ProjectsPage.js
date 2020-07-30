@@ -13,9 +13,7 @@ class ProjectsPage extends Component {
       <Fragment>
         <div className="container" style={{ minHeight: "100vh" }}>
           <div style={{ marginTop: "20px" }}/>
-          <div className="container ">
-            <BaseRouter/>
-          </div>
+          <BaseRouter/>
         </div>
         <Footer/>
       </Fragment>

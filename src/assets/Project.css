@@ -117,10 +117,19 @@
   position: relative;
 }
 
+.row-pretext {
+  text-align: left !important;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
 .details-row {
   color: #666;
   font-size: 14px;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
   display: block;
 }
 
@@ -175,7 +184,7 @@
 
 .provider-list-details .descPart {
   width: 95%;
-  line-height: 22px;
+  /*line-height: 22px;*/
 }
 
 .provider-right-block {
@@ -258,6 +267,7 @@
   text-align: left;
   margin-top: -5px;
   margin-bottom: 10px;
+  padding: 0;
   display: flex;
 }
 

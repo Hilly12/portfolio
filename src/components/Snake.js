@@ -187,9 +187,9 @@ class Snake extends Component {
     if (this.state.gameState.score >= this.state.thresholdScore) {
       let adjective = capitalize(defaultAdjectives[Math.floor(Math.random() * defaultAdjectives.length)]);
       let noun = capitalize(defaultNouns[Math.floor(Math.random() * defaultNouns.length)]);
-      let num = 0
+      let num = ''
       for (let i = 0; i < defaultNums; i++) {
-        num = 10 * num + Math.floor(Math.random() * 10);
+        num = num + Math.floor(Math.random() * 10);
       }
       this.setState({
         dname: [adjective, noun, num].join('')
@@ -256,6 +256,8 @@ class Snake extends Component {
       loading: true,
       leaderboardLoading: true,
     });
+
+    console.log("Making post request to " + server);
 
     axios.post(server, {
       username: this.state.dname,

@@ -50,7 +50,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Main/>
       </ThemeProvider>
-      {open ? <CookieBanner toggle={toggleCookies} /> : null}
+      {open ? <CookieBanner toggle={toggleCookies}/> : null}
     </div>
   );
 }

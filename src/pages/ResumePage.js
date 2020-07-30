@@ -447,9 +447,10 @@ class ResumePage extends Component {
             <div className="bio group">
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Image classes="brand-img" src={require("../assets/images/me.png")}
+                       transition='visibility 0s, opacity 0.1s ease-in'
                        placeholder={
-                         <div className="brand-img" style={{position: 'relative'}}>
-                           <div className="spinner" style={{margin: '45% auto auto'}}>
+                         <div className="brand-img" style={{ position: 'relative' }}>
+                           <div className="spinner" style={{ margin: '45% auto auto' }}>
                              <div className="rect1"/>
                              <div className="rect2"/>
                              <div className="rect3"/>
@@ -459,6 +460,7 @@ class ResumePage extends Component {
                          </div>
                        }
                 />
+                {/*<img className="brand-img" src={require("../assets/images/me.png")} alt=""/>*/}
               </div>
               <p style={{
                 width: "75%",

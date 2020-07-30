@@ -1,6 +1,6 @@
 {
-  "short_name": "aahilm.com",
-  "name": "aahilm.com",
+  "short_name": "Aahil",
+  "name": "Aahil Mehta",
   "icons": [
     {
       "src": "favicon.ico",
@@ -22,5 +22,5 @@
   "display": "standalone",
   "theme_color": "#f8f8f8",
   "background_color": "#f8f8f8",
-  "orientation" : "portrait"
+  "orientation": "portrait"
 }

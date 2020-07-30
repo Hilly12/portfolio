@@ -21,12 +21,13 @@ class Image extends React.Component {
 
   render() {
     const loaded = this.state.loaded;
+    const transition = this.props.transition ? this.props.transition : 'visibility 0s, opacity 0.5s ease-out';
     const imageStyle = !loaded ? {
       visibility: 'hidden',
       position: 'absolute',
       opacity: '0',
-      transition: 'visibility 0s, opacity 0.5s ease-out'
-    } : { visibility: 'visible', opacity: '1', transition: 'visibility 0s, opacity 0.5s ease-out' };
+      transition: transition
+    } : { visibility: 'visible', opacity: '1', transition: transition };
     return (
       <div className="imageHolder">
         {!loaded && this.props.placeholder}

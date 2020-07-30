@@ -76,7 +76,7 @@ class Project extends Component {
               {/*<span className="sponsFeaturedTag"><FontAwesomeIcon icon={faCrown}/></span>*/}
             </div>
           </div>
-          <div className="provider-list-details pos-rel ">
+          <div className="provider-list-details pos-rel">
             <div className="row">
               <div className="col-md-6">
                 <h5 style={{ margin: '0px 0px 5px 0px' }}>{title}</h5>
@@ -85,14 +85,25 @@ class Project extends Component {
                 <span className="period">{parse(date + '')}</span>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-10" style={{ marginBottom: '5px' }}>
+            <div className="row-pretext">
+              <div className="col-md-10" style={{ marginBottom: '5px', padding: '0' }}>
                 {['Typescript', 'React'].map((tech, key) => {
                   return (
                     <h5 key={key} className="tech noselect">{tech}</h5>
                   )
                 })}
                 <p className="details-row descPart loud">{pretext}</p>
+                <div className="row text-nowrap text-muted" style={{ marginBottom: '5px' }}>
+                  <div className="col-md-3">
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faClock}/> {timespan}
+                  </div>
+                  <div className="col-md-3">
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faUsers}/> {4} people
+                  </div>
+                  <div className="col-md-3">
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faCrown}/> {'Some hack'}
+                  </div>
+                </div>
               </div>
               <div className="col-md-2 project-left">
                 <button style={{ fontSize: '13px', padding: '2px' }}
@@ -108,17 +119,16 @@ class Project extends Component {
                 </Link>
               </div>
             </div>
-            <div className="row nowrap" style={{marginBottom: '10px'}}>
-              <div className="col-md-4 text-muted">
-                <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '20px'}} icon={faClock}/> {timespan}
-              </div>
-              <div className="col-md-4 text-muted">
-                <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '20px'}} icon={faUsers}/> {4}
-              </div>
-              <div className="col-md-4 text-muted">
-                <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '20px'}} icon={faCrown}/> {'Some hack'}
-              </div>
-            </div>
+            {/*<div style={{overflow: 'hidden', margin: '-10px 0 10px -2px'}}>*/}
+            {/*  <div className="text-muted project-info text-nowrap">*/}
+            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faClock}/>*/}
+            {/*    <span style={{marginRight: '20px'}}>{timespan}</span>*/}
+            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faUsers}/>*/}
+            {/*    <span style={{marginRight: '20px'}}>{4}</span>*/}
+            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faCrown}/>*/}
+            {/*    <span style={{marginRight: '20px'}}>{'ICHack19'}</span>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
             <div className="tags noselect">
               {['Roguelike', 'Game'].map((keyword, key) => (
                 <div key={key} className="tag">{keyword}</div>
