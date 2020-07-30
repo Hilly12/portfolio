@@ -11,6 +11,7 @@ import Avatar from "@material-ui/core/Avatar";
 import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
+import Image from "../components/Image";
 
 const bio = () => {
   return (
@@ -443,44 +444,54 @@ class ResumePage extends Component {
         <section className="portfolio-block.cv">
           <div className="container">
             {/* Bio */}
-            <img src={require("../assets/images/yolo.jpg")} alt="" style={{
-              marginTop: "30px",
-              width: "200px",
-              height: "200px",
-              borderRadius: "50%",
-              border: "solid 2px grey",
-            }}/>
-            <p style={{
-              width: "75%",
-              margin: "auto",
-              marginBottom: "-20px",
-              textAlign: 'justify',
-              paddingTop: "1em",
-            }}>{bio()}</p>
-            <br/>
-            <br/>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
-                <Avatar className="fa fa-linkedin">
-                  <FontAwesomeIcon icon={faLinkedinIn}/>
-                </Avatar>
-              </a>
-              <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank"
-                 rel="noopener noreferrer">
-                <Avatar className="fa fa-facebook">
-                  <FontAwesomeIcon icon={faFacebookF}/>
-                </Avatar>
-              </a>
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
-                <Avatar className="fa fa-file">
-                  <FontAwesomeIcon icon={faFileAlt}/>
-                </Avatar>
-              </a>
-              <a href="https://github.com/Hilly12" target="_blank" rel="noopener noreferrer">
-                <Avatar className="fa fa-github">
-                  <FontAwesomeIcon size="lg" icon={faGithub}/>
-                </Avatar>
-              </a>
+            <div className="bio group">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Image classes="brand-img" src={require("../assets/images/me.png")}
+                       placeholder={
+                         <div className="brand-img" style={{position: 'relative'}}>
+                           <div className="spinner" style={{margin: '45% auto auto'}}>
+                             <div className="rect1"/>
+                             <div className="rect2"/>
+                             <div className="rect3"/>
+                             <div className="rect4"/>
+                             <div className="rect5"/>
+                           </div>
+                         </div>
+                       }
+                />
+              </div>
+              <p style={{
+                width: "75%",
+                margin: "auto",
+                marginBottom: "-20px",
+                textAlign: 'justify',
+                paddingTop: "1em",
+              }}>{bio()}</p>
+              <br className="noselect"/>
+              <br className="noselect"/>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
+                  <Avatar className="fa fa-linkedin">
+                    <FontAwesomeIcon icon={faLinkedinIn}/>
+                  </Avatar>
+                </a>
+                <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank"
+                   rel="noopener noreferrer">
+                  <Avatar className="fa fa-facebook">
+                    <FontAwesomeIcon icon={faFacebookF}/>
+                  </Avatar>
+                </a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
+                  <Avatar className="fa fa-file">
+                    <FontAwesomeIcon icon={faFileAlt}/>
+                  </Avatar>
+                </a>
+                <a href="https://github.com/Hilly12" target="_blank" rel="noopener noreferrer">
+                  <Avatar className="fa fa-github">
+                    <FontAwesomeIcon size="lg" icon={faGithub}/>
+                  </Avatar>
+                </a>
+              </div>
             </div>
 
             {/* Experience */}
@@ -495,11 +506,6 @@ class ResumePage extends Component {
                       <div className="col-md-6">
                         <h3>{work.title}</h3>
                         <h4 className="organization">{work.institution}</h4>
-                        {work.link ? (
-                          <a style={{ marginLeft: "20px" }} href={work.link}>
-                            Check it out
-                          </a>
-                        ) : null}
                       </div>
                       <div className="col-md-6 period-holder">
                         <span className="period">{work.period}</span>

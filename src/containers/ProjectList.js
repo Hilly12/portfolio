@@ -14,13 +14,14 @@ class ProjectList extends Component {
   }
 
   componentDidMount() {
+    window.scroll(0, 0);
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
     axios.get("https://www.aahilm.com/api/projects/").then((response) => {
       this.setState({
         loading: false,
-        projectData: response.data.reverse(),
+        projectData: response.data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
       });
     });
   }
@@ -28,7 +29,7 @@ class ProjectList extends Component {
   render() {
     return (
       <Fragment>
-        <div className="heading">
+        <div className="heading" style={{marginBottom: '10px'}}>
           <h2>Featured</h2>
         </div>
         <List

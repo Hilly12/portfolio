@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 import Footer from "../components/Footer";
 import "../assets/Arcade.css"
 import snek from "../assets/images/snek.png";
-import rog from "../assets/images/rog.jpg";
-import LazyLoad from "react-lazyload"
+import rog from "../assets/images/rog.png";
 import Placeholder from "../components/Placeholder";
 import {Button} from "reactstrap";
+import Image from "../components/Image";
 
 const cards = [
   {
@@ -16,7 +16,7 @@ const cards = [
     link: "sandbox/snake",
   },
   {
-    title: "Roguelike",
+    title: "Weblike",
     description: "A roguelike dungeon crawler",
     img: rog,
     link: "sandbox/roguelike",
@@ -41,9 +41,8 @@ class ArcadePage extends Component {
               return (
                 <div key={key} className="col-md-6 col-lg-4 mb-5">
                   <div className="card border-0 card-img-custom" style={{ backgroundColor: "transparent" }}>
-                    <LazyLoad placeholder={<Placeholder/>}>
-                      <img className="card-img-top border-bottom" src={card.img} alt=""/>
-                    </LazyLoad>
+                    <Image classes="card-img-top border-bottom" src={card.img}
+                           placeholder={<Placeholder/>}/>
                     <div className="card-body text-center text-muted">
                       <h6 className="text-center" style={{ color: '#007bff', fontWeight: '600' }}>
                         {card.title}

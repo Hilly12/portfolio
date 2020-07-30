@@ -20,8 +20,8 @@
 }
 
 .provider-image-block {
-  width: 120px;
-  height: 120px;
+  width: 240px;
+  height: 135px;
   line-height: initial !important;
   /*border: 1px solid #cccccc;*/
   /*border-radius: 60%;*/
@@ -30,6 +30,10 @@
   overflow: hidden;
   margin-bottom: 8px;
   display: block;
+}
+
+.provider-image-block:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container a {
@@ -56,18 +60,19 @@
 }
 
 .sponsFeaturedTag {
+  top: 3px;
+  right: 3px;
+  position: absolute;
   border-radius: 100px;
-  background-color: rgb(59, 153, 224);
+  background-color: rgba(20, 20, 20, 0.5);
   /*font-size: 8px;*/
   /*font-weight: 500;*/
   letter-spacing: 0.6px;
-  color: #fff;
+  color: white;
   /*text-transform: uppercase;*/
   padding: 4px 8px 3px;
   text-align: center;
   display: inline-block;
-  width: 50px;
-  padding: initial;
 }
 
 @media only screen and (max-width: 950px) {
@@ -79,11 +84,17 @@
 
 @media only screen and (max-width: 950px) {
   .provider-image-block {
-    /*max-width: 100%;*/
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 90px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .provider-image-block {
+    display: none;
+  }
+}
+
 
 /*@media only screen and (max-width: 950px) {*/
 /*  .provider-image-block .provider-img {*/
@@ -170,7 +181,7 @@
 .provider-right-block {
   position: absolute;
   right: 15px;
-  top: 0px;
+  top: 20px;
 }
 
 .textAlignRit {
@@ -197,6 +208,7 @@
   border-radius: 4px;
   min-width: 60px;
   text-align: center;
+  color: black;
 }
 
 .tags2 {
@@ -214,9 +226,56 @@
 }
 
 .tag:hover {
+  cursor: default;
   background-color: #d4d3d3;
 }
 
 .tag2:hover {
   background-color: #d4d3d3;
+}
+
+.tech {
+  font-weight: bold;
+  font-size: 0.85em;
+  /*background-color: #20c997;*/
+  /*background-color: #11bba7;*/
+  background-color: #14af9d;
+  opacity: 0.9;
+  display: inline-block;
+
+  color: #fff;
+  padding: 2px 8px;
+  margin-right: 4px;
+  border-radius: 2em;
+}
+
+.tech:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+.project-left {
+  text-align: left;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.project-left button {
+  margin-right: 5px;
+  min-width: 60px;
+  min-height: 28px;
+}
+
+@media (min-width: 768px) {
+  .project-left {
+    margin-top: 5px;
+    text-align: right;
+    display: initial;
+  }
+
+  .project-left button {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
 }

@@ -6,8 +6,7 @@ function CookieBanner(props) {
     <div style={{
       backgroundColor: "#eeeeee",
       borderTop: "1px solid #c7c7c7",
-      padding: "10px",
-      paddingTop: "20px",
+      padding: "25px 10px",
       justifyContent: "center",
       position: "fixed",
       left: "0",
@@ -15,7 +14,6 @@ function CookieBanner(props) {
       width: "100%",
       zIndex: '2',
       display: "inline-flex",
-      paddingBottom: '20px'
     }}>
       <button className="btn-xxs btn-danger btn-popup-close" onClick={props.toggle}>x</button>
       <div style={{

@@ -12,6 +12,8 @@ class ProjectDetail extends Component {
   }
 
   componentDidMount() {
+    window.scroll(0, 0);
+
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
@@ -32,7 +34,7 @@ class ProjectDetail extends Component {
 
   render() {
     if (this.state.loading) {
-      return <LinearProgress/>
+      return <LinearProgress style={{ marginTop: '20%' }}/>
     }
     return (
       <Fragment>

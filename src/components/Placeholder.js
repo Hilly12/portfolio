@@ -4,7 +4,7 @@ export default class Placeholder extends Component {
   render() {
     return (
       <div className="placeholder border-bottom" style={{width: '100%'}}>
-        <div className="spinner">
+        <div className="spinner" style={{margin: '23% auto auto'}}>
           <div className="rect1"/>
           <div className="rect2"/>
           <div className="rect3"/>
