@@ -30,10 +30,11 @@
   overflow: hidden;
   margin-bottom: 8px;
   display: block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
 .provider-image-block:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 .container a {
@@ -60,19 +61,19 @@
 }
 
 .sponsFeaturedTag {
-  top: 3px;
-  right: 3px;
+  bottom: 0;
+  left: 0;
   position: absolute;
-  border-radius: 100px;
-  background-color: rgba(20, 20, 20, 0.5);
-  /*font-size: 8px;*/
-  /*font-weight: 500;*/
-  letter-spacing: 0.6px;
+  /*border-radius: 100px;*/
+  background-color: rgba(20, 20, 20, 0.8);
+  font-size: 12px;
+  font-weight: 400;
   color: white;
   /*text-transform: uppercase;*/
   padding: 4px 8px 3px;
   text-align: center;
   display: inline-block;
+  width: 100%;
 }
 
 @media only screen and (max-width: 950px) {
@@ -273,7 +274,7 @@
 
 .project-left button {
   margin-right: 5px;
-  min-width: 60px;
+  min-width: 30px;
   min-height: 28px;
 }
 

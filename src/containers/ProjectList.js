@@ -9,7 +9,8 @@ class ProjectList extends Component {
     super(props);
     this.state = {
       loading: true,
-      projectData: [{}, {}, {}, {}, {}, {}, {}, {}],
+      featuredProjects: [{}, {}],
+      remProjects: [{}, {}, {}, {}, {}],
     };
   }
 
@@ -18,11 +19,15 @@ class ProjectList extends Component {
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
-    axios.get("https://www.aahilm.com/api/projects/").then((response) => {
+    axios.get("http://127.0.0.1:8000/api/projects/").then((response) => {
       this.setState({
         loading: false,
         projectData: response.data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
       });
+      this.setState({
+        featuredProjects: this.state.projectData.filter(p => p.featured),
+        remProjects: this.state.projectData.filter(p => !p.featured)
+      })
     });
   }
 
@@ -30,7 +35,17 @@ class ProjectList extends Component {
     return (
       <Fragment>
         <div className="heading" style={{marginBottom: '10px'}}>
-          <h2>Featured</h2>
+          <h2>Most Recent</h2>
+        </div>
+        <List
+          itemLayout="vertical"
+          dataSource={this.state.featuredProjects}
+          renderItem={(item) => (
+            <Project item={item} loading={this.state.loading}/>
+          )}
+        />
+        <div className="heading" style={{marginBottom: '10px'}}>
+          <h2>Projects</h2>
         </div>
         <List
           itemLayout="vertical"
@@ -41,7 +56,7 @@ class ProjectList extends Component {
           //   pageSize: 8,
           //   responsive: "true",
           // }}
-          dataSource={this.state.projectData}
+          dataSource={this.state.remProjects}
           renderItem={(item) => (
             <Project item={item} loading={this.state.loading}/>
           )}

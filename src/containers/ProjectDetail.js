@@ -17,14 +17,17 @@ class ProjectDetail extends Component {
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
-    const projectid = this.props.match.params.projectid;
+    const { projectid } = this.props.match.params;
     axios
-      .get(`https://www.aahilm.com/api/projects/${projectid}`)
+      .get(`http://127.0.0.1:8000/api/projects/${projectid}`)
       .then((response) => {
         this.setState({
           loading: false,
           projectData: response.data,
         });
+        if (!this.state.projectData.article) {
+          this.setState({ projectData: {} });
+        }
       }).catch(e => {
       this.setState({
         loading: true
@@ -34,18 +37,28 @@ class ProjectDetail extends Component {
 
   render() {
     if (this.state.loading) {
-      return <LinearProgress style={{ marginTop: '20%' }}/>
+      return (
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <LinearProgress style={{ maxWidth: '800px', marginTop: '30vh', width: '100%' }}/>
+        </div>
+      );
     }
     return (
-      <Fragment>
+      <div style={{ marginTop: '45px' }}>
         <h2 style={{ fontWeight: "600", color: "#555555" }}>
           {this.state.projectData.title}{" "}
         </h2>
         <br/>
-        <div style={{ textAlign: "justify" }}>
-          {this.state.projectData.content}
+        <div className="container-sm" style={{ textAlign: 'justify', maxWidth: '800px' }}>
+          {/*{this.state.projectData.content}*/}
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+          like Aldus PageMaker including versions of Lorem Ipsum.
         </div>
-      </Fragment>
+      </div>
       // <ProgressiveImage title={this.state.projectData.title}>
       //   <p>{this.state.projectData.content}</p>
       // </ProgressiveImage>

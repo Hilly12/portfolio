@@ -447,7 +447,7 @@ class ResumePage extends Component {
             <div className="bio group">
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Image classes="brand-img" src={require("../assets/images/me.png")}
-                       transition='visibility 0s, opacity 0.1s ease-in'
+                       transition='visibility 0s, opacity 0.2s ease-in'
                        placeholder={
                          <div className="brand-img" style={{ position: 'relative' }}>
                            <div className="spinner" style={{ margin: '45% auto auto' }}>
