@@ -102,7 +102,7 @@ class Project extends Component {
           <div className="provider-left-block textAlignCen">
             <div className="provider-image-block ">
               <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
-                     classes="provider-img lazyImage not-loaded-spinner"
+                     classes="provider-img"
                      placeholder={<Placeholder/>} delay={200}/>
               {award !== '-' &&
               <span className="sponsFeaturedTag noselect">
@@ -124,17 +124,17 @@ class Project extends Component {
               <div className="col-md-10" style={{ marginBottom: '5px', padding: '0' }}>
                 {tech.map((tech, key) => {
                   return (
-                    <h5 key={key} className="tech noselect">{tech}</h5>
+                    <h5 key={key} className="tech">{tech}</h5>
                   )
                 })}
                 <p className="details-row descPart loud">{pretext}</p>
                 <div className="row text-nowrap text-muted" style={{ marginBottom: '5px' }}>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faClock}/> {' '}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '15px' }} icon={faClock}/> {' '}
                     {timespan}
                   </div>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '15px' }}
                                      icon={teamSize === 1 ? faUser : faUsers}/> {' '}
                     {teamSize === 1 ? 'Individual' : `${teamSize} people`}
                   </div>

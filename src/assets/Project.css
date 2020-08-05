@@ -259,11 +259,6 @@
   border-radius: 2em;
 }
 
-.tech:hover {
-  cursor: default;
-  opacity: 1;
-}
-
 .project-left {
   text-align: left;
   margin-top: -5px;
@@ -289,4 +284,12 @@
     margin-right: 0;
     margin-bottom: 5px;
   }
+}
+
+.project-image-holder {
+  /*padding-top: 56.25%;*/
+}
+
+.project-image {
+  width: 100%;
 }

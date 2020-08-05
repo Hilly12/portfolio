@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Swipeable} from "react-swipeable";
-import "../assets/Snake.css";
-import Modal from "./Modal";
+import "./Snake.css";
+import Modal from "../../components/Modal";
 import {Button, ButtonGroup, Form, FormGroup, Spinner, Table} from "reactstrap";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -552,6 +552,10 @@ class Snake extends Component {
     }
 
     document.onkeydown = this.onKeyDown;
+  }
+
+  componentWillUnmount() {
+    document.onkeydown = null;
   }
 
   /* Check collisions */

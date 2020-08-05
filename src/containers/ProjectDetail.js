@@ -1,6 +1,10 @@
 import React, {Component, Fragment} from "react";
 import axios from "axios";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Placeholder from "../components/Placeholder";
+import Image from "../components/Image";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCrown} from "@fortawesome/free-solid-svg-icons/faCrown";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -49,14 +53,22 @@ class ProjectDetail extends Component {
           {this.state.projectData.title}{" "}
         </h2>
         <br/>
-        <div className="container-sm" style={{ textAlign: 'justify', maxWidth: '800px' }}>
+        <div className="container-sm" style={{ textAlign: 'justify', alignItems: 'center', maxWidth: '800px' }}>
+          <div className="project-image-holder">
+              <Image src={this.state.projectData.imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
+                     classes="project-image"
+                     placeholder={<Placeholder/>} />
+          </div>
+          <br/>
           {/*{this.state.projectData.content}*/}
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-          make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-          like Aldus PageMaker including versions of Lorem Ipsum.
+          <div style={{fontSize: '16px'}}>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+            make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+          </div>
         </div>
       </div>
       // <ProgressiveImage title={this.state.projectData.title}>

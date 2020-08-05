@@ -26,12 +26,13 @@ class Image extends React.Component {
       visibility: 'hidden',
       position: 'absolute',
       opacity: '0',
+      objectFit: 'cover',
       transition: transition
-    } : { visibility: 'visible', opacity: '1', transition: transition };
+    } : { visibility: 'visible', opacity: '1', transition: transition, objectFit: 'cover' };
     return (
       <div className="imageHolder">
         {!loaded && this.props.placeholder}
-        <img className={this.props.classes} src={this.props.src} style={imageStyle}
+        <img className={["noselect", this.props.classes].join(' ')} src={this.props.src} style={imageStyle}
              onLoad={this.delayedImageLoad} alt=""/>
       </div>
     )

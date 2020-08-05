@@ -12,6 +12,10 @@ import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import Image from "../components/Image";
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
+import Modal from "../components/Modal";
+import {faCrown} from "@fortawesome/free-solid-svg-icons";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const bio = () => {
   return (
@@ -55,7 +59,7 @@ const workexp = [
 const languages = [
   {
     name: "Java",
-    proficiency: 100,
+    proficiency: 95,
   },
   {
     name: "Python",
@@ -73,21 +77,37 @@ const languages = [
 
 const frameworks = [
   {
-    name: "Spring",
+    name: "React",
     proficiency: 80,
   },
   {
-    name: "React",
-    proficiency: 75,
+    name: "Unity",
+    proficiency: 70,
   },
   {
-    name: "Unity",
-    proficiency: 74,
+    name: ".NET",
+    proficiency: 60,
   },
   {
     name: "Tensorflow",
-    proficiency: 70,
+    proficiency: 55,
   },
+];
+
+const languageDetails = [
+  {
+    name: 'Java',
+    small: '10+',
+    large: '5'
+  }
+];
+
+const frameworkDetails = [
+  {
+    name: 'React',
+    small: '5',
+    large: '2'
+  }
 ];
 
 const education = [
@@ -96,8 +116,8 @@ const education = [
     institution: "Imperial College London",
     period: "October 2018 - Present",
     description: [
-      "Second Year: Upper Second-Class Honors – x%",
-      "First Year: 86% in Programming, 68% Overall",
+      "Second Year: 69% Overall",
+      "First Year: 86% in Programming"
     ],
   },
   {
@@ -126,25 +146,17 @@ const awards = [
     tip: "Development of School Diversity and Culture"
   },
   {
-    text: "Blundell’s Heads Honors",
-    tip: "Outstanding work in Mathematics"
-  },
-  {
     text: "Blundell's Computer Science Prize",
     tip: "Subject Prize"
   },
   {
-    text: "Senior Maths Challenge Best In Year and British Maths Olympiad Qualifier",
+    text: "Blundell’s Heads Honors",
+    tip: "Outstanding work in Mathematics"
+  },
+  {
+    text: "UKSMC Best In Year and British Maths Olympiad Qualifier",
     tip: "1000 highest performers in the UK selected"
-  },
-  {
-    text: "Team Maths Challenge National Final Qualifier",
-    tip: "Top 150 teams in UK selected from regional finals"
-  },
-  {
-    text: "Gold in Chemistry Olympiad",
-    tip: "Awarded to the top 8.1% performers in the UK"
-  },
+  }
 ]
 
 const modules = [
@@ -433,9 +445,32 @@ const hobbies = () => {
 }
 
 class ResumePage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggleLang = this.toggleLang.bind(this);
+    this.toggleTech = this.toggleTech.bind(this);
+
+    this.state = {
+      langModal: false,
+      techModal: false
+    }
+  }
 
   componentDidMount() {
     window.scroll(0, 0);
+  }
+
+  toggleLang() {
+    this.setState({
+      langModal: !this.state.langModal
+    })
+  }
+
+  toggleTech() {
+    this.setState({
+      techModal: !this.state.techModal
+    })
   }
 
   render() {
@@ -462,14 +497,14 @@ class ResumePage extends Component {
                 />
                 {/*<img className="brand-img" src={require("../assets/images/me.png")} alt=""/>*/}
               </div>
-              <p style={{
-                width: "75%",
-                margin: "auto",
-                marginBottom: "-20px",
-                textAlign: 'justify',
-                paddingTop: "1em",
-              }}>{bio()}</p>
-              <br className="noselect"/>
+              {/*<p style={{*/}
+              {/*  width: "75%",*/}
+              {/*  margin: "auto",*/}
+              {/*  marginBottom: "-20px",*/}
+              {/*  textAlign: 'justify',*/}
+              {/*  paddingTop: "1em",*/}
+              {/*}}>{bio()}</p>*/}
+              {/*<br className="noselect"/>*/}
               <br className="noselect"/>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
@@ -530,7 +565,11 @@ class ResumePage extends Component {
               <div className="row">
                 <div className="col-md-6">
                   <div className="skills portfolio-info-card">
-                    <h2>Languages</h2>
+                    <h2>
+                      Languages
+                      <FontAwesomeIcon onClick={this.toggleLang} className="info-icon" style={{ marginLeft: '10px' }}
+                                       icon={faInfoCircle}/>
+                    </h2>
                     {languages.map((lang, key) => {
                       return (
                         <Fragment key={key}>
@@ -553,7 +592,11 @@ class ResumePage extends Component {
                 </div>
                 <div className="col-md-6">
                   <div className="skills portfolio-info-card">
-                    <h2>Technologies</h2>
+                    <h2>
+                      Technologies
+                      <FontAwesomeIcon onClick={this.toggleTech} className="info-icon" style={{ marginLeft: '10px' }}
+                                       icon={faInfoCircle}/>
+                    </h2>
                     {frameworks.map((lang, key) => {
                       return (
                         <Fragment key={key}>
@@ -667,6 +710,56 @@ class ResumePage extends Component {
             </div>
           </div>
         </section>
+        {this.state.langModal &&
+        <Modal title="Languages" toggle={this.toggleLang}>
+          <Table style={{ textAlign: "left", margin: "auto", fontSize: '15px' }}>
+            <thead>
+            <tr>
+              <th width={10}/>
+              <th>Language</th>
+              <th className="text-nowrap">Small Projects</th>
+              <th className="text-nowrap">Large Projects</th>
+            </tr>
+            </thead>
+            <tbody>
+            {languageDetails.map((entry, index) => {
+              return (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <td>{entry.name}</td>
+                  <td>{entry.small}</td>
+                  <td>{entry.large}</td>
+                </tr>
+              );
+            })}
+            </tbody>
+          </Table>
+        </Modal>}
+        {this.state.techModal &&
+        <Modal title="Technologies" toggle={this.toggleTech}>
+          <Table style={{ textAlign: "left", margin: "auto", fontSize: '15px' }}>
+            <thead>
+            <tr>
+              <th width={10}/>
+              <th>Framework</th>
+              <th className="text-nowrap">Small Projects</th>
+              <th className="text-nowrap">Large Projects</th>
+            </tr>
+            </thead>
+            <tbody>
+            {frameworkDetails.map((entry, index) => {
+              return (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <td>{entry.name}</td>
+                  <td>{entry.small}</td>
+                  <td>{entry.large}</td>
+                </tr>
+              );
+            })}
+            </tbody>
+          </Table>
+        </Modal>}
         <Footer/>
       </Fragment>
     );

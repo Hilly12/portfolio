@@ -19,15 +19,12 @@ class ProjectList extends Component {
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
-    axios.get("http://127.0.0.1:8000/api/projects/").then((response) => {
+    axios.get("https://www.aahilm.com/api/projects/").then((response) => {
       this.setState({
         loading: false,
-        projectData: response.data.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+        featuredProjects: response.data.filter(p => p.featured).sort((a, b) => Date.parse(b.date) - Date.parse(a.date)),
+        remProjects: response.data.filter(p => !p.featured).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
       });
-      this.setState({
-        featuredProjects: this.state.projectData.filter(p => p.featured),
-        remProjects: this.state.projectData.filter(p => !p.featured)
-      })
     });
   }
 
@@ -35,7 +32,7 @@ class ProjectList extends Component {
     return (
       <Fragment>
         <div className="heading" style={{marginBottom: '10px'}}>
-          <h2>Most Recent</h2>
+          <h2>Featured</h2>
         </div>
         <List
           itemLayout="vertical"

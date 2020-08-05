@@ -1,7 +1,7 @@
 .brand-img {
   margin-top: 30px;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: solid 2px grey;
 }
@@ -246,4 +246,13 @@ p {
   background: #555555 !important;
   opacity: 0.9;
   color: white;
+}
+
+.info-icon {
+  color: #6c757d;
+}
+
+.info-icon:hover {
+  cursor: pointer;
+  color: #5a6268;
 }

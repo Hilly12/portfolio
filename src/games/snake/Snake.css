@@ -29,12 +29,12 @@
 
 .food {
   z-index: 0;
-  background-color: rgba(40, 169, 67, 1);
+  background-color: rgb(40, 169, 67);
 }
 
 .snake {
   z-index: 1;
-  background-color: rgba(0, 123, 255, 1);
+  background-color: rgb(0, 123, 255);
 }
 
 .spfood {
