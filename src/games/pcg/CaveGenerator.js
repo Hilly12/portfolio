@@ -6,7 +6,6 @@ let width = 128;
 let height = 64;
 let wallThreshold = 50;
 let floorThreshold = 50;
-let levels = 7;
 
 class CaveGenerator extends Component {
   constructor(props) {
@@ -214,6 +213,7 @@ class CaveGenerator extends Component {
           {/*            color="info" className="button-group" style={{ width: '100px' }}>Fractal</Button>*/}
           {/*  </ButtonGroup>*/}
           {/*</div>*/}
+
         </div>
       </div>
     );
@@ -230,7 +230,7 @@ class CaveGenerator extends Component {
 
     for (let x = 0; x < board.length; x++) {
       for (let y = 0; y < board[0].length; y++) {
-        if (this.state.level < 5) {
+        if (this.state.level < 7) {
           ctx.strokeStyle = "#888888";
           ctx.strokeRect(x * sq, y * sq, sq, sq);
         }

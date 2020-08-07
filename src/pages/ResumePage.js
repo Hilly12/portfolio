@@ -14,8 +14,6 @@ import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import Image from "../components/Image";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 import Modal from "../components/Modal";
-import {faCrown} from "@fortawesome/free-solid-svg-icons";
-import Skeleton from "@material-ui/lab/Skeleton";
 
 const bio = () => {
   return (
@@ -81,11 +79,11 @@ const frameworks = [
     proficiency: 80,
   },
   {
-    name: "Unity",
+    name: ".NET",
     proficiency: 70,
   },
   {
-    name: ".NET",
+    name: "Unity",
     proficiency: 60,
   },
   {
@@ -99,16 +97,55 @@ const languageDetails = [
     name: 'Java',
     small: '10+',
     large: '5'
-  }
+  },
+  {
+    name: 'Python',
+    small: '10+',
+    large: '1'
+  },
+  {
+    name: 'C#',
+    small: '6',
+    large: '2'
+  },
+  {
+    name: 'Javascript',
+    small: '4',
+    large: '2'
+  },
+  {
+    name: 'C',
+    small: '5',
+    large: '2'
+  },
 ];
+
+const languageExtra = ['Haskell', 'Go', 'SQL', 'VB.Net'];
 
 const frameworkDetails = [
   {
     name: 'React',
-    small: '5',
+    small: '4',
     large: '2'
-  }
+  },
+  {
+    name: '.NET',
+    small: '2',
+    large: '2'
+  },
+  {
+    name: 'Unity',
+    small: '4',
+    large: '0'
+  },
+  {
+    name: 'Tensorflow',
+    small: '4',
+    large: '0'
+  },
 ];
+
+const frameworkExtra = ['Keras', 'Scikit', 'Django', 'ExpressJS', 'Postgres', 'MongoDB', 'Android Studio', 'Git', 'Unix'];
 
 const education = [
   {
@@ -508,23 +545,23 @@ class ResumePage extends Component {
               <br className="noselect"/>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
-                  <Avatar className="fa fa-linkedin">
+                  <Avatar className="fa linkedin">
                     <FontAwesomeIcon icon={faLinkedinIn}/>
                   </Avatar>
                 </a>
                 <a href="https://www.facebook.com/people/Aahil-Mehta/100005988258237" target="_blank"
                    rel="noopener noreferrer">
-                  <Avatar className="fa fa-facebook">
+                  <Avatar className="fa facebook">
                     <FontAwesomeIcon icon={faFacebookF}/>
                   </Avatar>
                 </a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
-                  <Avatar className="fa fa-file">
+                  <Avatar className="fa file">
                     <FontAwesomeIcon icon={faFileAlt}/>
                   </Avatar>
                 </a>
                 <a href="https://github.com/Hilly12" target="_blank" rel="noopener noreferrer">
-                  <Avatar className="fa fa-github">
+                  <Avatar className="fa github">
                     <FontAwesomeIcon size="lg" icon={faGithub}/>
                   </Avatar>
                 </a>
@@ -712,11 +749,16 @@ class ResumePage extends Component {
         </section>
         {this.state.langModal &&
         <Modal title="Languages" toggle={this.toggleLang}>
+          <div className="text-muted" style={{marginBottom: '5px'}}>
+            <div style={{textAlign: 'center'}}>
+              Please note that these are rough estimates
+            </div>
+          </div>
           <Table style={{ textAlign: "left", margin: "auto", fontSize: '15px' }}>
             <thead>
             <tr>
               <th width={10}/>
-              <th>Language</th>
+              <th>Name</th>
               <th className="text-nowrap">Small Projects</th>
               <th className="text-nowrap">Large Projects</th>
             </tr>
@@ -734,14 +776,27 @@ class ResumePage extends Component {
             })}
             </tbody>
           </Table>
+          <hr style={{ marginTop: '0' }}/>
+          <div className="container text-muted">
+              <div style={{ fontWeight: '400', color: 'black' }}>
+                Additionally familiar with:
+              </div>
+              {languageExtra.join(', ')}
+          </div>
+          <br/>
         </Modal>}
         {this.state.techModal &&
         <Modal title="Technologies" toggle={this.toggleTech}>
+          <div className="text-muted" style={{marginBottom: '5px'}}>
+            <div style={{textAlign: 'center'}}>
+              Please note that these are rough estimates
+            </div>
+          </div>
           <Table style={{ textAlign: "left", margin: "auto", fontSize: '15px' }}>
             <thead>
             <tr>
               <th width={10}/>
-              <th>Framework</th>
+              <th>Name</th>
               <th className="text-nowrap">Small Projects</th>
               <th className="text-nowrap">Large Projects</th>
             </tr>
@@ -759,6 +814,14 @@ class ResumePage extends Component {
             })}
             </tbody>
           </Table>
+          <hr style={{ marginTop: '0' }}/>
+          <div className="container text-muted">
+            <div style={{ fontWeight: '400', color: 'black' }}>
+              Additionally familiar with:
+            </div>
+            {frameworkExtra.join(', ')}
+          </div>
+          <br/>
         </Modal>}
         <Footer/>
       </Fragment>

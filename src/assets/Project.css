@@ -290,6 +290,14 @@
   /*padding-top: 56.25%;*/
 }
 
+.parallax {
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .project-image {
   width: 100%;
 }

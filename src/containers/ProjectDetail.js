@@ -5,6 +5,11 @@ import Placeholder from "../components/Placeholder";
 import Image from "../components/Image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrown} from "@fortawesome/free-solid-svg-icons/faCrown";
+import {faPlay} from "@fortawesome/free-solid-svg-icons/faPlay";
+import {Link} from "react-router-dom";
+import {faCommentAlt} from "@fortawesome/free-solid-svg-icons/faCommentAlt";
+import {faLink} from "@fortawesome/free-solid-svg-icons/faLink";
+import {Button} from "reactstrap";
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -23,7 +28,7 @@ class ProjectDetail extends Component {
 
     const { projectid } = this.props.match.params;
     axios
-      .get(`http://127.0.0.1:8000/api/projects/${projectid}`)
+      .get(`https://www.aahilm.com/api/projects/${projectid}`)
       .then((response) => {
         this.setState({
           loading: false,
@@ -40,9 +45,24 @@ class ProjectDetail extends Component {
   }
 
   render() {
+    const {
+      id, title, imgSrc, pretext, timespan, date, teamSize, links, technologies, keywords, demoSrc, award, article
+    } = this.state.projectData;
+
+    const tech = String(technologies).split(', ');
+    const keys = String(keywords).split(', ');
+    const loading = this.props.loading;
+    let linksP = undefined;
+    if (links) {
+      const obj = JSON.parse(String(links));
+      if (obj.git) {
+        linksP = JSON.parse(String(links))
+      }
+    }
+
     if (this.state.loading) {
       return (
-        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <LinearProgress style={{ maxWidth: '800px', marginTop: '30vh', width: '100%' }}/>
         </div>
       );
@@ -50,24 +70,23 @@ class ProjectDetail extends Component {
     return (
       <div style={{ marginTop: '45px' }}>
         <h2 style={{ fontWeight: "600", color: "#555555" }}>
-          {this.state.projectData.title}{" "}
+          {title}
         </h2>
         <br/>
-        <div className="container-sm" style={{ textAlign: 'justify', alignItems: 'center', maxWidth: '800px' }}>
+        <div className="container-sm" style={{ textAlign: 'justify', alignItems: 'center', maxWidth: '850px' }}>
           <div className="project-image-holder">
-              <Image src={this.state.projectData.imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
-                     classes="project-image"
-                     placeholder={<Placeholder/>} />
+            <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
+                   classes="project-image"
+                   placeholder={<Placeholder/>}/>
           </div>
           <br/>
-          {/*{this.state.projectData.content}*/}
-          <div style={{fontSize: '16px'}}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-            standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-            make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-            Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-            like Aldus PageMaker including versions of Lorem Ipsum.
+          {/*{content}*/}
+          <div style={{ fontSize: '16px' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum.
           </div>
         </div>
       </div>

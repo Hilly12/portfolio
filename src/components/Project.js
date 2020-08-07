@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {Link} from "react-router-dom";
-import {Skeleton} from "antd";
+import {Avatar, Skeleton} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrown} from "@fortawesome/free-solid-svg-icons/faCrown";
 import Image from "./Image";
@@ -12,7 +12,7 @@ import {faLink} from "@fortawesome/free-solid-svg-icons/faLink";
 import {faPlay} from "@fortawesome/free-solid-svg-icons/faPlay";
 import {faCommentAlt} from "@fortawesome/free-solid-svg-icons/faCommentAlt";
 import Modal from "./Modal";
-import {faGitAlt} from "@fortawesome/free-brands-svg-icons/faGitAlt";
+import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 
 
 function parse(date) {
@@ -172,10 +172,14 @@ class Project extends Component {
                 </Fragment>
                 }
                 {linksP &&
-                <button style={{ fontSize: '13px', padding: '2px' }}
-                        className="btn btn-info" onClick={this.toggle}>
-                  <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faLink}/>
-                </button>
+                <a href={linksP.git} target="_blank" rel="noopener noreferrer">
+                  <button style={{ fontSize: '13px', padding: '2px'}}
+                          className="btn btn-secondary"
+                    // onClick={this.toggle}
+                  >
+                    <FontAwesomeIcon size="lg" style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGithub}/>
+                  </button>
+                </a>
                 }
               </div>
             </div>
@@ -196,18 +200,18 @@ class Project extends Component {
             </div>
           </div>
         </Skeleton>
-        {linksP && this.state.modal &&
-        <Modal title="Links" toggle={this.toggle}>
-          <div className="container" style={{ fontWeight: '600' }}>
-            {/*<p>*/}
-            {/*  <a href={linksP.git}>*/}
-            {/*    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGitAlt}/>*/}
-            {/*    {linksP.git}*/}
-            {/*  </a>*/}
-            {/*</p>*/}
-          </div>
-        </Modal>
-        }
+        {/*{linksP && this.state.modal &&*/}
+        {/*<Modal title="Links" toggle={this.toggle}>*/}
+        {/*  <div className="container" style={{ fontWeight: '600' }}>*/}
+        {/*    /!*<p>*!/*/}
+        {/*    /!*  <a href={linksP.git}>*!/*/}
+        {/*    /!*    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGitAlt}/>*!/*/}
+        {/*    /!*    {linksP.git}*!/*/}
+        {/*    /!*  </a>*!/*/}
+        {/*    /!*</p>*!/*/}
+        {/*  </div>*/}
+        {/*</Modal>*/}
+        {/*}*/}
       </div>
     );
   }
