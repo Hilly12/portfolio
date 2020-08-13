@@ -21,16 +21,16 @@ const cards = [
     link: "sandbox/roguelike",
   },
   {
-    title: "Cave Generator",
-    description: "A procedural cavern generator",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3fWyu5XkGuUMw717XCo8bANgnFv7K9Q2UbVyLhKXWfOwlbekxM32VljhUiKJKtgfCSaDYosby_zLvncMqGrHGhRfwMLvdyWwfMgzZlREmAMrup7yDYOp5kG2ZzANTf6oM7sYVeVdTCKUV8O_FUtHd8V=w1281-h721-no",
-    link: "sandbox/cavegen",
-  },
-  {
     title: "Snake",
     description: "The classic",
     img: snek,
     link: "sandbox/snake",
+  },
+  {
+    title: "Cave Generator",
+    description: "A procedural cavern generator",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3fWyu5XkGuUMw717XCo8bANgnFv7K9Q2UbVyLhKXWfOwlbekxM32VljhUiKJKtgfCSaDYosby_zLvncMqGrHGhRfwMLvdyWwfMgzZlREmAMrup7yDYOp5kG2ZzANTf6oM7sYVeVdTCKUV8O_FUtHd8V=w1281-h721-no",
+    link: "sandbox/cavegen",
   },
   {
     title: "Space Shooter",
@@ -59,7 +59,7 @@ class ArcadePage extends Component {
                 <div key={key} className="col-md-6 col-lg-4 mb-5">
                   <div className="card border-0 card-img-custom" style={{ backgroundColor: "transparent" }}>
                     <Image classes="card-img-top border-bottom" src={card.img}
-                           placeholder={<Placeholder/>}/>
+                           placeholder={<Placeholder classes="placeholder border-bottom"/>}/>
                     <div className="card-body text-center text-muted">
                       <h6 className="text-center" style={{ color: '#007bff', fontWeight: '600' }}>
                         {card.title}

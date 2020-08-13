@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {Link} from "react-router-dom";
-import {Avatar, Skeleton} from "antd";
+import {Skeleton} from "antd";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCrown} from "@fortawesome/free-solid-svg-icons/faCrown";
 import Image from "./Image";
@@ -8,59 +8,10 @@ import Placeholder from "./Placeholder";
 import {faClock} from "@fortawesome/free-solid-svg-icons/faClock";
 import {faUsers} from "@fortawesome/free-solid-svg-icons/faUsers";
 import {faUser} from "@fortawesome/free-solid-svg-icons/faUser";
-import {faLink} from "@fortawesome/free-solid-svg-icons/faLink";
 import {faPlay} from "@fortawesome/free-solid-svg-icons/faPlay";
 import {faCommentAlt} from "@fortawesome/free-solid-svg-icons/faCommentAlt";
-import Modal from "./Modal";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
-
-
-function parse(date) {
-  let year = date.slice(0, 4);
-  let month = parseInt(date.slice(5, 7));
-  let monthName;
-  switch (month) {
-    case 1:
-      monthName = "January";
-      break;
-    case 2:
-      monthName = "February";
-      break;
-    case 3:
-      monthName = "March";
-      break;
-    case 4:
-      monthName = "April";
-      break;
-    case 5:
-      monthName = "May";
-      break;
-    case 6:
-      monthName = "June";
-      break;
-    case 7:
-      monthName = "July";
-      break;
-    case 8:
-      monthName = "August";
-      break;
-    case 9:
-      monthName = "September";
-      break;
-    case 10:
-      monthName = "October";
-      break;
-    case 11:
-      monthName = "November";
-      break;
-    case 12:
-      monthName = "December";
-      break;
-    default:
-      monthName = "";
-  }
-  return [monthName, year].join(' ');
-}
+import parse from "../util/DateParse";
 
 class Project extends Component {
   constructor(props) {
@@ -103,7 +54,7 @@ class Project extends Component {
             <div className="provider-image-block ">
               <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
                      classes="provider-img"
-                     placeholder={<Placeholder/>} delay={200}/>
+                     placeholder={<Placeholder/>}/>
               {award !== '-' &&
               <span className="sponsFeaturedTag noselect">
                 <FontAwesomeIcon color="#f1b82d" icon={faCrown}/> {' '} {award}
@@ -117,7 +68,7 @@ class Project extends Component {
                 <h5 style={{ margin: '0px 0px 5px 0px' }}>{title}</h5>
               </div>
               <div className="col-md-6 period-holder">
-                <span className="period">{parse(String(date))}</span>
+                <span className="period">{parse(String(date)).slice(1).join(' ')}</span>
               </div>
             </div>
             <div className="row-pretext">
@@ -173,8 +124,8 @@ class Project extends Component {
                 }
                 {linksP &&
                 <a href={linksP.git} target="_blank" rel="noopener noreferrer">
-                  <button style={{ fontSize: '13px', padding: '2px'}}
-                          className="btn btn-secondary"
+                  <button style={{ fontSize: '13px', padding: '2px' }}
+                          className="btn btn-dark"
                     // onClick={this.toggle}
                   >
                     <FontAwesomeIcon size="lg" style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGithub}/>

@@ -84,6 +84,7 @@ hidden-mobile {
 .placeholder {
   background: transparent;
   padding-top: 56.25%;
+  position: relative;
   box-sizing: border-box;
 }
 

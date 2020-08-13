@@ -10,11 +10,14 @@ const vel = 4;
 const spinPad = [2, 10];
 const spinRate = 60;
 const probsUp = [0.1, 0.01, 0.005]
-const probHp = 0.1
+const probHp = 0.3
 const hpUp = 8;
 const maxhp = 100;
 const asteroidScore = 50;
+const enemyScore = 150;
 const asteroidHP = 8;
+const enemyHP = 4;
+const enemyBulletDamage = 20;
 
 const bulletSound = new UIfx("https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-three/leisure_video_game_retro_laser_gun_fire_001.mp3?_=2", {
   volume: 0.02
@@ -50,14 +53,17 @@ class Spaceshooter extends Component {
       firing: false,
       game: 0,
       bullets: [],
+      enemyBullets: [],
+      enemyBulletFreq: 100,
       bulletVel: 8,
       stars: [],
       starsVel: 0.3,
       powerups: [],
       powerupVel: 1,
-      asteroids: [],
-      asteroidsVel: 1,
-      asteroidsDamage: 10,
+      enemies: [],
+      enemyProb: 0.1,
+      enemyVel: 1,
+      enemyDamage: 10,
       asteroidSpawnRate: 100,
       frameCount: 0,
       bulletRefresh: 10,
@@ -151,13 +157,22 @@ class Spaceshooter extends Component {
     });
   }
 
+  createEnemy() {
+    const x = Math.random() * (this.state.width - 80) + 40;
+    const y = -sp;
+    const vel = this.state.enemyVel + (Math.random() * 0.2 - 0.1);
+    const hp = enemyHP;
+    const damaged = false;
+    this.state.enemies.push([x, y, vel, hp, damaged, 1]);
+  }
+
   createAsteroid() {
     const size = sp / 8;
-    const x = Math.random() * (this.state.width - 80) + 40;
+    const x = Math.random() * (this.state.width - sp) + sp / 2;
     const y = -10;
     const pointList = []
     const rotation = 0;
-    const vel = this.state.asteroidsVel + (Math.random() * 0.2 - 0.1);
+    const vel = this.state.enemyVel + (Math.random() * 0.2 - 0.1);
     const hp = asteroidHP;
     const damaged = false;
 
@@ -208,7 +223,7 @@ class Spaceshooter extends Component {
     yrand = Math.round(Math.random() * size - size / 2);
     pointList.push([xrand + 3 * size, yrand + 2 * size]);
 
-    this.state.asteroids.push([x, y, pointList, rotation, vel, hp, damaged]);
+    this.state.enemies.push([x, y, vel, hp, damaged, 0, pointList, rotation]);
   }
 
   update() {
@@ -241,39 +256,65 @@ class Spaceshooter extends Component {
     this.setState({
       bullets: this.state.bullets.filter(bullet => {
         let intersecting = false;
-        this.state.asteroids.forEach(asteroid => {
-          if (this.intersect([bullet[0], bullet[1] + 5, bulletDim[0], bulletDim[1] / 2], [asteroid[0] - sp / 2, asteroid[1] - sp / 2, sp, sp])) {
-            asteroid[5] -= this.state.dmg;
-            asteroid[6] = true;
+        this.state.enemies.forEach(enemy => {
+          let rect = enemy[5] === 1 ? [enemy[0], enemy[1], sp, sp] : [enemy[0] - sp / 2, enemy[1] - sp / 2, sp, sp]
+          if (this.intersect([bullet[0], bullet[1] + 5, bulletDim[0], bulletDim[1] / 2], rect)) {
+            enemy[3] -= this.state.dmg;
+            enemy[4] = true;
             intersecting = true;
           }
         });
         return !intersecting && (bullet[1] > -bulletDim[1]);
       })
-    })
+    });
 
-    /* Asteroid Controller */
-    this.state.asteroids.forEach(asteroid => {
-      asteroid[1] += asteroid[4];
-      asteroid[3] += asteroid[4] / 100;
-      if (this.intersect([asteroid[0] - sp / 2, asteroid[1] - sp / 2, sp, sp], [this.state.x, this.state.y, sp, sp])) {
-        asteroid[5] -= weight;
-        this.setState({
-          hp: this.state.hp - this.state.asteroidsDamage
-        })
-      }
-
+    this.state.enemyBullets.forEach(bullet => {
+      bullet[1] += this.state.bulletVel;
     });
     this.setState({
-      asteroids: this.state.asteroids.filter(asteroid => {
-        if (asteroid[5] <= 0) {
+      enemyBullets: this.state.enemyBullets.filter(bullet => {
+        let intersecting = false;
+        if (this.intersect([bullet[0], bullet[1] + 7, bulletDim[0], bulletDim[1] / 2], [this.state.x, this.state.y, sp, sp])) {
+          this.state.hp -= enemyBulletDamage;
+          intersecting = true;
+          explosionSound.play();
+        }
+        return !intersecting && (bullet[1] < this.state.height);
+      })
+    });
+
+    /* Enemy Controller */
+    this.state.enemies.forEach(enemy => {
+      enemy[1] += enemy[2];
+      let rect;
+      if (enemy[5] === 1) {
+        rect = [enemy[0], enemy[1], sp, sp]
+        if (this.state.frameCount % (this.state.enemyBulletFreq + Math.round(enemy[2] * 10)) === 0) {
+          this.state.enemyBullets.push([enemy[0] + sp / 2 - 1, enemy[1] + sp - 5]);
+          bulletSound.play(0.1);
+        }
+      } else {
+        rect = [enemy[0] - sp / 2, enemy[1] - sp / 2, sp, sp]
+        enemy[7] += enemy[2] / 100;
+      }
+      if (this.intersect(rect, [this.state.x, this.state.y, sp, sp])) {
+        enemy[3] -= weight;
+        this.setState({
+          hp: this.state.hp - this.state.enemyDamage
+        })
+      }
+    });
+    this.setState({
+      enemies: this.state.enemies.filter(enemy => {
+        let offset = enemy[5] === 1 ? sp / 2 : 0
+        if (enemy[3] <= 0) {
           this.setState({
-            score: this.state.score + asteroidScore
+            score: this.state.score + (enemy[5] === 1 ? enemyScore : asteroidScore)
           })
           explosionSound.play();
           if (Math.random() < 0.5) {
             if (Math.random() > (1 - probsUp[this.state.prob])) {
-              this.state.powerups.push([asteroid[0], asteroid[1], 1]);
+              this.state.powerups.push([enemy[0] + offset, enemy[1] + offset, 1]);
               if (this.state.prob < 2) {
                 this.setState({
                   prob: this.state.prob + 1
@@ -282,14 +323,14 @@ class Spaceshooter extends Component {
             }
           } else {
             if (Math.random() > (1 - probHp)) {
-              this.state.powerups.push([asteroid[0], asteroid[1], 0]);
+              this.state.powerups.push([enemy[0] + offset, enemy[1] + offset, 0]);
             }
           }
           return false;
         }
-        return asteroid[1] < this.state.height;
+        return enemy[1] < this.state.height;
       })
-    })
+    });
 
     /* Powerup Controller */
     this.state.powerups.forEach(powerup => {
@@ -344,7 +385,11 @@ class Spaceshooter extends Component {
       }
     }
     if (this.state.frameCount % this.state.asteroidSpawnRate === 0) {
-      this.createAsteroid();
+      if (Math.random() > 1 - this.state.enemyProb) {
+        this.createEnemy();
+      } else {
+        this.createAsteroid();
+      }
     }
 
     this.paint();
@@ -403,8 +448,19 @@ class Spaceshooter extends Component {
       ctx.strokeRect(bullet[0], bullet[1], bulletDim[0], bulletDim[1]);
     });
 
-    this.state.asteroids.forEach(asteroid => {
-      this.drawAsteroid(ctx, asteroid);
+    ctx.fillStyle = "#000000";
+    ctx.strokeStyle = "#4c4c4c";
+    this.state.enemyBullets.forEach(bullet => {
+      ctx.fillRect(bullet[0], bullet[1], bulletDim[0], bulletDim[1]);
+      ctx.strokeRect(bullet[0], bullet[1], bulletDim[0], bulletDim[1]);
+    });
+
+    this.state.enemies.forEach(enemy => {
+      if (enemy[5] === 1) {
+        this.drawEnemy(ctx, enemy);
+      } else {
+        this.drawAsteroid(ctx, enemy);
+      }
     })
 
     this.drawSpaceShip(ctx);
@@ -430,6 +486,7 @@ class Spaceshooter extends Component {
     ctx.stroke();
     ctx.fill();
 
+    // [x centre relative, w], [y top relative, y bottom relative]
     const spikes = [
       [[0.5, 1], [0, 1]],
       [[0.5, 3], [0.2, 0.4]],
@@ -442,6 +499,7 @@ class Spaceshooter extends Component {
       ctx.strokeRect(x + sp * spike[0][0] - spike[0][1] / 2, y + sp * spike[1][0], spike[0][1], sp * (spike[1][1] - spike[1][0]));
     })
 
+    // Read vertically
     const xlevels = [0.25, 0.125, 0];
     const ylevels = [0.4, 0.5, 0.6];
     const widths = [0.5, 0.75, 1];
@@ -458,12 +516,62 @@ class Spaceshooter extends Component {
     ctx.strokeRect(x + sp - 2, y + sp, 2, 2);
   }
 
+  drawEnemy(ctx, enemy) {
+    const x = enemy[0];
+    const y = enemy[1];
+    const damaged = enemy[4];
+
+    ctx.fillStyle = "#dc3545";
+    ctx.strokeStyle = "#dc3545";
+    if (damaged) {
+      ctx.fillStyle = "#e55e6c";
+      ctx.strokeStyle = "#e55e6c";
+      enemy[4] = false;
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + sp / 2, y + sp * 0.7);
+    ctx.lineTo(x + sp, y);
+    ctx.stroke();
+    ctx.fill();
+
+    // [x centre relative, w], [y top relative, y bottom relative]
+    const spikes = [
+      [[0.5, 1], [0, 1]],
+      [[0.5, 3], [0.6, 0.8]],
+      [[0.35, 1], [0.6, 0.8]],
+      [[0.65, 1], [0.6, 0.8]],
+      [[0.5, 5], [-0.1, 0]]
+    ];
+    spikes.forEach(spike => {
+      ctx.fillRect(x + sp * spike[0][0] - spike[0][1] / 2, y + sp * spike[1][0], spike[0][1], sp * (spike[1][1] - spike[1][0]));
+      ctx.strokeRect(x + sp * spike[0][0] - spike[0][1] / 2, y + sp * spike[1][0], spike[0][1], sp * (spike[1][1] - spike[1][0]));
+    })
+
+    // Read vertically
+    const xlevels = [0.25, 0.125, 0];
+    const ylevels = [0.3, 0.2, 0];
+    const widths = [0.5, 0.75, 1];
+    const heights = [0.3, 0.3, 0.4];
+
+    for (let i = 0; i < 3; i++) {
+      ctx.fillRect(x + sp * xlevels[i], y + sp * ylevels[i], sp * widths[i], sp * heights[i]);
+      ctx.strokeRect(x + sp * xlevels[i], y + sp * ylevels[i], sp * widths[i], sp * heights[i]);
+    }
+
+    ctx.fillRect(x, y - 2, 2, 2);
+    ctx.strokeRect(x, y - 2, 2, 2);
+    ctx.fillRect(x + sp - 2, y - 2, 2, 2);
+    ctx.strokeRect(x + sp - 2, y - 2, 2, 2);
+  }
+
   drawAsteroid(ctx, asteroid) {
     const x = asteroid[0];
     const y = asteroid[1];
-    const pointList = asteroid[2];
-    const rotation = asteroid[3];
-    const damaged = asteroid[6];
+    const damaged = asteroid[4];
+    const pointList = asteroid[6];
+    const rotation = asteroid[7];
 
     ctx.save();
     ctx.translate(x, y);
@@ -472,7 +580,7 @@ class Spaceshooter extends Component {
     ctx.fillStyle = "#555555";
     if (damaged) {
       ctx.fillStyle = "#806262";
-      asteroid[6] = false;
+      asteroid[4] = false;
     }
 
     ctx.moveTo(pointList[pointList.length - 1][0], pointList[pointList.length - 1][1]);

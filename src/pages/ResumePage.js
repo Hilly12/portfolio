@@ -14,17 +14,18 @@ import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import Image from "../components/Image";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 import Modal from "../components/Modal";
+import Placeholder from "../components/Placeholder";
 
-const bio = () => {
-  return (
-    <Fragment>
-      I'm an aspiring Software Engineer, and currently a student at Imperial College London. My topics of primary
-      interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
-      time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
-      politics to broaden my perspectives.
-    </Fragment>
-  );
-}
+// const bio = () => {
+//   return (
+//     <Fragment>
+//       I'm an aspiring Software Engineer, and currently a student at Imperial College London. My topics of primary
+//       interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
+//       time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
+//       politics to broaden my perspectives.
+//     </Fragment>
+//   );
+// }
 
 const workexp = [
   {
@@ -116,7 +117,7 @@ const languageDetails = [
   {
     name: 'C',
     small: '5',
-    large: '2'
+    large: '1'
   },
 ];
 
@@ -125,7 +126,7 @@ const languageExtra = ['Haskell', 'Go', 'SQL', 'VB.Net'];
 const frameworkDetails = [
   {
     name: 'React',
-    small: '4',
+    small: '3',
     large: '2'
   },
   {
@@ -135,7 +136,7 @@ const frameworkDetails = [
   },
   {
     name: 'Unity',
-    small: '4',
+    small: '5',
     large: '0'
   },
   {
@@ -145,7 +146,7 @@ const frameworkDetails = [
   },
 ];
 
-const frameworkExtra = ['Keras', 'Scikit', 'Django', 'ExpressJS', 'Postgres', 'MongoDB', 'Android Studio', 'Git', 'Unix'];
+const frameworkExtra = ['Keras', 'Scikit', 'Django', 'ExpressJS', 'Postgres', 'MongoDB', 'Redux', 'Android Studio', 'Git', 'Unix'];
 
 const education = [
   {
@@ -521,15 +522,16 @@ class ResumePage extends Component {
                 <Image classes="brand-img" src={require("../assets/images/me.png")}
                        transition='visibility 0s, opacity 0.2s ease-in'
                        placeholder={
-                         <div className="brand-img" style={{ position: 'relative' }}>
-                           <div className="spinner" style={{ margin: '45% auto auto' }}>
-                             <div className="rect1"/>
-                             <div className="rect2"/>
-                             <div className="rect3"/>
-                             <div className="rect4"/>
-                             <div className="rect5"/>
-                           </div>
-                         </div>
+                         <Placeholder classes="brand-img" margin="45% auto auto"/>
+                         // <div className="brand-img" style={{ position: 'relative' }}>
+                         //   <div className="spinner" style={{ margin: '45% auto auto' }}>
+                         //     <div className="rect1"/>
+                         //     <div className="rect2"/>
+                         //     <div className="rect3"/>
+                         //     <div className="rect4"/>
+                         //     <div className="rect5"/>
+                         //   </div>
+                         // </div>
                        }
                 />
                 {/*<img className="brand-img" src={require("../assets/images/me.png")} alt=""/>*/}
@@ -747,6 +749,7 @@ class ResumePage extends Component {
             </div>
           </div>
         </section>
+        <Footer/>
         {this.state.langModal &&
         <Modal title="Languages" toggle={this.toggleLang}>
           <div className="text-muted" style={{marginBottom: '5px'}}>
@@ -778,10 +781,10 @@ class ResumePage extends Component {
           </Table>
           <hr style={{ marginTop: '0' }}/>
           <div className="container text-muted">
-              <div style={{ fontWeight: '400', color: 'black' }}>
-                Additionally familiar with:
-              </div>
-              {languageExtra.join(', ')}
+            <div style={{ fontWeight: '400', color: 'black' }}>
+              Additionally familiar with:
+            </div>
+            {languageExtra.join(', ')}
           </div>
           <br/>
         </Modal>}
@@ -823,7 +826,6 @@ class ResumePage extends Component {
           </div>
           <br/>
         </Modal>}
-        <Footer/>
       </Fragment>
     );
   }

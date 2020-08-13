@@ -3,13 +3,68 @@ import axios from "axios";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Placeholder from "../components/Placeholder";
 import Image from "../components/Image";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCrown} from "@fortawesome/free-solid-svg-icons/faCrown";
-import {faPlay} from "@fortawesome/free-solid-svg-icons/faPlay";
-import {Link} from "react-router-dom";
-import {faCommentAlt} from "@fortawesome/free-solid-svg-icons/faCommentAlt";
-import {faLink} from "@fortawesome/free-solid-svg-icons/faLink";
-import {Button} from "reactstrap";
+import Avatar from "@material-ui/core/Avatar";
+import parse from "../util/DateParse";
+
+const img = (imgSrc, key) => {
+  return (
+    <div key={key} className="project-image-holder">
+      <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
+             classes="project-image"
+             placeholder={<Placeholder/>}
+      />
+    </div>
+  )
+}
+
+function parseData(projectData) {
+  const { content } = projectData;
+
+  let domParser = new DOMParser();
+  const tree = domParser.parseFromString(content, "text/xml");
+
+  const titleTags = tree.getElementsByTagName('header');
+  if (!titleTags[0]) {
+    return { title: "", content: "" };
+  }
+  console.log(visit(titleTags[0]));
+
+  const bodyTags = tree.getElementsByTagName('body');
+  if (!bodyTags[0]) {
+    return { title: "", content: "" };
+  }
+  return { title: visit(titleTags[0]), content: visit(bodyTags[0]) };
+}
+
+function visit(node, props = null) {
+  const children = [];
+  node.childNodes.forEach((child, key) => {
+    children.push(visit(child, { key: key }));
+  })
+  console.log("visiting " + node.tagName);
+  switch (node.tagName) {
+    case 'header':
+      return children[0];
+    case 'body':
+      return React.createElement(React.Fragment, props, children);
+    case 'img':
+      const key = props ? props.key : null;
+      return img(node.getAttribute('src'), key);
+    case 'a':
+      return <a key={props?.key} href={node.getAttribute('href')}>{children}</a>;
+    case 'code':
+      return React.createElement(React.Fragment, props, children);
+    default:
+      if (node.tagName) {
+        try {
+          return React.createElement(String(node.tagName), props, children);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+      return node.nodeValue;
+  }
+}
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -30,11 +85,14 @@ class ProjectDetail extends Component {
     axios
       .get(`https://www.aahilm.com/api/projects/${projectid}`)
       .then((response) => {
+        const { content, title } = parseData(response.data)
         this.setState({
           loading: false,
           projectData: response.data,
+          title: title,
+          content: content
         });
-        if (!this.state.projectData.article) {
+        if (!this.state.projectData.article || content === "") {
           this.setState({ projectData: {} });
         }
       }).catch(e => {
@@ -46,19 +104,12 @@ class ProjectDetail extends Component {
 
   render() {
     const {
-      id, title, imgSrc, pretext, timespan, date, teamSize, links, technologies, keywords, demoSrc, award, article
+      title,
+      date,
+      keywords
     } = this.state.projectData;
 
-    const tech = String(technologies).split(', ');
     const keys = String(keywords).split(', ');
-    const loading = this.props.loading;
-    let linksP = undefined;
-    if (links) {
-      const obj = JSON.parse(String(links));
-      if (obj.git) {
-        linksP = JSON.parse(String(links))
-      }
-    }
 
     if (this.state.loading) {
       return (
@@ -69,24 +120,45 @@ class ProjectDetail extends Component {
     }
     return (
       <div style={{ marginTop: '45px' }}>
-        <h2 style={{ fontWeight: "600", color: "#555555" }}>
-          {title}
-        </h2>
-        <br/>
         <div className="container-sm" style={{ textAlign: 'justify', alignItems: 'center', maxWidth: '850px' }}>
-          <div className="project-image-holder">
-            <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
-                   classes="project-image"
-                   placeholder={<Placeholder/>}/>
+          <h2 style={{ textAlign: 'left', margin: '0' }}>
+            {title}
+          </h2>
+          <h3 style={{ textAlign: 'left', margin: '0 0 5px 0' }}>
+            {this.state.title}
+          </h3>
+          {this.state.content &&
+          <div className="row" style={{ margin: '0 0 0 -15px' }}>
+            <div className="col-md-4">
+              <div style={{ display: 'flex', margin: '10px 0' }}>
+                <Avatar className="my-avatar"
+                        src="https://lh3.googleusercontent.com/pw/ACtC-3eRLY0BM1VpQyxfavShxfukNKuTgwBCNc4vhrn6kQjxNMY58bzBfc_tjFbUmg6Y66xApp-P5Wxwxi2hArJLqiZwQIxLywTJdmBNrmUc8-7fxB2C8SgHT-aX6TVQ6VxhGrEU3R5dBNGx4lOGjmUpVrOR=s60-no?authuser=0"/>
+                <div className="text-muted" style={{ paddingLeft: '10px', position: 'relative' }}>
+                  <div className="text-nowrap" style={{
+                    position: 'absolute',
+                    top: '50%',
+                    msTransform: 'translateY(-50%)',
+                    transform: 'translateY(-50%)'
+                  }}>
+                    Aahil Mehta
+                    <br/>
+                    {parse(date).join(' ')}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<div className="col-md-8" style={{ position: 'relative' }}>*/}
+            {/*  <div className="tags noselect">*/}
+            {/*    {keys.map((keyword, key) => (*/}
+            {/*      <span key={key} className="tag">{keyword}</span>*/}
+            {/*    ))}*/}
+            {/*  </div>*/}
+            {/*</div>*/}
           </div>
+          }
           <br/>
-          {/*{content}*/}
-          <div style={{ fontSize: '16px' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
+          <div className="blog-content">
+            {this.state.content}
           </div>
         </div>
       </div>
