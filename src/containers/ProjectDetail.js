@@ -1,10 +1,12 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import axios from "axios";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Placeholder from "../components/Placeholder";
 import Image from "../components/Image";
 import Avatar from "@material-ui/core/Avatar";
 import parse from "../util/DateParse";
+
+const avatarSrc = "https://lh3.googleusercontent.com/pw/ACtC-3eRLY0BM1VpQyxfavShxfukNKuTgwBCNc4vhrn6kQjxNMY58bzBfc_tjFbUmg6Y66xApp-P5Wxwxi2hArJLqiZwQIxLywTJdmBNrmUc8-7fxB2C8SgHT-aX6TVQ6VxhGrEU3R5dBNGx4lOGjmUpVrOR=s60-no?authuser=0";
 
 const img = (imgSrc, key) => {
   return (
@@ -100,16 +102,19 @@ class ProjectDetail extends Component {
         loading: true
       });
     });
+
+    let img = new Image();
+    img.src = avatarSrc;
   }
 
   render() {
     const {
       title,
       date,
-      keywords
+      // keywords
     } = this.state.projectData;
 
-    const keys = String(keywords).split(', ');
+    // const keys = String(keywords).split(', ');
 
     if (this.state.loading) {
       return (
@@ -132,7 +137,7 @@ class ProjectDetail extends Component {
             <div className="col-md-4">
               <div style={{ display: 'flex', margin: '10px 0' }}>
                 <Avatar className="my-avatar"
-                        src="https://lh3.googleusercontent.com/pw/ACtC-3eRLY0BM1VpQyxfavShxfukNKuTgwBCNc4vhrn6kQjxNMY58bzBfc_tjFbUmg6Y66xApp-P5Wxwxi2hArJLqiZwQIxLywTJdmBNrmUc8-7fxB2C8SgHT-aX6TVQ6VxhGrEU3R5dBNGx4lOGjmUpVrOR=s60-no?authuser=0"/>
+                        src={avatarSrc}/>
                 <div className="text-muted" style={{ paddingLeft: '10px', position: 'relative' }}>
                   <div className="text-nowrap" style={{
                     position: 'absolute',

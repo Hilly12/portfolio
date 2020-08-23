@@ -1,7 +1,14 @@
 .brand-img {
-  margin-top: 30px;
   width: 180px;
   height: 180px;
+  border-radius: 50%;
+  border: solid 2px grey;
+}
+
+.resume-img {
+  margin-top: 30px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   border: solid 2px grey;
 }
@@ -181,11 +188,11 @@ p {
 }
 
 @media (max-width: 768px) {
-  .module th:nth-child(4) {
+  .cmodule th:nth-child(4) {
     display: none;
   }
 
-  .module td:nth-child(4) {
+  .cmodule td:nth-child(4) {
     display: none;
   }
 }
@@ -255,4 +262,14 @@ p {
 .info-icon:hover {
   cursor: pointer;
   color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .popup-table th:nth-child(1) {
+    display: none;
+  }
+
+  .popup-table td:nth-child(1) {
+    display: none;
+  }
 }

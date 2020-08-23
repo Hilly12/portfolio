@@ -325,3 +325,19 @@
     text-align: justify;
   }
 }
+
+.btn-git {
+  color: white;
+  background-color: #635aaa;
+  /*background-color: #a72f97;*/
+}
+
+.btn-git:hover {
+  color: white;
+  background-color: #52489C;
+  /*background-color: #8e2580;*/
+}
+
+.btn-git:focus {
+  box-shadow: 0 0 0 0.2rem rgba(99, 90, 170, 0.4);
+}

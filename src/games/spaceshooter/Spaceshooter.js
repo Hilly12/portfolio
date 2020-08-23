@@ -9,15 +9,13 @@ const powerupDim = sp / 2;
 const vel = 4;
 const spinPad = [2, 10];
 const spinRate = 60;
-const probsUp = [0.1, 0.01, 0.005]
-const probHp = 0.3
+const probsUp = [0.1, 0.03, 0.01]
+const probHp = 0.4
 const hpUp = 8;
 const maxhp = 100;
 const asteroidScore = 50;
 const enemyScore = 150;
-const asteroidHP = 8;
-const enemyHP = 4;
-const enemyBulletDamage = 20;
+const enemyBulletDamage = 30;
 
 const bulletSound = new UIfx("https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-three/leisure_video_game_retro_laser_gun_fire_001.mp3?_=2", {
   volume: 0.02
@@ -41,35 +39,9 @@ class Spaceshooter extends Component {
     this.state = {
       width: 0,
       height: 0,
-      x: 0,
-      y: 0,
-      hp: maxhp,
-      level: 1,
-      dmg: 1,
-      movingLeft: false,
-      movingRight: false,
-      movingUp: false,
-      movingDown: false,
-      firing: false,
       game: 0,
-      bullets: [],
-      enemyBullets: [],
-      enemyBulletFreq: 100,
-      bulletVel: 8,
       stars: [],
-      starsVel: 0.3,
-      powerups: [],
-      powerupVel: 1,
-      enemies: [],
-      enemyProb: 0.1,
-      enemyVel: 1,
-      enemyDamage: 10,
-      asteroidSpawnRate: 100,
-      frameCount: 0,
-      bulletRefresh: 10,
-      starRefresh: 200,
-      prob: 0,
-      score: 0
+      starsVel: 0.3
     }
   }
 
@@ -98,6 +70,8 @@ class Spaceshooter extends Component {
 
   componentWillUnmount() {
     document.onkeydown = null;
+    document.onkeyup = null;
+    this.canvasRef = null;
     if (this.state.interval) {
       clearInterval(this.state.interval);
     }
@@ -153,7 +127,42 @@ class Spaceshooter extends Component {
   onNewGame() {
     this.setState({
       game: 2,
-      interval: setInterval(this.update, 10)
+      interval: setInterval(this.update, 10),
+      x: (this.state.width - sp) / 2,
+      y: this.state.height - sp * 2,
+      hp: maxhp,
+      level: 1,
+      dmg: 1,
+      movingLeft: false,
+      movingRight: false,
+      movingUp: false,
+      movingDown: false,
+      firing: false,
+      bullets: [],
+      enemyBullets: [],
+      enemyBulletFreq: 100,
+      bulletVel: 8,
+      powerups: [],
+      powerupVel: 1,
+      enemies: [],
+      enemyProb: 0.2,
+      enemyVel: 1,
+      enemyDamage: 20,
+      asteroidSpawnRate: 100,
+      frameCount: 0,
+      bulletRefresh: 10,
+      starRefresh: 200,
+      prob: 0,
+      score: 0,
+      asteroidHP: 10,
+      enemyHP: 6,
+    });
+  }
+
+  onGameOver() {
+    clearInterval(this.state.interval);
+    this.setState({
+      game: 0,
     });
   }
 
@@ -161,7 +170,7 @@ class Spaceshooter extends Component {
     const x = Math.random() * (this.state.width - 80) + 40;
     const y = -sp;
     const vel = this.state.enemyVel + (Math.random() * 0.2 - 0.1);
-    const hp = enemyHP;
+    const hp = this.state.enemyHP;
     const damaged = false;
     this.state.enemies.push([x, y, vel, hp, damaged, 1]);
   }
@@ -173,7 +182,7 @@ class Spaceshooter extends Component {
     const pointList = []
     const rotation = 0;
     const vel = this.state.enemyVel + (Math.random() * 0.2 - 0.1);
-    const hp = asteroidHP;
+    const hp = this.state.asteroidHP;
     const damaged = false;
 
     let xrand;
@@ -275,7 +284,9 @@ class Spaceshooter extends Component {
       enemyBullets: this.state.enemyBullets.filter(bullet => {
         let intersecting = false;
         if (this.intersect([bullet[0], bullet[1] + 7, bulletDim[0], bulletDim[1] / 2], [this.state.x, this.state.y, sp, sp])) {
-          this.state.hp -= enemyBulletDamage;
+          this.setState({
+            hp: this.state.hp - enemyBulletDamage
+          })
           intersecting = true;
           explosionSound.play();
         }
@@ -361,7 +372,6 @@ class Spaceshooter extends Component {
     /* Spawners */
     if (this.state.frameCount % this.state.bulletRefresh === 0) {
       if (this.state.firing) {
-        // Single
         switch (this.state.level) {
           case 1:
             this.state.bullets.push([this.state.x + sp / 2 - 1, this.state.y - 5]);
@@ -385,11 +395,36 @@ class Spaceshooter extends Component {
       }
     }
     if (this.state.frameCount % this.state.asteroidSpawnRate === 0) {
-      if (Math.random() > 1 - this.state.enemyProb) {
+      if (this.state.score > 2500) {
+        this.setState({
+          asteroidHP: 14,
+          enemyHP: 8,
+          enemyProb: 0.3
+        });
+      }
+      if (this.state.score > 5000) {
+        this.setState({
+          asteroidHP: 14,
+          enemyHP: 8,
+          enemyProb: 0.3
+        });
+      }
+      if (this.state.score > 10000) {
+        this.setState({
+          asteroidHP: 15,
+          enemyHP: 10,
+          enemyProb: 0.4
+        });
+      }
+      if (Math.random() > 1 - this.state.enemyProb && this.state.score > 300) {
         this.createEnemy();
       } else {
         this.createAsteroid();
       }
+    }
+
+    if (this.state.hp <= 0) {
+      this.onGameOver();
     }
 
     this.paint();

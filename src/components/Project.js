@@ -14,20 +14,6 @@ import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import parse from "../util/DateParse";
 
 class Project extends Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      modal: false
-    }
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  }
-
   render() {
     const {
       id, title, imgSrc, pretext, timespan, date, teamSize, links, technologies, keywords, demoSrc, award, article
@@ -81,22 +67,14 @@ class Project extends Component {
                 <p className="details-row descPart loud">{pretext}</p>
                 <div className="row text-nowrap text-muted" style={{ marginBottom: '5px' }}>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '15px' }} icon={faClock}/> {' '}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faClock}/> {' '}
                     {timespan}
                   </div>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '15px' }}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }}
                                      icon={teamSize === 1 ? faUser : faUsers}/> {' '}
                     {teamSize === 1 ? 'Individual' : `${teamSize} people`}
                   </div>
-                  {/*{linksP &&*/}
-                  {/*<div className="col-md-4">*/}
-                  {/*  <a href={linksP.git}>*/}
-                  {/*    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faLink}/> {' '}*/}
-                  {/*    Github*/}
-                  {/*  </a>*/}
-                  {/*</div>*/}
-                  {/*}*/}
                 </div>
               </div>
               <div className="col-md-2 project-left">
@@ -125,8 +103,7 @@ class Project extends Component {
                 {linksP &&
                 <a href={linksP.git} target="_blank" rel="noopener noreferrer">
                   <button style={{ fontSize: '13px', padding: '2px' }}
-                          className="btn btn-dark"
-                    // onClick={this.toggle}
+                          className="btn btn-git"
                   >
                     <FontAwesomeIcon size="lg" style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGithub}/>
                   </button>
@@ -134,16 +111,6 @@ class Project extends Component {
                 }
               </div>
             </div>
-            {/*<div style={{overflow: 'hidden', margin: '-10px 0 10px -2px'}}>*/}
-            {/*  <div className="text-muted project-info text-nowrap">*/}
-            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faClock}/>*/}
-            {/*    <span style={{marginRight: '20px'}}>{timespan}</span>*/}
-            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faUsers}/>*/}
-            {/*    <span style={{marginRight: '20px'}}>{4}</span>*/}
-            {/*    <FontAwesomeIcon style={{paddingTop: '1px', minWidth: '30px'}} icon={faCrown}/>*/}
-            {/*    <span style={{marginRight: '20px'}}>{'ICHack19'}</span>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
             <div className="tags noselect">
               {keys.map((keyword, key) => (
                 <div key={key} className="tag">{keyword}</div>
@@ -151,18 +118,6 @@ class Project extends Component {
             </div>
           </div>
         </Skeleton>
-        {/*{linksP && this.state.modal &&*/}
-        {/*<Modal title="Links" toggle={this.toggle}>*/}
-        {/*  <div className="container" style={{ fontWeight: '600' }}>*/}
-        {/*    /!*<p>*!/*/}
-        {/*    /!*  <a href={linksP.git}>*!/*/}
-        {/*    /!*    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGitAlt}/>*!/*/}
-        {/*    /!*    {linksP.git}*!/*/}
-        {/*    /!*  </a>*!/*/}
-        {/*    /!*</p>*!/*/}
-        {/*  </div>*/}
-        {/*</Modal>*/}
-        {/*}*/}
       </div>
     );
   }

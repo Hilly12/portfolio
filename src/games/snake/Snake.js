@@ -556,6 +556,9 @@ class Snake extends Component {
 
   componentWillUnmount() {
     document.onkeydown = null;
+    if (this.state.interval) {
+      clearInterval(this.state.interval);
+    }
   }
 
   /* Check collisions */
