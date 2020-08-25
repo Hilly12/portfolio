@@ -1,6 +1,11 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import UIfx from 'uifx';
 import "./Spaceshooter.css"
+import BaseGame from "../BaseGame";
+import LeaderboardModal from "../LeaderboardModal";
+import GameOverModal from "../GameOverModal";
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const sp = 40;
 const weight = 10;
@@ -9,13 +14,15 @@ const powerupDim = sp / 2;
 const vel = 4;
 const spinPad = [2, 10];
 const spinRate = 60;
-const probsUp = [0.1, 0.03, 0.01]
+const probsUp = [0.1, 0.05, 0]
 const probHp = 0.4
 const hpUp = 8;
 const maxhp = 100;
 const asteroidScore = 50;
 const enemyScore = 150;
 const enemyBulletDamage = 30;
+
+const threshold = 1000;
 
 const bulletSound = new UIfx("https://www.zapsplat.com/wp-content/uploads/2015/sound-effects-three/leisure_video_game_retro_laser_gun_fire_001.mp3?_=2", {
   volume: 0.02
@@ -29,7 +36,7 @@ const powerupSound = new UIfx("https://www.zapsplat.com/wp-content/uploads/2015/
   volume: 0.1
 })
 
-class Spaceshooter extends Component {
+class Spaceshooter extends BaseGame {
   constructor(props) {
     super(props);
 
@@ -37,6 +44,7 @@ class Spaceshooter extends Component {
     this.update = this.update.bind(this);
     this.paint = this.paint.bind(this);
     this.state = {
+      ...this.state,
       width: 0,
       height: 0,
       game: 0,
@@ -53,6 +61,7 @@ class Spaceshooter extends Component {
 
     document.onkeydown = this.onKeyDown;
     document.onkeyup = this.onKeyUp;
+    this.loadLeaderboard(1);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -110,16 +119,46 @@ class Spaceshooter extends Component {
         <div style={{ position: 'absolute', top: '40%', left: '0', right: '0' }}>
           {this.state.game !== 2 &&
           <Fragment>
-            <h2>Space Shooter</h2>
+            <h2 style={{ marginBottom: '-5px' }}>Space Shooter</h2>
             <br/>
             <div className="animate-flicker">
               Press Space or to Play
+            </div>
+            <br/>
+            <div style={{ margin: 'auto' }}>
+              <span className="link" onClick={this.toggleHighScores}>
+                Leaderboard
+              </span>
             </div>
           </Fragment>
           }
         </div>
         <canvas id="canvas" className="border" ref={this.canvasRef} width={this.state.width}
                 height={this.state.height}/>
+        {this.state.scoreModal &&
+        <LeaderboardModal toggleHighScores={this.toggleHighScores} leaderboard={this.state.leaderboard}
+                          loading={this.state.leaderboardLoading}/>
+        }
+        {this.state.gameOverModal &&
+        <GameOverModal toggleGameOver={this.toggleGameOver} score={this.state.score} threshold={threshold}
+                       loading={this.state.gameOverLoading} dname={this.state.dname} error={this.state.error}
+                       onChange={this.onChange} helperText={this.state.helperText} game_id={1}
+                       submitScore={this.submitScore}/>
+        }
+        <Snackbar
+          open={this.state.success}
+          autoHideDuration={2000}
+          onClose={this.dismissSnackbar}
+        >
+          <Alert
+            elevation={6}
+            variant="filled"
+            severity="success"
+            onClose={this.dismissSnackbar}
+          >
+            {this.state.changes}
+          </Alert>
+        </Snackbar>
       </div>
     );
   }
@@ -164,6 +203,7 @@ class Spaceshooter extends Component {
     this.setState({
       game: 0,
     });
+    this.toggleGameOver(this.state.score, threshold);
   }
 
   createEnemy() {
@@ -323,7 +363,7 @@ class Spaceshooter extends Component {
             score: this.state.score + (enemy[5] === 1 ? enemyScore : asteroidScore)
           })
           explosionSound.play();
-          if (Math.random() < 0.5) {
+          if (Math.random() < 0.5 || enemy[5] === 1) {
             if (Math.random() > (1 - probsUp[this.state.prob])) {
               this.state.powerups.push([enemy[0] + offset, enemy[1] + offset, 1]);
               if (this.state.prob < 2) {
@@ -656,7 +696,7 @@ class Spaceshooter extends Component {
         this.setState({
           firing: true
         });
-      } else if (this.state.game === 1) {
+      } else if (this.state.game === 1 && !this.state.gameOverModal) {
         this.onNewGame();
       }
     }

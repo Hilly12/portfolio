@@ -3,7 +3,7 @@ import React, {Fragment} from "react";
 const bio = () => {
   return (
     <Fragment>
-      Hi! I'm a Software Developer and a Computing Student at Imperial College London. My topics of primary
+      I'm a Software Developer and a Computing Student at Imperial College London. My topics of primary
       interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
       time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
       politics to broaden my perspectives.

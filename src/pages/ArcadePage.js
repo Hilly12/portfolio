@@ -2,7 +2,6 @@ import React, {Component, Fragment} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../components/Footer";
 import "../assets/Arcade.css"
-import snek from "../assets/images/snek.png";
 import Placeholder from "../components/Placeholder";
 import {Button} from "reactstrap";
 import Image from "../components/Image";
@@ -23,7 +22,7 @@ const cards = [
   {
     title: "Snake",
     description: "The classic",
-    img: snek,
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3cm2fE86vL4T6eQdcplTEhWAA7E6cOLM9v5kYaTySRdifcU7LMFElxrivu-HwfC_swYuJRc4zhkunKQCvGKJ9hOm6hHb4t0GdzCnO3-oIyCDPFedf1b-zdU8IEyv44cF4BMzAelZu6K9P40dKurOfbK=w1301-h731-no?authuser=0",
     link: "sandbox/snake",
   },
   {

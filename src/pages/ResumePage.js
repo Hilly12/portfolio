@@ -11,7 +11,6 @@ import Avatar from "@material-ui/core/Avatar";
 import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
-import Image from "../components/Image";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 import Modal from "../components/Modal";
 import Placeholder from "../components/Placeholder";
@@ -26,10 +25,12 @@ class ResumePage extends Component {
   constructor(props) {
     super(props);
 
+    this.OnLoaded = this.OnLoaded.bind(this);
     this.toggleLang = this.toggleLang.bind(this);
     this.toggleTech = this.toggleTech.bind(this);
 
     this.state = {
+      loading: true,
       langModal: false,
       techModal: false
     }
@@ -37,6 +38,10 @@ class ResumePage extends Component {
 
   componentDidMount() {
     window.scroll(0, 0);
+  }
+
+  OnLoaded() {
+    this.setState({ loading: false })
   }
 
   toggleLang() {
@@ -55,13 +60,18 @@ class ResumePage extends Component {
     return (
       <Fragment>
         <section className="portfolio-block.cv">
-          <div className="container">
+          {this.state.loading && <Placeholder classes="landing-placeholder" margin="15% auto auto"/>}
+          <div className="container" style={{
+            visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
+            opacity: `${this.state.loading ? '0' : '1'}`,
+            transition: 'visibility 0s, opacity 0.5s ease-out'
+          }}>
             {/* Bio */}
             <div className="bio group" style={{ marginTop: '30px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image classes="brand-img" src={require("../assets/images/me.png")}
-                       placeholder={<Placeholder classes="brand-img" margin="45% auto auto"/>}
-                />
+                <img className="brand-img"
+                     src="https://lh3.googleusercontent.com/pw/ACtC-3cMnfHSzb529a2rzKsb7JVY2ZrhFtTbn9OcH77cXQ1T5eA4a2Mr9dqc4dWHV_zj4tkdvsB2qNWZnhKSrTiiJPkPICI5K7unXA8qgrmkU34YZFPRdN3XZcKpH6zURmjMB0dNwiFD5ACFlobKwVHJyaKx=s400-no?authuser=0"
+                     alt="" onLoad={this.OnLoaded}/>
               </div>
               <br className="noselect"/>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

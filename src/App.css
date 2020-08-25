@@ -156,3 +156,14 @@ hidden-mobile {
     -webkit-transform: scaleY(1.0);
   }
 }
+
+.landing-placeholder {
+  position: absolute;
+}
+
+.bio {
+  width: 90%;
+  margin: auto auto -20px auto;
+  text-align: justify;
+  padding-top: 1em;
+}

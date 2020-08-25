@@ -67,11 +67,11 @@ class Project extends Component {
                 <p className="details-row descPart loud">{pretext}</p>
                 <div className="row text-nowrap text-muted" style={{ marginBottom: '5px' }}>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faClock}/> {' '}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '18px' }} icon={faClock}/> {' '}
                     {timespan}
                   </div>
                   <div className="col-md-3">
-                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }}
+                    <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '18px' }}
                                      icon={teamSize === 1 ? faUser : faUsers}/> {' '}
                     {teamSize === 1 ? 'Individual' : `${teamSize} people`}
                   </div>

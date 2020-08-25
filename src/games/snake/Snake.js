@@ -169,7 +169,7 @@ class Snake extends Component {
         leaderboard: response.data,
       });
       this.setState({
-        leaderboard: this.state.leaderboard.sort((a, b) => b.score - a.score),
+        leaderboard: this.state.leaderboard.filter(a => a.game_id === 0).sort((a, b) => b.score - a.score),
       });
     });
   }
@@ -262,6 +262,7 @@ class Snake extends Component {
     axios.post(server, {
       username: this.state.dname,
       score: this.state.gameState.score,
+      game_id: 0
     }).then((response) => {
       console.log(response);
       this.success();
