@@ -70,7 +70,7 @@ class LandingPage extends Component {
                   <FontAwesomeIcon icon={faFacebookF}/>
                 </Avatar>
               </a>
-              <a href="https://srv-file21.gofile.io/download/V8KFeR/CV.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.doc.ic.ac.uk/~am11218/CV.pdf" target="_blank" rel="noopener noreferrer">
                 <Avatar className="fa file">
                   <FontAwesomeIcon icon={faFileAlt}/>
                 </Avatar>
