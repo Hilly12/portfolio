@@ -146,7 +146,7 @@ class BaseGame extends Component {
         helperText: " ",
       });
     }
-  };
+  }
 
   submitScore(game_id, score) {
     this.setState({

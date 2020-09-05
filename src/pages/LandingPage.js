@@ -1,7 +1,6 @@
 import React, {Component, Fragment} from "react";
 import Footer from "../components/Footer";
-import {Button} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Button, FormGroup, Spinner} from "reactstrap";
 import Avatar from "@material-ui/core/Avatar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLinkedinIn} from "@fortawesome/free-brands-svg-icons/faLinkedinIn";
@@ -11,6 +10,12 @@ import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import MyData from "../res/MyData";
 import Placeholder from "../components/Placeholder";
 import TypingEffect from "typing-effect-react"
+import Modal from "../components/Modal";
+import Form from "reactstrap/es/Form";
+import TextField from "@material-ui/core/TextField";
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import axios from "axios";
 
 const { bio } = MyData;
 
@@ -19,8 +24,13 @@ class LandingPage extends Component {
     super(props);
 
     this.OnLoaded = this.OnLoaded.bind(this);
+    this.toggleContact = this.toggleContact.bind(this);
+    this.submit = this.submit.bind(this);
+    this.success = this.success.bind(this);
+    this.fail = this.fail.bind(this);
     this.state = {
       loading: true,
+      contactModal: false
     }
   }
 
@@ -29,7 +39,83 @@ class LandingPage extends Component {
   }
 
   OnLoaded() {
-    this.setState({ loading: false })
+    this.setState({ loading: false });
+  }
+
+  toggleContact() {
+    this.setState({
+      contactModal: !this.state.contactModal,
+      helperText: " ",
+      dname: "",
+      mailid: "",
+      message: "",
+      submitLoading: false,
+      error: false
+    });
+  }
+
+  submit() {
+    this.setState({
+      submitLoading: true
+    });
+    const message = this.state.message;
+    const email = this.state.mailid;
+    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!regex.test(email)) {
+      this.fail("Invalid email");
+    } else if (message.length > 10000) {
+      this.fail("Please keep your message under 10000 characters");
+    } else {
+      axios.post("https://formspree.io/xeqryezk", {
+        headers: {
+          'Accept': 'application/json'
+        },
+        data: {
+          name: this.state.dname,
+          email: this.state.mailid,
+          message: this.state.message
+        }
+      }).then((response) => {
+        console.log(response);
+        this.success();
+      }).catch((error) => {
+        console.log(error.response);
+        this.fail("Unable to connect to server");
+      });
+    }
+  }
+
+  success() {
+    this.setState({
+      changes: "Thank you, will get back as soon as I can :)",
+      success: true,
+      submitLoading: false,
+      contactModal: false,
+    });
+  }
+
+  fail(message) {
+    this.setState({
+      submitLoading: false,
+      errors: true,
+      helperText: "* " + message
+    });
+  }
+
+  dismissSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    this.setState({
+      success: false,
+    });
+  };
+
+  onChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value,
+      errors: false
+    });
   }
 
   render() {
@@ -53,7 +139,7 @@ class LandingPage extends Component {
             </div>
             <div style={{ margin: '12px 0 0 0' }}>
               <TypingEffect className="lead" typingSpeed={50} pauseBeforeDeleting={2000} pauseBeforeRestarting={50}
-                            data={["Software Developer", "Game Developer", "Computing Student"]}/>
+                            data={["Software Developer", "Computing Student"]}/>
             </div>
             <p className="bio">{bio}</p>
             <br className="noselect"/>
@@ -83,18 +169,93 @@ class LandingPage extends Component {
             </div>
           </div>
           <br className="noselect"/>
+          <div className="text-muted" style={{ textAlign: "center", marginTop: '10px' }}>
+            <button onClick={this.toggleContact} style={{ borderRadius: '50px', minWidth: '150px' }}
+                    className="btn btn-git">Get in touch
+            </button>
+          </div>
+          <br className="noselect"/>
           <hr className="my-2"/>
           <br className="noselect"/>
           <p style={{ fontWeight: '600' }}>
             This site is currently under development and some of the projects you see here aren't complete
           </p>
-          <p className="lead">
-            <Link to="sandbox/snake">
-              <Button style={{ minWidth: '100px' }} color="primary" size="sm">Press Me</Button>
-            </Link>
-          </p>
         </div>
         <Footer/>
+        {this.state.contactModal &&
+        <Modal title="Contact" toggle={this.toggleContact} height={450}>
+          <h6>
+            Have a question or want to work together?
+          </h6>
+          <Form style={{ padding: '0.5em' }}>
+            <FormGroup>
+              <TextField
+                id="dname"
+                label="Name"
+                color="primary"
+                fullWidth
+                size="small"
+                variant="outlined"
+                autoComplete="off"
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <TextField
+                id="mailid"
+                label="Email"
+                color="primary"
+                fullWidth
+                size="small"
+                variant="outlined"
+                autoComplete="off"
+                error={this.state.error}
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <TextField
+                id="message"
+                label="Message"
+                fullWidth
+                multiline
+                size="small"
+                rows={9}
+                variant="outlined"
+                autoComplete="off"
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <div style={{ textAlign: 'left', fontSize: '12', color: '#ff0000' }}>
+                {this.state.helperText}
+              </div>
+            </FormGroup>
+            <Button color="primary" onClick={this.submit} size="sm"
+                    disabled={this.state.message.trim() === "" || this.state.mailid.trim() === "" || this.state.dname.trim() === ""}>
+              Submit
+              {this.state.submitLoading ? (
+                <Spinner className="ml-1" size="sm"/>
+              ) : null}
+            </Button>
+          </Form>
+          <br/>
+        </Modal>
+        }
+        <Snackbar
+          open={this.state.success}
+          autoHideDuration={2000}
+          onClose={this.dismissSnackbar}
+        >
+          <Alert
+            elevation={6}
+            variant="filled"
+            severity="success"
+            onClose={this.dismissSnackbar}
+          >
+            {this.state.changes}
+          </Alert>
+        </Snackbar>
       </Fragment>
     );
   }
