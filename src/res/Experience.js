@@ -3,7 +3,12 @@ const workexp = [
     title: "Software Engineering Intern",
     institution: "Scribetech",
     period: "July 2020 - September 2020",
-    description: ["Smart Editor"],
+    description: [
+      "Worked on the Augnito Medical Transcription Application in C#, Xamarin, to add smart editor features for " +
+      "doctors, including voice commands for selection and formatting, voice enabled RTF macros, " +
+      "and open file renaming",
+      "Chatbot"
+    ],
   },
   {
     title: "Teaching Assistant for CO120.x",
@@ -32,7 +37,7 @@ const education = [
     institution: "Imperial College London",
     period: "October 2018 - Present",
     description: [
-      "Second Year: 69% Overall",
+      "Second Year: 69% Overall - 2:1",
       "86% average in Programming I, II, III"
     ],
   },

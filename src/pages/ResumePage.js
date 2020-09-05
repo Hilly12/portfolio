@@ -64,12 +64,12 @@ class ResumePage extends Component {
           <div className="container" style={{
             visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
             opacity: `${this.state.loading ? '0' : '1'}`,
-            transition: 'visibility 0s, opacity 0.5s ease-out'
+            transition: 'visibility 0s, opacity 0.7s ease-out'
           }}>
             {/* Bio */}
             <div className="bio group" style={{ marginTop: '30px' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img className="brand-img"
+                <img className="brand-img noselect"
                      src="https://lh3.googleusercontent.com/pw/ACtC-3cMnfHSzb529a2rzKsb7JVY2ZrhFtTbn9OcH77cXQ1T5eA4a2Mr9dqc4dWHV_zj4tkdvsB2qNWZnhKSrTiiJPkPICI5K7unXA8qgrmkU34YZFPRdN3XZcKpH6zURmjMB0dNwiFD5ACFlobKwVHJyaKx=s400-no?authuser=0"
                      alt="" onLoad={this.OnLoaded}/>
               </div>
@@ -267,7 +267,7 @@ class ResumePage extends Component {
                           <FontAwesomeIcon className="text-success" icon={completedIcon}/> :
                           <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>}
                       </td>
-                      <th><a href={module.link}>{module.code}</a></th>
+                      <th><a href={module.link} target="_blank" rel="noopener noreferrer">{module.code}</a></th>
                       <td>{module.name}</td>
                       <td>{module.description}</td>
                     </tr>
@@ -314,6 +314,12 @@ class ResumePage extends Component {
               Additionally familiar with:
             </div>
             {languageExtra.join(', ')}
+            <br/>
+            <div style={{marginTop: '8px'}}>
+              - Small: projects done roughly over a week / weekend
+              <br/>
+              - Large: projects done over the span of weeks / months
+            </div>
           </div>
           <br/>
         </Modal>}
@@ -352,6 +358,12 @@ class ResumePage extends Component {
               Additionally familiar with:
             </div>
             {frameworkExtra.join(', ')}
+            <br/>
+            <div style={{marginTop: '8px'}}>
+              - Small: assignments, experimenting, tutorials
+              <br/>
+              - Large: industry grade, open source, full-stack
+            </div>
           </div>
           <br/>
         </Modal>}

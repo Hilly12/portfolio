@@ -164,7 +164,7 @@ class BaseGame extends Component {
       console.log(response);
       this.success(game_id);
     }).catch((error) => {
-      console.log(error);
+      console.log(error.response);
       this.setState({
         gameOverLoading: false,
         leaderboardLoading: false,

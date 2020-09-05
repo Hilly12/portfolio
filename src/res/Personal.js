@@ -4,9 +4,9 @@ const bio = () => {
   return (
     <Fragment>
       I'm a Software Developer and a Computing Student at Imperial College London. My topics of primary
-      interest in Computing are Machine Learning, Computer Vision, Optimization, and Computational Finance. In my idle
-      time, I enjoy creating and designing games and webapps, as well as reading about business, economics and
-      politics to broaden my perspectives.
+      interest in Computing are Machine Learning, NLP, Computer Vision, Optimization, and Computational Finance.
+      In my idle time, I enjoy creating and designing games and webapps, as well as reading about business,
+      economics and politics to broaden my perspectives.
     </Fragment>
   );
 }

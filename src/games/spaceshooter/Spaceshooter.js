@@ -122,7 +122,7 @@ class Spaceshooter extends BaseGame {
             <h2 style={{ marginBottom: '-5px' }}>Space Shooter</h2>
             <br/>
             <div className="animate-flicker">
-              Press Space or to Play
+              Press Space to Play
             </div>
             <br/>
             <div style={{ margin: 'auto' }}>

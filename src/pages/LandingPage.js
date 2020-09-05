@@ -35,26 +35,25 @@ class LandingPage extends Component {
   render() {
     return (
       <Fragment>
-        <div style={{ marginTop: "20px" }}/>
         {this.state.loading && <Placeholder classes="landing-placeholder" margin="15% auto auto"/>}
-        <div className="container"
-             style={{
-               visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
-               opacity: `${this.state.loading ? '0' : '1'}`,
-               transition: 'visibility 0s, opacity 0.5s ease-out'
-             }}>
-          <div className="heading" style={{ marginBottom: '0px' }}>
-            <h2>Hi!</h2>
-          </div>
-          <div style={{ margin: '0 0 12px 0' }}>
-            <span className="lead">I am a </span>
-            <TypingEffect className="lead" typingSpeed={50} pauseBeforeRestarting={50} data={["Software Developer", "Computing Student"]}/>
-          </div>
-          <div className="container">
+        <div className="container" style={{
+          visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
+          opacity: `${this.state.loading ? '0' : '1'}`,
+          transition: 'visibility 0s, opacity 1s ease-out',
+          minHeight: "100vh"
+        }}>
+          {/*<div className="heading" style={{ marginBottom: '0px' }}>*/}
+          {/*  <h2>Aahil Mehta</h2>*/}
+          {/*</div>*/}
+          <div className="container" style={{ marginTop: '30px', paddingTop: '1em' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <img className="brand-img"
+              <img className="brand-img noselect"
                    src="https://lh3.googleusercontent.com/pw/ACtC-3cMnfHSzb529a2rzKsb7JVY2ZrhFtTbn9OcH77cXQ1T5eA4a2Mr9dqc4dWHV_zj4tkdvsB2qNWZnhKSrTiiJPkPICI5K7unXA8qgrmkU34YZFPRdN3XZcKpH6zURmjMB0dNwiFD5ACFlobKwVHJyaKx=s400-no?authuser=0"
                    alt="" onLoad={this.OnLoaded}/>
+            </div>
+            <div style={{ margin: '12px 0 0 0' }}>
+              <TypingEffect className="lead" typingSpeed={50} pauseBeforeDeleting={2000} pauseBeforeRestarting={50}
+                            data={["Software Developer", "Game Developer", "Computing Student"]}/>
             </div>
             <p className="bio">{bio}</p>
             <br className="noselect"/>
@@ -83,9 +82,9 @@ class LandingPage extends Component {
               </a>
             </div>
           </div>
-          <br/>
+          <br className="noselect"/>
           <hr className="my-2"/>
-          <br/>
+          <br className="noselect"/>
           <p style={{ fontWeight: '600' }}>
             This site is currently under development and some of the projects you see here aren't complete
           </p>

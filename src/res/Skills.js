@@ -8,13 +8,13 @@ const languages = [
     proficiency: 85,
   },
   {
-    name: "Javascript",
+    name: "C",
     proficiency: 75,
   },
   {
     name: "C#",
-    proficiency: 70,
-  },
+    proficiency: 65,
+  }
 ];
 
 const frameworks = [
@@ -23,16 +23,16 @@ const frameworks = [
     proficiency: 80,
   },
   {
+    name: "Django",
+    proficiency: 75,
+  },
+  {
     name: ".NET",
     proficiency: 70,
   },
   {
-    name: "Unity",
-    proficiency: 60,
-  },
-  {
     name: "Tensorflow",
-    proficiency: 55,
+    proficiency: 60,
   },
 ];
 
@@ -40,56 +40,56 @@ const languageDetails = [
   {
     name: 'Java',
     small: '10+',
-    large: '5'
+    large: '3'
   },
   {
     name: 'Python',
     small: '10+',
-    large: '1'
-  },
-  {
-    name: 'C#',
-    small: '6',
-    large: '2'
-  },
-  {
-    name: 'Javascript',
-    small: '4',
-    large: '2'
+    large: '3'
   },
   {
     name: 'C',
     small: '5',
+    large: '2'
+  },
+  {
+    name: 'C#',
+    small: '6',
     large: '1'
   },
+  {
+    name: 'Javascript',
+    small: '6',
+    large: '2'
+  }
 ];
 
-const languageExtra = ['Haskell', 'Go', 'SQL', 'VB.Net'];
+const languageExtra = ['Haskell', 'Go', 'SQL', 'VB.Net', '...'];
 
 const frameworkDetails = [
   {
     name: 'React',
-    small: '3',
+    small: '6',
     large: '2'
+  },
+  {
+    name: 'Django',
+    small: '3',
+    large: '1'
   },
   {
     name: '.NET',
     small: '2',
-    large: '2'
-  },
-  {
-    name: 'Unity',
-    small: '5',
-    large: '0'
+    large: '1'
   },
   {
     name: 'Tensorflow',
     small: '4',
-    large: '0'
+    large: '1'
   },
 ];
 
-const frameworkExtra = ['Keras', 'Scikit', 'Django', 'ExpressJS', 'Postgres', 'MongoDB', 'Redux', 'Android Studio', 'Git', 'Unix'];
+const frameworkExtra = ['Keras', 'Scikit', 'Unity', 'ExpressJS', 'Bootstrap', 'Postgres', 'MongoDB', 'Redux', 'Android Studio', 'Git', 'Unix'];
 
 const Skills = {
   languages: languages,

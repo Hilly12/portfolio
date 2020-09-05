@@ -57,8 +57,8 @@ class ArcadePage extends Component {
               return (
                 <div key={key} className="col-md-6 col-lg-4 mb-5">
                   <div className="card border-0 card-img-custom" style={{ backgroundColor: "transparent" }}>
-                    <Image classes="card-img-top border-bottom" src={card.img}
-                           placeholder={<Placeholder classes="placeholder border-bottom"/>}/>
+                    <Image classes="card-img-top border-bottom" transition="visibility 0s, opacity 1s ease-out"
+                           src={card.img} placeholder={<Placeholder classes="placeholder border-bottom"/>}/>
                     <div className="card-body text-center text-muted">
                       <h6 className="text-center" style={{ color: '#007bff', fontWeight: '600' }}>
                         {card.title}

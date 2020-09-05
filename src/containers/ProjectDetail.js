@@ -6,7 +6,7 @@ import Image from "../components/Image";
 import Avatar from "@material-ui/core/Avatar";
 import parse from "../util/DateParse";
 
-const avatarSrc = "https://lh3.googleusercontent.com/pw/ACtC-3eRLY0BM1VpQyxfavShxfukNKuTgwBCNc4vhrn6kQjxNMY58bzBfc_tjFbUmg6Y66xApp-P5Wxwxi2hArJLqiZwQIxLywTJdmBNrmUc8-7fxB2C8SgHT-aX6TVQ6VxhGrEU3R5dBNGx4lOGjmUpVrOR=s60-no?authuser=0";
+const avatarSrc = "https://lh3.googleusercontent.com/pw/ACtC-3eRLY0BM1VpQyxfavShxfukNKuTgwBCNc4vhrn6kQjxNMY58bzBfc_tjFbUmg6Y66xApp-P5Wxwxi2hArJLqiZwQIxLywTJdmBNrmUc8-7fxB2C8SgHT-aX6TVQ6VxhGrEU3R5dBNGx4lOGjmUpVrOR=s60";
 
 const img = (imgSrc, key) => {
   return (
@@ -71,10 +71,18 @@ function visit(node, props = null) {
 class ProjectDetail extends Component {
   constructor(props) {
     super(props);
+    this.toggleLoaded = this.toggleLoaded.bind(this);
     this.state = {
+      avatarLoading: true,
       loading: true,
       projectData: {},
     };
+  }
+
+  toggleLoaded() {
+    this.setState({
+      avatarLoading: false
+    })
   }
 
   componentDidMount() {
@@ -102,9 +110,6 @@ class ProjectDetail extends Component {
         loading: true
       });
     });
-
-    let img = new Image();
-    img.src = avatarSrc;
   }
 
   render() {
@@ -116,10 +121,11 @@ class ProjectDetail extends Component {
 
     // const keys = String(keywords).split(', ');
 
-    if (this.state.loading) {
+    if (this.state.loading || this.state.avatarLoading) {
       return (
         <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <LinearProgress style={{ maxWidth: '800px', marginTop: '30vh', width: '100%' }}/>
+          <img src={avatarSrc} alt="" onLoad={this.toggleLoaded} style={{display: 'none'}}/>
         </div>
       );
     }
@@ -136,8 +142,9 @@ class ProjectDetail extends Component {
           <div className="row" style={{ margin: '0 0 0 -15px' }}>
             <div className="col-md-4">
               <div style={{ display: 'flex', margin: '10px 0' }}>
-                <Avatar className="my-avatar"
-                        src={avatarSrc}/>
+                <Avatar className="my-avatar">
+                  <img src={avatarSrc} alt=""/>
+                </Avatar>
                 <div className="text-muted" style={{ paddingLeft: '10px', position: 'relative' }}>
                   <div className="text-nowrap" style={{
                     position: 'absolute',
@@ -161,7 +168,7 @@ class ProjectDetail extends Component {
             {/*</div>*/}
           </div>
           }
-          <br/>
+          <br className="noselect"/>
           <div className="blog-content">
             {this.state.content}
           </div>
