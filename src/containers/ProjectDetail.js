@@ -71,6 +71,7 @@ function visit(node, props = null) {
 class ProjectDetail extends Component {
   constructor(props) {
     super(props);
+    this.fetch = this.fetch.bind(this);
     this.toggleLoaded = this.toggleLoaded.bind(this);
     this.state = {
       avatarLoading: true,
@@ -88,6 +89,10 @@ class ProjectDetail extends Component {
   componentDidMount() {
     window.scroll(0, 0);
 
+    setTimeout(this.fetch, 300);
+  }
+
+  fetch() {
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 

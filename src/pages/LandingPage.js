@@ -8,7 +8,6 @@ import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import MyData from "../res/MyData";
-import Placeholder from "../components/Placeholder";
 import TypingEffect from "typing-effect-react"
 import Modal from "../components/Modal";
 import Form from "reactstrap/es/Form";
@@ -16,6 +15,10 @@ import TextField from "@material-ui/core/TextField";
 import Alert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import axios from "axios";
+import {faCode} from "@fortawesome/free-solid-svg-icons/faCode";
+import {faAddressCard} from "@fortawesome/free-solid-svg-icons/faAddressCard";
+import {faDragon} from "@fortawesome/free-solid-svg-icons/faDragon";
+import {Link} from "react-router-dom";
 
 const { bio } = MyData;
 
@@ -60,7 +63,7 @@ class LandingPage extends Component {
     });
     const message = this.state.message;
     const email = this.state.mailid;
-    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line
     if (!regex.test(email)) {
       this.fail("Invalid email");
     } else if (message.length > 10000) {
@@ -121,11 +124,19 @@ class LandingPage extends Component {
   render() {
     return (
       <Fragment>
-        {this.state.loading && <Placeholder classes="landing-placeholder" margin="15% auto auto"/>}
+        {/*<div className="splash-screen" style={{*/}
+        {/*  visibility: `${this.state.loading ? 'visible' : 'hidden'}`,*/}
+        {/*  opacity: `${this.state.loading ? '1' : '0'}`,*/}
+        {/*  transition: 'visibility 0s, opacity 0.5s ease-out'*/}
+        {/*}}>*/}
+        {/*  <div className="splash-screen-inner">*/}
+
+        {/*  </div>*/}
+        {/*</div>*/}
         <div className="container" style={{
           visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
           opacity: `${this.state.loading ? '0' : '1'}`,
-          transition: 'visibility 0s, opacity 1s ease-out',
+          transition: 'visibility 0s, opacity 0.65s ease-in',
           minHeight: "100vh"
         }}>
           {/*<div className="heading" style={{ marginBottom: '0px' }}>*/}
@@ -139,10 +150,23 @@ class LandingPage extends Component {
             </div>
             <div style={{ margin: '12px 0 0 0' }}>
               <TypingEffect className="lead" typingSpeed={50} pauseBeforeDeleting={2000} pauseBeforeRestarting={50}
-                            data={["Software Developer", "Computing Student"]}/>
+                            data={["Software Developer", "Computer Scientist"]}/>
             </div>
             <p className="bio">{bio}</p>
             <br className="noselect"/>
+            <br className="noselect"/>
+            <hr className="my-2"/>
+            <div className="text-muted nav-info" style={{ margin: '5px 0 5px 0' }}>
+              <Link to="/projects">
+                <p><FontAwesomeIcon icon={faCode} style={{ minWidth: '30px' }}/>Projects</p>
+              </Link>
+              <Link to="/resume">
+                <p><FontAwesomeIcon icon={faAddressCard} style={{ minWidth: '30px' }}/>Resume</p>
+              </Link>
+              <Link to="/sandbox">
+                <p><FontAwesomeIcon icon={faDragon} style={{ minWidth: '30px' }}/>Sandbox</p>
+              </Link>
+            </div>
             <br className="noselect"/>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <a href="https://uk.linkedin.com/in/aahil-mehta" target="_blank" rel="noopener noreferrer">
@@ -175,10 +199,8 @@ class LandingPage extends Component {
             </button>
           </div>
           <br className="noselect"/>
-          <hr className="my-2"/>
-          <br className="noselect"/>
           <p style={{ fontWeight: '600' }}>
-            This site is currently under development and some of the projects you see here aren't complete
+            This site is currently under development and some of the projects you see here aren't yet complete
           </p>
         </div>
         <Footer/>

@@ -4,9 +4,12 @@ import "../assets/Project.css";
 import {List} from "antd";
 import axios from "axios";
 
+const ttl = 600000; // ms - 10 min
+
 class ProjectList extends Component {
   constructor(props) {
     super(props);
+    this.fetch = this.fetch.bind(this);
     this.state = {
       loading: true,
       featuredProjects: [{}, {}],
@@ -16,10 +19,30 @@ class ProjectList extends Component {
 
   componentDidMount() {
     window.scroll(0, 0);
+
+    let projectsPayload = JSON.parse(localStorage.getItem('projects'));
+    if (projectsPayload && projectsPayload.expiry > Date.now()) {
+      let projects = projectsPayload.data;
+      this.setState({
+        loading: false,
+        featuredProjects: projects.filter(p => p.featured).sort((a, b) => Date.parse(b.date) - Date.parse(a.date)),
+        remProjects: projects.filter(p => !p.featured).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+      });
+    } else {
+      setTimeout(this.fetch, 300);
+    }
+  }
+
+  fetch() {
     // http://127.0.0.1:8000/api/projects/
     // https://www.aahilm.com/api/projects/
 
     axios.get("https://www.aahilm.com/api/projects/").then((response) => {
+      let payload = {
+        data: response.data,
+        expiry: Date.now() + ttl
+      }
+      localStorage.setItem('projects', JSON.stringify(payload));
       this.setState({
         loading: false,
         featuredProjects: response.data.filter(p => p.featured).sort((a, b) => Date.parse(b.date) - Date.parse(a.date)),
@@ -59,7 +82,6 @@ class ProjectList extends Component {
           )}
         />
       </Fragment>
-
     );
   }
 }

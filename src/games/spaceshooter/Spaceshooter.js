@@ -393,11 +393,11 @@ class Spaceshooter extends BaseGame {
       if (powerup[2] === 1) {
         this.setState({
           level: this.state.level + 1
-        })
+        });
       } else {
         this.setState({
-          hp: this.state.hp + hpUp
-        })
+          hp: Math.max(this.state.hp + hpUp, maxhp)
+        });
       }
       powerupSound.play();
     })

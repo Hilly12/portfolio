@@ -3,11 +3,6 @@ import Footer from "../components/Footer";
 import BaseRouter from "../routes.js";
 
 class ProjectsPage extends Component {
-
-  // componentDidMount() {
-  //   window.scroll(0, 0);
-  // }
-
   render() {
     return (
       <Fragment>

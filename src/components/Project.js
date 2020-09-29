@@ -38,7 +38,8 @@ class Project extends Component {
         <Skeleton loading={loading}>
           <div className="provider-left-block textAlignCen">
             <div className="provider-image-block ">
-              <Image src={imgSrc}// {cdn.baseURL + cdn.ImgURL + cdn.ImgDir + imgSrc}
+              <Image src={imgSrc}
+                     transition="visibility 0s, opacity 0.65s ease-in-out"
                      classes="provider-img"
                      placeholder={<Placeholder/>}/>
               {award !== '-' &&
@@ -91,7 +92,7 @@ class Project extends Component {
                 }
                 {article &&
                 <Fragment>
-                  <Link to={`/projects/${id}`}>
+                  <Link to={`/blog/${id}`}>
                     <button style={{ fontSize: '13px', padding: '2px' }}
                             className="btn btn-info">
                       <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faCommentAlt}/>
@@ -111,7 +112,7 @@ class Project extends Component {
                 }
               </div>
             </div>
-            <div className="tags noselect">
+            <div className="tags">
               {keys.map((keyword, key) => (
                 <div key={key} className="tag">{keyword}</div>
               ))}

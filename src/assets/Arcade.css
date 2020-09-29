@@ -62,7 +62,7 @@
     bottom: 0;
     margin: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
+    z-index: 1101;
 }
 
 .popup_inner {
@@ -75,7 +75,7 @@
     margin: auto;
     background: white;
     border-radius: 5px;
-    z-index: 2;
+    z-index: 1101;
 }
 
 .popup-header {

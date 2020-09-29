@@ -676,8 +676,6 @@ class Snake extends Component {
     }));
     clearInterval(this.state.interval);
     this.toggleGameOver();
-    // setTimeout(this.toggleGameOver, 300);
-    // alert(`Game Over. Snake length is ${this.state.snake.length}`);
   }
 
   onNewGame() {

@@ -64,7 +64,7 @@ class ResumePage extends Component {
           <div className="container" style={{
             visibility: `${this.state.loading ? 'hidden' : 'visible'}`,
             opacity: `${this.state.loading ? '0' : '1'}`,
-            transition: 'visibility 0s, opacity 0.7s ease-out'
+            transition: 'visibility 0s, opacity 0.65s ease-in-out'
           }}>
             {/* Bio */}
             <div className="bio group" style={{ marginTop: '30px' }}>
