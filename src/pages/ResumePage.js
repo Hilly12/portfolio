@@ -18,7 +18,7 @@ import MyData from "../res/MyData";
 
 const {
   workexp, languages, languageDetails, languageExtra, frameworks, frameworkDetails, frameworkExtra,
-  education, awards, modules, hobbies
+  education, awards, modules, links, hobbies
 } = MyData
 
 class ResumePage extends Component {
@@ -267,7 +267,7 @@ class ResumePage extends Component {
                           <FontAwesomeIcon className="text-success" icon={completedIcon}/> :
                           <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>}
                       </td>
-                      <th><a href={module.link} target="_blank" rel="noopener noreferrer">{module.code}</a></th>
+                      <th><a href={links[module.year]} target="_blank" rel="noopener noreferrer">{module.code}</a></th>
                       <td>{module.name}</td>
                       <td>{module.description}</td>
                     </tr>
@@ -315,7 +315,7 @@ class ResumePage extends Component {
             </div>
             {languageExtra.join(', ')}
             <br/>
-            <div style={{marginTop: '8px'}}>
+            <div style={{ marginTop: '8px' }}>
               - Small: projects done roughly over a week / weekend
               <br/>
               - Large: projects done over the span of weeks / months
@@ -359,7 +359,7 @@ class ResumePage extends Component {
             </div>
             {frameworkExtra.join(', ')}
             <br/>
-            <div style={{marginTop: '8px'}}>
+            <div style={{ marginTop: '8px' }}>
               - Small: assignments, experimenting, tutorials
               <br/>
               - Large: industry grade, open source, full-stack

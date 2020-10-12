@@ -15,7 +15,8 @@ const MyData = {
   frameworkExtra: Skills.frameworkExtra,
   education: Experience.education,
   awards: Awards,
-  modules: Modules,
+  modules: Modules.modules,
+  links: Modules.links,
   hobbies: Personal.hobbies
 }
 

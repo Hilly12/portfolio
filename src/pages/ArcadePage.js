@@ -7,18 +7,18 @@ import {Button} from "reactstrap";
 import Image from "../components/Image";
 
 const cards = [
-  {
-    title: "Alphazero Pawn Race",
-    description: "A chess engine for pawns",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599-no",
-    link: "sandbox/alphazero",
-  },
-  {
-    title: "Weblike",
-    description: "A roguelike dungeon crawler",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3cYvKNZJpVc0Q0XnRsiM2-c8ObvhpaG-II7JCnlyr1B0b4h71-EkwgyCBhL89Cohz4OPsC-oXSTcvMnt0MtLDajI2P-KX7htnWuG3ZhHRkLkaxCGcs-nYDB79XeeWVjsBV0BRiRxi3WcO3qZoIe2lOS=w320-h180",
-    link: "sandbox/roguelike",
-  },
+  // {
+  //   title: "Alphazero Pawn Race",
+  //   description: "A chess engine for pawns",
+  //   img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599-no",
+  //   link: "sandbox/alphazero",
+  // },
+  // {
+  //   title: "Weblike",
+  //   description: "A roguelike dungeon crawler",
+  //   img: "https://lh3.googleusercontent.com/pw/ACtC-3cYvKNZJpVc0Q0XnRsiM2-c8ObvhpaG-II7JCnlyr1B0b4h71-EkwgyCBhL89Cohz4OPsC-oXSTcvMnt0MtLDajI2P-KX7htnWuG3ZhHRkLkaxCGcs-nYDB79XeeWVjsBV0BRiRxi3WcO3qZoIe2lOS=w320-h180",
+  //   link: "sandbox/roguelike",
+  // },
   {
     title: "Snake",
     description: "The classic",

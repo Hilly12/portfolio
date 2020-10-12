@@ -199,9 +199,6 @@ class LandingPage extends Component {
             </button>
           </div>
           <br className="noselect"/>
-          <p style={{ fontWeight: '600' }}>
-            This site is currently under development and some of the projects you see here aren't yet complete
-          </p>
         </div>
         <Footer/>
         {this.state.contactModal &&

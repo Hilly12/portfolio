@@ -52,7 +52,9 @@ class Project extends Component {
           <div className="provider-list-details pos-rel">
             <div className="row">
               <div className="col-md-6">
-                <h5 style={{ margin: '0px 0px 5px 0px' }}>{title}</h5>
+                <h5 style={{ margin: '0px 0px 5px 0px' }}>
+                  {title} {id === 8 && <FontAwesomeIcon className="info-icon" icon={faClock}/>}
+                </h5>
               </div>
               <div className="col-md-6 period-holder">
                 <span className="period">{parse(String(date)).slice(1).join(' ')}</span>
