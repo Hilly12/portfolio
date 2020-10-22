@@ -99,12 +99,10 @@ function getRandomCoordinates(gameState) {
         valid = valid && !(sp[0] === head[0] && sp[1] === head[0]);
       }
     }
-    console.log(x + " " + y);
     return [x, y];
   } else {
     const x = Math.floor(Math.random() * (width - 2)) + 1;
     const y = Math.floor(Math.random() * (height - 2)) + 1;
-    console.log(x + " " + y);
     return [x, y];
   }
 }

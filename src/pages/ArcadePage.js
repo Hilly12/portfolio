@@ -7,12 +7,12 @@ import {Button} from "reactstrap";
 import Image from "../components/Image";
 
 const cards = [
-  // {
-  //   title: "Alphazero Pawn Race",
-  //   description: "A chess engine for pawns",
-  //   img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599-no",
-  //   link: "sandbox/alphazero",
-  // },
+  {
+    title: "Pawn Race",
+    description: "A chess variant with only pawns",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599-no",
+    link: "sandbox/chess",
+  },
   // {
   //   title: "Weblike",
   //   description: "A roguelike dungeon crawler",

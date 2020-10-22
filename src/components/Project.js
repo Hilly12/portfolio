@@ -83,12 +83,12 @@ class Project extends Component {
               <div className="col-md-2 project-left">
                 {demoSrc !== '-' &&
                 <Fragment>
-                  <a href={demoSrc}>
+                  <Link to={`${demoSrc}`}>
                     <button style={{ fontSize: '13px', padding: '2px' }}
                             className="btn btn-success">
                       <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faPlay}/>
                     </button>
-                  </a>
+                  </Link>
                   <br className="noselect"/>
                 </Fragment>
                 }
