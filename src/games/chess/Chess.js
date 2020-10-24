@@ -138,7 +138,7 @@ class Chess extends Component {
       return;
     }
     if (this.state.highlighted.length === 2) {
-      const fr = this.state.highlighted
+      const fr = this.state.highlighted;
       const to = [r, c];
       this.setState({
         highlighted: []

@@ -21,4 +21,17 @@ export default class Move {
     const c = this.cap ? 1 : 0;
     return e * 2 + c;
   }
+
+  equals(other) {
+    return this.fr === other.fr && this.to === other.to && this.cap === other.cap && this.enp === other.enp;
+  }
+
+  isValidMove(validMoves) {
+    for (let i = 0; i < validMoves.length; i++) {
+      if (this.equals(validMoves[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

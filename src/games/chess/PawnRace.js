@@ -1,4 +1,5 @@
 import Move from "./Move"
+import Long from "./Long";
 
 const WHITE = 1;
 const BLACK = -1;
@@ -8,38 +9,68 @@ class PawnRace {
   constructor() {
     this.board = []
     for (let r = 0; r < 8; r++) {
-      const arr = []
+      const arr = [];
       for (let c = 0; c < 8; c++) {
         arr.push(EMPTY);
       }
       this.board.push(arr);
     }
-    this.enpassant_col = -1
-    this.turn = 1
-    this.moves = []
+    this.enpassant_col = -1;
+    this.turn = 1;
+    this.moves = [];
 
     // Turing Test
 
-    this.board[1][1] = WHITE
-    this.board[2][2] = WHITE
-    this.board[2][3] = WHITE
-    this.board[4][1] = BLACK
-    this.board[4][2] = BLACK
-    this.board[4][3] = BLACK
+    // this.board[1][1] = WHITE;
+    // this.board[2][2] = WHITE;
+    // this.board[2][3] = WHITE;
+    // this.board[4][1] = BLACK;
+    // this.board[4][2] = BLACK;
+    // this.board[4][3] = BLACK;
+
+    // this.board[5][1] = BLACK;
+    // this.board[5][2] = BLACK;
+    // this.board[5][3] = BLACK;
+    // this.board[3][1] = WHITE;
+    // this.board[3][2] = WHITE;
+    // this.board[3][3] = WHITE;
 
     // Normal Board
 
-    // for (let i = 0; i < 8; i++) {
-    //   this.board[1][i] = WHITE;
-    // }
-    //
-    // this.board[1][Math.floor(Math.random() * 8)] = 0
-    //
-    // for (let i = 0; i < 8; i++) {
-    //   this.board[6][i] = BLACK;
-    // }
-    //
-    // this.board[6][Math.floor(Math.random() * 8)] = 0
+    for (let i = 0; i < 8; i++) {
+      this.board[1][i] = WHITE;
+    }
+
+    this.board[1][Math.floor(Math.random() * 8)] = 0
+
+    for (let i = 0; i < 8; i++) {
+      this.board[6][i] = BLACK;
+    }
+
+    this.board[6][Math.floor(Math.random() * 8)] = 0
+
+    this.zArray = [];
+    const rs = [];
+    while (rs.length < (64 + 8 + 1) * 4) {
+      const r = Math.floor(Math.random() * Math.pow(2, 16));
+      if (rs.indexOf(r) === -1) rs.push(r);
+    }
+    for (let col = 0; col < 2; col++) {
+      let arr = [];
+      for (let i = 0; i < 64; i++) {
+        arr.push(new Long(rs[i * 4], rs[i * 4 + 1], rs[i * 4 + 2], rs[i * 4 + 3]));
+      }
+      this.zArray.push(arr);
+    }
+    this.zDoublePush = [];
+    for (let i = 64; i < 72; i++) {
+      this.zDoublePush.push(new Long(rs[i * 4], rs[i * 4 + 1], rs[i * 4 + 2], rs[i * 4 + 3]));
+    }
+    const i = 72;
+    this.zBlackMove = new Long(rs[i * 4], rs[i * 4 + 1], rs[i * 4 + 2], rs[i * 4 + 3]);
+    this.hash = this.generateHash();
+
+    // console.log(this.hash.xor(this.zBlackMove).xor(this.zBlackMove).equals(this.hash));
   }
 
   getCurrentColor() {
@@ -98,38 +129,69 @@ class PawnRace {
   }
 
   applyMove(move) {
+    const lastMove = this.moves.length > 0 ? this.moves[this.moves.length - 1] : null;
     this.moves.push(move);
 
     const occupant = this.board[move.fr[0]][move.fr[1]];
-    this.board[move.to[0]][move.to[1]] = occupant;
-    this.board[move.fr[0]][move.fr[1]] = EMPTY
+    let cIndex = (occupant + 1) / 2;
 
-    this.enpassant_col = move.isDoublePush() ? move.to[1] : -1
+    this.board[move.to[0]][move.to[1]] = occupant;
+    this.hash = this.hash.xor(this.zArray[cIndex][move.to[0] * 8 + move.to[1]]);
+
+    this.board[move.fr[0]][move.fr[1]] = EMPTY;
+    this.hash = this.hash.xor(this.zArray[cIndex][move.fr[0] * 8 + move.fr[1]]);
+
+    this.enpassant_col = -1;
+    if (move.isDoublePush()) {
+      this.enpassant_col = move.to[1];
+      this.hash = this.hash.xor(this.zDoublePush[move.to[1]]);
+    } else if (lastMove && lastMove.isDoublePush()) {
+      this.hash = this.hash.xor(this.zDoublePush[move.to[1]]);
+    }
 
     if (move.enp) {
-      this.board[move.fr[0]][move.to[1]] = EMPTY
+      this.board[move.fr[0]][move.to[1]] = EMPTY;
+      this.hash = this.hash.xor(this.zArray[1 - cIndex][move.fr[0] * 8 + move.to[1]]);
+    } else if (move.cap) {
+      this.hash = this.hash.xor(this.zArray[1 - cIndex][move.to[0] * 8 + move.to[1]]);
     }
 
     this.turn += 1
+    this.hash = this.hash.xor(this.zBlackMove);
   }
 
   unapplyMove(move) {
-    const lastMove = this.moves.pop();
+    this.moves.pop();
+    const lastMove = this.moves.length > 0 ? this.moves[this.moves.length - 1] : null;
 
     const occupant = this.board[move.to[0]][move.to[1]];
-    this.board[move.to[0]][move.to[1]] = EMPTY;
-    this.board[move.fr[0]][move.fr[1]] = occupant;
+    let cIndex = (occupant + 1) / 2;
 
-    this.enpassant_col = lastMove.isDoublePush() ? lastMove.to[1] : -1
+    this.board[move.to[0]][move.to[1]] = EMPTY;
+    this.hash = this.hash.xor(this.zArray[cIndex][move.to[0] * 8 + move.to[1]]);
+
+    this.board[move.fr[0]][move.fr[1]] = occupant;
+    this.hash = this.hash.xor(this.zArray[cIndex][move.fr[0] * 8 + move.fr[1]]);
+
+    this.enpassant_col = -1;
+    if (move.isDoublePush()) {
+      this.hash = this.hash.xor(this.zArray[cIndex][move.fr[0] * 8 + move.fr[1]]);
+    } else if (lastMove && lastMove.isDoublePush()) {
+      this.enpassant_col = lastMove.to[1];
+      this.hash = this.hash.xor(this.zArray[cIndex][move.fr[0] * 8 + move.fr[1]]);
+    }
 
     const other = -occupant;
     if (move.enp) {
       this.board[move.fr[0]][move.to[1]] = other;
+      this.hash = this.hash.xor(this.zArray[1 - cIndex][move.fr[0] * 8 + move.to[1]]);
     } else if (move.cap) {
       this.board[move.to[0]][move.to[1]] = other;
+      this.hash = this.hash.xor(this.zArray[1 - cIndex][move.to[0] * 8 + move.to[1]]);
     }
 
     this.turn += 1
+    this.hash = this.hash.xor(this.zBlackMove);
   }
 
   checkTerminal(moves) {
@@ -147,6 +209,21 @@ class PawnRace {
       }
     }
     return [false, EMPTY];
+  }
+
+  generateHash() {
+    let hash = new Long(0, 0, 0, 0);
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        if (this.board[r][c] !== EMPTY) {
+          hash = hash.xor(this.zArray[(this.board[r][c] + 1) / 2][r * 8 + c]);
+        }
+      }
+    }
+    if (this.getCurrentColor() === BLACK) {
+      hash = hash.xor(this.zBlackMove);
+    }
+    return hash;
   }
 }
 
