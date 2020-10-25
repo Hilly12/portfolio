@@ -12,7 +12,8 @@ const workexp = [
       "Attended the Voice Tech Summit India Conference with the Augnito team to learn more about innovative ideas " +
       "in the field",
       "Created a contextual sales bot for Augnito in Python with the Rasa NLU engine and Rasa X",
-      "Additionally, prepared sales data and trained a model on a customized pipeline, and implemented automated testing"
+      "Additionally, prepared sales data and trained a model on a customized pipeline using BERT Transformers, " +
+      "and added automated testing"
     ],
   },
   {
@@ -38,12 +39,14 @@ const workexp = [
 
 const education = [
   {
-    title: "Computing MEng",
+    title: "Computing MEng (hons)",
     institution: "Imperial College London",
     period: "October 2018 - Present",
     description: [
-      "Second Year: 69% Overall - 2:1",
-      "86% average in Programming I, II, III"
+      "On track for a first class honors",
+      "86% average in Programming I, II, III",
+      "72% average in Algorithms modules",
+      "87% in compilers"
     ],
   },
   {

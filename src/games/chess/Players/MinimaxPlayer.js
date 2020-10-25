@@ -1,11 +1,9 @@
 import Player from "../Player";
 
-const WHITE = 1;
-const BLACK = -1;
 const LOWERBOUND = 0;
 const UPPERBOUND = 1;
 const EXACT = 2;
-const INF = Number.MAX_SAFE_INTEGER - 1;
+const INF = Math.pow(2, 24);
 const MAX_TIME = 2000;
 let startTime = 0;
 let tableSize = 65536;
@@ -32,7 +30,8 @@ export default class MinimaxPlayer extends Player {
     let depth = 6;
     let bestMove = moves[0];
     let bestEval = -INF;
-    while ((Date.now() - startTime) <= MAX_TIME) {
+    let maxSearchDepth = 100;
+    while ((Date.now() - startTime) <= MAX_TIME && depth <= maxSearchDepth) {
       const minimax = this.minimax(game, depth, -INF, INF, this.colour);
       const currEval = minimax[0];
       const move = minimax[1];
@@ -49,7 +48,6 @@ export default class MinimaxPlayer extends Player {
   minimax(game, depth, alpha, beta, colour) {
     const alphaOrig = alpha;
     const betaOrig = beta;
-    //|| ((Date.now() - startTime) > MAX_TIME)
     if (depth === 0 || ((Date.now() - startTime) > MAX_TIME)) {
       return [this.staticEval(game.board) * colour, null];
     }
@@ -87,6 +85,8 @@ export default class MinimaxPlayer extends Player {
             break;
           case 2:
             return [entryEval, entryMove];
+          default:
+            break;
         }
         if (alpha >= beta) {
           return [entryEval, entryMove];
@@ -102,7 +102,7 @@ export default class MinimaxPlayer extends Player {
       game.unapplyMove(validMoves[i]);
 
       const currEval = -negamax[0];
-      if (currEval > bestEval || (currEval === bestEval && Math.random() > 0.5)) {
+      if (currEval > bestEval) {
         bestEval = currEval;
         bestMove = validMoves[i];
       }
@@ -133,17 +133,12 @@ export default class MinimaxPlayer extends Player {
   }
 
   staticEval(board) {
-    let wp = 0
-    let bp = 0
+    let score = 0;
     for (let r = 0; r < 8; r++) {
       for (let c = 0; c < 8; c++) {
-        if (board[r][c] === WHITE) {
-          wp++;
-        } else if (board[r][c] === BLACK) {
-          bp++;
-        }
+        score += board[r][c];
       }
     }
-    return wp - bp
+    return score;
   }
 }
