@@ -64,7 +64,7 @@ const languageDetails = [
   }
 ];
 
-const languageExtra = ['Haskell', 'Go', 'SQL', 'VB.Net', '...'];
+const languageExtra = ['Haskell', 'Kotlin', 'Go', 'SQL', 'Bash', '...'];
 
 const frameworkDetails = [
   {
@@ -89,7 +89,7 @@ const frameworkDetails = [
   },
 ];
 
-const frameworkExtra = ['Keras', 'Scikit', 'Unity', 'ExpressJS', 'Bootstrap', 'Postgres', 'MongoDB', 'Redux', 'Android Studio', 'Git', 'Unix'];
+const frameworkExtra = ['PyTorch', 'Keras', 'MongoDB', 'Unity', 'ExpressJS', 'Bootstrap', 'Postgres', 'MongoDB', 'Android Studio'];
 
 const Skills = {
   languages: languages,

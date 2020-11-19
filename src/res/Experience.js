@@ -4,16 +4,16 @@ const workexp = [
     institution: "Scribetech",
     period: "July 2020 - September 2020",
     description: [
-      "Worked on the Augnito Medical Transcription Mobile Application in C#, Xamarin, to add smart editor features " +
-      "for doctors, including voice commands for selection and formatting, voice enabled RTF macros, " +
+      "Worked on the mobile frontend of Augnito, a medical transcription application, in C#, Xamarin, to add smart " +
+      "editor features for doctors, including voice commands for selection and formatting, voice enabled RTF macros, " +
       "and open file renaming",
       "Carried out R&D on contextual assistants and natural language understanding - evaluated different word " +
       "embeddings, pipelines and frameworks",
       "Attended the Voice Tech Summit India Conference with the Augnito team to learn more about innovative ideas " +
       "in the field",
-      "Created a contextual sales bot for Augnito in Python with the Rasa NLU engine and Rasa X",
-      "Additionally, prepared sales data and trained a model on a customized pipeline using BERT Transformers, " +
-      "and added automated testing"
+      "Assigned lead role on a project to create a contextual sales bot in Python with the Rasa NLU engine and Rasa X",
+      "Worked on preparing sales data, setting up CI/CD and automated testing, testing bot performance on different " +
+      "architectures"
     ],
   },
   {
@@ -21,8 +21,10 @@ const workexp = [
     institution: "Imperial College London",
     period: "October 2019 - June 2020",
     description: [
-      "Guided students through programming assignments in Haskell, Java and a group project in C",
-      "Taught a variety of hands on concepts including Monads in Haskell, concurrency in Java, memory management in C"
+      "Helped students develop fundamental programming skills by creating and discussing intricate examples to " +
+      "demonstrate language features and algorithmic complexity in Haskell, Kotlin, Java, C",
+      "Students were able to gain a deep understanding of concepts such as higher order functions, polymorphism, " +
+      "object oriented programming, concurrency, memory management"
     ],
   },
   {

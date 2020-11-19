@@ -263,9 +263,11 @@ class ResumePage extends Component {
                   return (
                     <tr className="cmodule" key={key}>
                       <td>
-                        {module.completed ?
+                        {module.completed === 1 ?
                           <FontAwesomeIcon className="text-success" icon={completedIcon}/> :
-                          <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>}
+                          (module.completed === 0 ?
+                            <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>
+                            : <FontAwesomeIcon className="text-secondary" icon={pendingIcon}/>)}
                       </td>
                       <th><a href={links[module.year]} target="_blank" rel="noopener noreferrer">{module.code}</a></th>
                       <td>{module.name}</td>

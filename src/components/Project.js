@@ -53,7 +53,7 @@ class Project extends Component {
             <div className="row">
               <div className="col-md-6">
                 <h5 style={{ margin: '0px 0px 5px 0px' }}>
-                  {title} {id === 8 && <FontAwesomeIcon className="info-icon" icon={faClock}/>}
+                  {title}
                 </h5>
               </div>
               <div className="col-md-6 period-holder">

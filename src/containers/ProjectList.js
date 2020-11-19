@@ -54,17 +54,21 @@ class ProjectList extends Component {
   render() {
     return (
       <Fragment>
-        <div className="heading" style={{marginBottom: '10px'}}>
-          <h2>Featured</h2>
-        </div>
-        <List
-          itemLayout="vertical"
-          dataSource={this.state.featuredProjects}
-          renderItem={(item) => (
-            <Project item={item} loading={this.state.loading}/>
-          )}
-        />
-        <div className="heading" style={{marginBottom: '10px'}}>
+        {/*{this.state.featuredProjects.length > 0 &&*/}
+        {/*<Fragment>*/}
+        {/*  <div className="heading" style={{ marginBottom: '10px' }}>*/}
+        {/*    <h2>Featured</h2>*/}
+        {/*  </div>*/}
+        {/*  <List*/}
+        {/*    itemLayout="vertical"*/}
+        {/*    dataSource={this.state.featuredProjects}*/}
+        {/*    renderItem={(item) => (*/}
+        {/*      <Project item={item} loading={this.state.loading}/>*/}
+        {/*    )}*/}
+        {/*  />*/}
+        {/*</Fragment>*/}
+        {/*}*/}
+        <div className="heading" style={{ marginBottom: '10px' }}>
           <h2>Projects</h2>
         </div>
         <List

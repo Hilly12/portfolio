@@ -1,6 +1,6 @@
 const classes = [
   {
-    completed: true,
+    completed: 1,
     code: "CO112",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/112/",
     name: "Hardware",
@@ -8,7 +8,7 @@ const classes = [
     description: "Boolean Algebra, Circuits, Circuit Design, Synchronous Digital Systems, Processors"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO113",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/113/",
     name: "Architecture",
@@ -16,7 +16,7 @@ const classes = [
     description: "Hardware, Representation in CPU and Memory, Intel 64 Architecture - Instructions, Floating Point, IO"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO120.1",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/120_1/",
     name: "Programming I",
@@ -25,7 +25,7 @@ const classes = [
       " User defined Types, Type Classes, Monads and IO"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO120.2",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/120_2/",
     name: "Programming II",
@@ -34,7 +34,7 @@ const classes = [
       " Functional Interfaces and Iterators, Exception Handling, Generics, Concurrency, Abstract Data Structures"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO120.3",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/120_3/",
     name: "Programming III",
@@ -43,7 +43,7 @@ const classes = [
       " Linking, Dynamic Data Structures, Optimisation, Debugging, C Libraries"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO120.3C",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/120_3C",
     name: "Programming III - Extension",
@@ -52,7 +52,7 @@ const classes = [
       " and a Roguelike Game using it"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO130",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/130/",
     name: "Databases I",
@@ -60,7 +60,7 @@ const classes = [
     description: "Relational Models and Algebra, Functional Dependencies, Normalization, SQL, File Structure, Indexing"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO140",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/140",
     name: "Logic",
@@ -68,7 +68,7 @@ const classes = [
     description: "Propositional Logic, Predicate Logic, Argument, Equivalences, Natural Deduction"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO141",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/141/",
     name: "Reasoning about Programs",
@@ -77,7 +77,7 @@ const classes = [
       " Data Structures, Reasoning about Java Programs using Conditions and Invariants"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO142",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/142/",
     name: "Discrete Structures",
@@ -85,7 +85,7 @@ const classes = [
     description: "Sets, Relations, Functions, Infinity, Orderings, Peano Arithmetic"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO145",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/145/",
     name: "Mathematical Methods",
@@ -95,7 +95,7 @@ const classes = [
       " Intersection of Subspaces, Orthogonality, Projections"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO150",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/150/",
     name: "Graphs and Algorithms",
@@ -103,7 +103,7 @@ const classes = [
     description: "Graphs, Algorithms on Graphs, Algorithm Analysis, Complexity"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO161",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/161/",
     name: "Laboratory 1",
@@ -115,7 +115,7 @@ const classes = [
       " Lighting up LED on Raspberry Pi"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO163",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/163/",
     name: "Computing Topics",
@@ -124,7 +124,7 @@ const classes = [
       " Adversarial Neural Networks"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO164",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/164/",
     name: "Ethics in Computing 1",
@@ -133,7 +133,7 @@ const classes = [
       " Presented a case study on the 1983 Soviet nuclear false alarm incident"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO165",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/165/",
     name: "Presentation Skills",
@@ -142,7 +142,7 @@ const classes = [
       "presented case study on the 1983 Soviet nuclear false alarm incident"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO202",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/202/",
     name: "Algorithms II",
@@ -151,7 +151,7 @@ const classes = [
       " Greedy Algorithms, Randomised Algorithms, Advanced Graph Algorithms, String Processing Algorithms"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO211",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/211/",
     name: "Operating Systems",
@@ -160,7 +160,7 @@ const classes = [
       " Disk Management, File Systems, Security"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO212",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/212/",
     name: "Networks and Communications",
@@ -169,7 +169,7 @@ const classes = [
       " Data Link Layer, Physical Layer, Practical Applications"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO220",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/220/",
     name: "Software Engineering Design",
@@ -179,7 +179,7 @@ const classes = [
       " Adapter, Decorator, Facade, Proxy, MVC, Publish-Subscribe, Map-Reduce"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO221",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/221/",
     name: "Compilers",
@@ -188,7 +188,7 @@ const classes = [
       " Optimization"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO233",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/233/",
     name: "Computational Techniques",
@@ -198,7 +198,7 @@ const classes = [
       " Laplace and Fourier Transforms, Functions on Multiple Variables, Method of Steepest Descent"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO240",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/240/",
     name: "Models of Computation",
@@ -208,7 +208,7 @@ const classes = [
       " Lambda Calculus, Church-Turing Thesis"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO245",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/245/",
     name: "Probability and Statistics",
@@ -217,7 +217,7 @@ const classes = [
       " Probability Generating Functions, Joint Random Variables, Estimation, Hypothesis Testing, Bayesian Inference"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO261",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/261/",
     name: "Laboratory 2",
@@ -227,7 +227,7 @@ const classes = [
       " WACC Compiler: Created a Compiler for a procedural language to ARM11 using ANTLR and Java"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO261C",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/261C/",
     name: "Advanced Laboratory 2",
@@ -237,7 +237,7 @@ const classes = [
       " WACC and implemented advanced optimizations such as Constant Propagation, Dead Code Elimination, in SSA"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO271",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/271/",
     name: "2nd Year Computing Group Project",
@@ -247,7 +247,7 @@ const classes = [
       " their passionate about"
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO273",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/273/",
     name: "An Introduction to Law for Computer Scientists",
@@ -256,7 +256,7 @@ const classes = [
       " Google Right to be Forgotten Case Study, Statute, Common Law, "
   },
   {
-    completed: true,
+    completed: 1,
     code: "CO276",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/276/",
     name: "Introduction to Prolog",
@@ -265,7 +265,7 @@ const classes = [
       " Arithmetics, Negation, Control, Aggregation"
   },
   {
-    completed: false,
+    completed: 0,
     code: "60002",
     link: "",
     name: "Advanced Databases",
@@ -273,7 +273,23 @@ const classes = [
     description: ""
   },
   {
-    completed: false,
+    completed: -1,
+    code: "60006",
+    link: "",
+    name: "Computer Vision",
+    year: 3,
+    description: ""
+  },
+  {
+    completed: -1,
+    code: "60009",
+    link: "",
+    name: "Distributed Algorithms",
+    year: 3,
+    description: ""
+  },
+  {
+    completed: 0,
     code: "60016",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/343/",
     name: "Operations Research",
@@ -281,21 +297,29 @@ const classes = [
     description: ""
   },
   {
-    completed: false,
-    code: "60020",
-    link: "https://www.imperial.ac.uk/computing/current-students/courses/337/",
-    name: "Simulation and Modelling",
+    completed: -1,
+    code: "60017",
+    link: "",
+    name: "Performance Engineering",
     year: 3,
     description: ""
   },
   {
-    completed: false,
+    completed: -1,
+    code: "60019",
+    link: "",
+    name: "Robotics",
+    year: 3,
+    description: ""
+  },
+  {
+    completed: 0,
     code: "70050",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/332/",
     name: "Introduction to Machine Learning",
     year: 3,
     description: ""
-  },
+  }
 ]
 
 const links = ["",
