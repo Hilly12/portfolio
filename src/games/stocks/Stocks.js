@@ -211,7 +211,7 @@ class Stocks extends Component {
       }
     }
 
-    axios.get(`http://178.62.77.166/stocks/stats/${indexes[country].endpoint}/`).then((response) => {
+    axios.get(`https://dractal.com/stocks/stats/${indexes[country].endpoint}/`).then((response) => {
       let st = response.data.sort((a, b) => b.market_cap - a.market_cap);
       this.recomputeBounds(st);
       this.setState({
@@ -240,7 +240,7 @@ class Stocks extends Component {
       }
     }
 
-    axios.get('http://178.62.77.166/stocks/prices/').then((response) => {
+    axios.get('https://dractal.com/stocks/prices/').then((response) => {
       this.setState({
         prices: process(response.data),
         pricesLoading: false
