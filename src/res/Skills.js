@@ -5,26 +5,26 @@ const languages = [
   },
   {
     name: "Python",
-    proficiency: 85,
+    proficiency: 90,
   },
   {
     name: "C",
-    proficiency: 75,
+    proficiency: 85,
   },
   {
     name: "C#",
-    proficiency: 65,
+    proficiency: 70,
   }
 ];
 
 const frameworks = [
   {
     name: "React",
-    proficiency: 80,
+    proficiency: 85,
   },
   {
     name: "Django",
-    proficiency: 75,
+    proficiency: 80,
   },
   {
     name: ".NET",

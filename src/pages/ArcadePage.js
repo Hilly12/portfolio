@@ -8,9 +8,15 @@ import Image from "../components/Image";
 
 const cards = [
   {
+    title: "Stock Analysis",
+    description: "Analysis of stocks from indexes",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3cz2cDxxogDS0UDCnWD_rUsN4YPzlkp9RswX1bzliCqzaKz0WS9XZwvxQM4S5ztWpY22R7o42WWa6HMVVjVQKGTuZTDuTTdwR42FZ4yOBmElti7Ud0tu_ioKgvCBqh09SqQA7bQqwoIf4i65xTxe1hA=w720-h405",
+    link: "sandbox/stocks",
+  },
+  {
     title: "Pawn Race",
     description: "A chess variant with only pawns",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599-no",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3d7fd7hfXKe7Y3KvuMXCKbblWV_ced0futGrTMWS-NlJOFgUhFRDsuBeRcgcKLC4hpGLIpBCCRK5_uw6YamMUBDnU6pXlZVAauKYHxUnssfdi2UPu6ZDN0UMLWip1lZ5JaPRP9nyb6yKRAkVpJbbYHO=w1065-h599",
     link: "sandbox/chess",
   },
   // {
@@ -22,19 +28,19 @@ const cards = [
   {
     title: "Snake",
     description: "The classic",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3cm2fE86vL4T6eQdcplTEhWAA7E6cOLM9v5kYaTySRdifcU7LMFElxrivu-HwfC_swYuJRc4zhkunKQCvGKJ9hOm6hHb4t0GdzCnO3-oIyCDPFedf1b-zdU8IEyv44cF4BMzAelZu6K9P40dKurOfbK=w1301-h731-no?authuser=0",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3cm2fE86vL4T6eQdcplTEhWAA7E6cOLM9v5kYaTySRdifcU7LMFElxrivu-HwfC_swYuJRc4zhkunKQCvGKJ9hOm6hHb4t0GdzCnO3-oIyCDPFedf1b-zdU8IEyv44cF4BMzAelZu6K9P40dKurOfbK=w1301-h731",
     link: "sandbox/snake",
   },
   {
     title: "Cave Generator",
     description: "A procedural cavern generator",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3fWyu5XkGuUMw717XCo8bANgnFv7K9Q2UbVyLhKXWfOwlbekxM32VljhUiKJKtgfCSaDYosby_zLvncMqGrHGhRfwMLvdyWwfMgzZlREmAMrup7yDYOp5kG2ZzANTf6oM7sYVeVdTCKUV8O_FUtHd8V=w1281-h721-no",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3fWyu5XkGuUMw717XCo8bANgnFv7K9Q2UbVyLhKXWfOwlbekxM32VljhUiKJKtgfCSaDYosby_zLvncMqGrHGhRfwMLvdyWwfMgzZlREmAMrup7yDYOp5kG2ZzANTf6oM7sYVeVdTCKUV8O_FUtHd8V=w1281-h721",
     link: "sandbox/cavegen",
   },
   {
     title: "Space Shooter",
     description: "Old school",
-    img: "https://lh3.googleusercontent.com/pw/ACtC-3dedFWEmNFMxJQuzbFOhHIamo9nppcldlCT3cByHBKnACvoDokNNAaYS3vyYXQFwuFPKjZmrIAj8rkqAv6VRodWHdTfbWFuQ5lXL4DryrYE7Rb_QuQKTAaDx9RAyxJAQjJfMgVmnHki1ngmDP9s3r7p=w576-h324-no",
+    img: "https://lh3.googleusercontent.com/pw/ACtC-3dedFWEmNFMxJQuzbFOhHIamo9nppcldlCT3cByHBKnACvoDokNNAaYS3vyYXQFwuFPKjZmrIAj8rkqAv6VRodWHdTfbWFuQ5lXL4DryrYE7Rb_QuQKTAaDx9RAyxJAQjJfMgVmnHki1ngmDP9s3r7p=w576-h324",
     link: "sandbox/spaceshooter",
   }
 ];

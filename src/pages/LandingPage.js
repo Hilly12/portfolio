@@ -7,7 +7,7 @@ import {faLinkedinIn} from "@fortawesome/free-brands-svg-icons/faLinkedinIn";
 import {faFacebookF} from "@fortawesome/free-brands-svg-icons/faFacebookF";
 import {faFileAlt} from "@fortawesome/free-solid-svg-icons/faFileAlt";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
-import MyData from "../res/MyData";
+// import MyData from "../res/MyData";
 import TypingEffect from "typing-effect-react"
 import Modal from "../components/Modal";
 import Form from "reactstrap/es/Form";
@@ -19,8 +19,6 @@ import {faCode} from "@fortawesome/free-solid-svg-icons/faCode";
 import {faAddressCard} from "@fortawesome/free-solid-svg-icons/faAddressCard";
 import {faDragon} from "@fortawesome/free-solid-svg-icons/faDragon";
 import {Link} from "react-router-dom";
-
-const { bio } = MyData;
 
 class LandingPage extends Component {
   constructor(props) {
@@ -152,8 +150,8 @@ class LandingPage extends Component {
               <TypingEffect className="lead" typingSpeed={50} pauseBeforeDeleting={2000} pauseBeforeRestarting={50}
                             data={["Software Developer", "Computer Scientist"]}/>
             </div>
-            <p className="bio">{bio}</p>
-            <br className="noselect"/>
+            {/*<p className="bio">Hi</p>*/}
+            {/*<br className="noselect"/>*/}
             <br className="noselect"/>
             <hr className="my-2"/>
             <div className="text-muted nav-info" style={{ margin: '5px 0 5px 0' }}>
@@ -204,7 +202,7 @@ class LandingPage extends Component {
         {this.state.contactModal &&
         <Modal title="Contact" toggle={this.toggleContact} height={450}>
           <h6>
-            Have a question or want to work together?
+            {/*Get in touch*/}
           </h6>
           <Form style={{ padding: '0.5em' }}>
             <FormGroup>

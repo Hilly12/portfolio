@@ -273,42 +273,10 @@ const classes = [
     description: ""
   },
   {
-    completed: -1,
-    code: "60006",
-    link: "",
-    name: "Computer Vision",
-    year: 3,
-    description: ""
-  },
-  {
-    completed: -1,
-    code: "60009",
-    link: "",
-    name: "Distributed Algorithms",
-    year: 3,
-    description: ""
-  },
-  {
     completed: 0,
     code: "60016",
     link: "https://www.imperial.ac.uk/computing/current-students/courses/343/",
     name: "Operations Research",
-    year: 3,
-    description: ""
-  },
-  {
-    completed: -1,
-    code: "60017",
-    link: "",
-    name: "Performance Engineering",
-    year: 3,
-    description: ""
-  },
-  {
-    completed: -1,
-    code: "60019",
-    link: "",
-    name: "Robotics",
     year: 3,
     description: ""
   },

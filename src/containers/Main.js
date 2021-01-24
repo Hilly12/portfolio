@@ -8,6 +8,7 @@ import ArcadePage from "../pages/ArcadePage";
 import pcg from "../games/pcg/CaveGenerator";
 import Spaceshooter from "../games/spaceshooter/Spaceshooter";
 import Chess from "../games/chess/Chess";
+import Stocks from "../games/stocks/Stocks";
 
 class Main extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class Main extends React.Component {
         <Route exact path="/sandbox/cavegen" component={pcg}/>
         <Route exact path="/sandbox/spaceshooter" component={Spaceshooter}/>
         <Route exact path="/sandbox/chess" component={Chess}/>
+        <Route exact path="/sandbox/stocks" component={Stocks}/>
       </Switch>
     );
   }

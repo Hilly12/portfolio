@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Modal extends Component {
   render() {
-    const maxHeight = this.props.height ? this.props.height : 400;
+    const maxHeight = this.props.height ? this.props.height : '400px';
 
     return (
       <div className="popup">

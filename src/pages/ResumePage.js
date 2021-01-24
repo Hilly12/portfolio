@@ -18,7 +18,7 @@ import MyData from "../res/MyData";
 
 const {
   workexp, languages, languageDetails, languageExtra, frameworks, frameworkDetails, frameworkExtra,
-  education, awards, modules, links, hobbies
+  education, awards, modules, links
 } = MyData
 
 class ResumePage extends Component {
@@ -232,17 +232,17 @@ class ResumePage extends Component {
             </div>
 
             {/* Hobbies */}
-            <div className="hobbies group">
-              <div className="heading">
-                <h2 className="text-center">Hobbies</h2>
-              </div>
-              <div className="text-muted" style={{
-                margin: "auto",
-                textAlign: 'justify'
-              }}>
-                {hobbies}
-              </div>
-            </div>
+            {/*<div className="hobbies group">*/}
+            {/*  <div className="heading">*/}
+            {/*    <h2 className="text-center">Hobbies</h2>*/}
+            {/*  </div>*/}
+            {/*  <div className="text-muted" style={{*/}
+            {/*    margin: "auto",*/}
+            {/*    textAlign: 'justify'*/}
+            {/*  }}>*/}
+            {/*    {hobbies}*/}
+            {/*  </div>*/}
+            {/*</div>*/}
 
             {/* Classes */}
             <div className="classes group">
