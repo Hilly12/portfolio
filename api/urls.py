@@ -24,7 +24,7 @@ import os
 files_in_root = []
 for file in os.listdir(os.path.join(settings.BASE_DIR, 'build')):
     files_in_root.append(file)
-precache_manifest_path = [f for f in files_in_root if ("precache-manifest" in f)][0]
+# precache_manifest_path = [f for f in files_in_root if ("precache-manifest" in f)][0]
 
 urlpatterns = [
     path('asset-manifest.json', (TemplateView.as_view(template_name="asset-manifest.json", content_type='application/manifest+json', )),
