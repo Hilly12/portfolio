@@ -46,19 +46,6 @@ function roundDown(n, sf) {
   return -roundUp(Math.abs(n), sf);
 }
 
-const randomArray = (total = 30) => {
-  let data = []
-  for (let element = 0; element < total; element++) {
-    const y = Math.floor(Math.random() * 50) + 50
-    const obj = {
-      x: element,
-      y: y
-    }
-    data.push(obj)
-  }
-  return data
-}
-
 function inRange(stock, filters) {
   for (let key of Object.keys(filters)) {
     if (stock[key] < filters[key][0] || stock[key] > filters[key][1])

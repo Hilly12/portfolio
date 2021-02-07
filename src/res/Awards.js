@@ -8,6 +8,10 @@ const Awards = [
     tip: "Singalong"
   },
   {
+    text: "2nd in Imperial Java Pawn Race",
+    tip: "Pawn only chess engine contest"
+  },
+  {
     text: "Blundell’s Ondaatje Hall Medal",
     tip: "Development of School Diversity and Culture"
   },

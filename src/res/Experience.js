@@ -1,36 +1,44 @@
 const workexp = [
   {
+    title: "Teaching Assistant for CO120.x",
+    institution: "Imperial College London",
+    period: "October 2020 - Present",
+    description: [
+      "Ran weekly sessions for first year Computing students covering concepts such as higher order functions, " +
+      "polymorphism, object-oriented programming, and concurrency, in Haskell, Kotlin and Java.",
+      "Marked students’ weekly coursework and provided them with personalized feedback."
+    ],
+  },
+  {
     title: "Software Engineering Intern",
     institution: "Scribetech",
     period: "July 2020 - September 2020",
     description: [
       "Worked on the mobile frontend of Augnito, a medical transcription application, in C#, Xamarin, to add smart " +
       "editor features for doctors, including voice commands for selection and formatting, voice enabled RTF macros, " +
-      "and open file renaming",
+      "and open file renaming.",
       "Carried out R&D on contextual assistants and natural language understanding - evaluated different word " +
-      "embeddings, pipelines and frameworks",
+      "embeddings, pipelines and frameworks.",
       "Attended the Voice Tech Summit India Conference with the Augnito team to learn more about innovative ideas " +
-      "in the field",
-      "Assigned lead role on a project to create a contextual sales bot in Python with the Rasa NLU engine and Rasa X",
-      "Worked on preparing sales data, setting up CI/CD and automated testing, testing bot performance on different " +
-      "architectures"
+      "in the field.",
+      "Created a contextual sales bot in Python with the Rasa NLU engine and Rasa X.",
+      "Additionally worked on preparing sales data, setting up CI/CD and automated testing, testing the performance of different " +
+      "architectures."
     ],
   },
   {
-    title: "Teaching Assistant for CO120.x",
-    institution: "Imperial College London",
-    period: "October 2019 - June 2020",
+    title: "Freelancer",
+    period: "July 2018 - September 2019",
+    institution: "Self-employed",
     description: [
-      "Helped students develop fundamental programming skills by creating and discussing intricate examples to " +
-      "demonstrate language features and algorithmic complexity in Haskell, Kotlin, Java, C",
-      "Students were able to gain a deep understanding of concepts such as higher order functions, polymorphism, " +
-      "object oriented programming, concurrency, memory management"
-    ],
+      "Worked on several short term projects involving prototyping and web development using HTML, JS.",
+      "Taught beginners Java, Python and web development online.",
+    ]
   },
   {
     title: "Data Science Work Experience",
     institution: "MET Office",
-    period: "May 2017 - July 2017",
+    period: "June 2017 - July 2017",
     description: [
       "Collaboration with the Crescendo project team to analyze global temperature and rainfall data",
       "Created an informative animated plot in Python using Iris, Matplotlib libraries",
@@ -58,6 +66,7 @@ const education = [
     description: [
       "A Levels: A*AAAA in Maths, Further Maths, Computing, Physics, Chemistry",
       "Vice Chair of International Committee - lead and participated in multiple social, cultural and charitable events",
+      "Chair of the E-Safety Committee - promoted web safety and helped IT regulate blocked sites",
       "Grade 8 Public Speaking with Distinction",
     ],
   },
