@@ -233,25 +233,25 @@ p {
 
 .google {
   background: #dd4b39 !important;
-  opacity: 0.9;
+  opacity: 0.85;
   color: white;
 }
 
 .linkedin {
   background: #007bb5 !important;
-  opacity: 0.9;
+  opacity: 0.85;
   color: white;
 }
 
 .github {
   background: black !important;
-  opacity: 0.80;
+  opacity: 0.8;
   color: white;
 }
 
 .file {
   background: #555555 !important;
-  opacity: 0.9;
+  opacity: 0.85;
   color: white;
 }
 

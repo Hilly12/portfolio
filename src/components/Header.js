@@ -7,7 +7,7 @@ import {
   faAddressCard,
   faCode,
   faDragon,
-  // faGamepad,
+  faSitemap
 } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
@@ -63,7 +63,9 @@ class Header extends Component {
               }}
               to={"/"}
             >
-              Aahil {this.state.width >= 345 ? 'Mehta' : null}
+
+              <FontAwesomeIcon icon={faSitemap}/>
+              {/*<span style={{ fontFamily: 'monospace', fontWeight: 'bold' }}>{'</>'}</span>*/}
             </Link>
             <Nav className="nav navbar-nav">
               <NavItem className="nav-item">
