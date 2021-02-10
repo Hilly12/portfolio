@@ -54,11 +54,12 @@ class LineChart extends Component {
   }
 
   render() {
+    const { data, svgHeight, svgWidth } = this.props;
+    if (!data || (Array.isArray(data) && Array.from(data).length === 0)) return null;
     const minX = this.getMinX()
     const maxX = this.getMaxX()
     const minY = this.getMinY()
     const maxY = this.getMaxY()
-    const { svgHeight, svgWidth } = this.props
     return (
       <svg width={svgWidth} height={svgHeight} viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <g style={{ stroke: '#5a5959' }}>

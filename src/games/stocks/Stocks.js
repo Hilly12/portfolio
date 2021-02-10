@@ -24,8 +24,8 @@ import {faTrash} from "@fortawesome/free-solid-svg-icons/faTrash";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 import {faYahoo} from "@fortawesome/free-brands-svg-icons/faYahoo";
 
-const priceTTL = 43200000; // ms - 1/2 day
-const statTTL = 3600000; // ms - 1 hr
+const priceTTL = 86400000; // ms - 1 day
+const statTTL = 1800000; // ms - 30 min
 
 function fmt(market_cap) {
   return (market_cap / 1000000000.0).toFixed(2) + "B"
@@ -266,7 +266,6 @@ class Stocks extends Component {
         return;
       }
     }
-    console.log("DICk");
     this.setState({
       filters: bounds,
     });
@@ -371,7 +370,7 @@ class Stocks extends Component {
                     <tr className="text-muted stock-row" style={{ whiteSpace: 'pre' }}>
                       <th/>
                       <th onClick={() => this.sortBy('current_price')} className="stock-row-h">
-                        Price (MV) {' '}<FontAwesomeIcon icon={faSort}/>
+                        Price (1D) {' '}<FontAwesomeIcon icon={faSort}/>
                       </th>
                       <th onClick={() => this.sortBy('market_cap')} className="stock-row-h">
                         Market Cap {' '}<FontAwesomeIcon icon={faSort}/>
@@ -401,7 +400,9 @@ class Stocks extends Component {
                     <tbody>
                     {stocks.slice(this.state.page * 50, (this.state.page + 1) * 50).map((stock, key) => {
                       let prev = stock.mean_price_200;
-                      let diff = parseFloat(((stock.current_price - prev) / prev).toFixed(2));
+                      let mvdiff = ((stock.current_price - prev) / prev);
+                      let diff = (stock.regular_market_change / stock.current_price) * 100;
+                      let pdiff = Math.abs(diff).toFixed(2);
                       return (
                         <tr key={key}>
                           <th style={{ textAlign: "left", width: '80px' }}>
@@ -415,8 +416,8 @@ class Stocks extends Component {
                           <th className="line" style={{ textAlign: "left" }}>
                             {indexes[this.state.index].currency}{stock.current_price} {' '}
                             {diff !== 0 && (diff > 0 ?
-                              <span style={{ color: 'green' }}>(+{Math.abs(diff).toFixed(2)})</span> :
-                              <span style={{ color: 'red' }}>(-{Math.abs(diff).toFixed(2)})</span>)
+                              <span style={{ color: 'green' }}>(+{pdiff})</span> :
+                              <span style={{ color: 'red' }}>(-{pdiff})</span>)
                             }
                           </th>
                           <th>{indexes[this.state.index].currency}{fmt(stock.market_cap)}</th>
@@ -426,7 +427,7 @@ class Stocks extends Component {
                           <th>{stock.enterprise_to_ebitda.toFixed(2)}</th>
                           <th>{stock.enterprise_to_revenue.toFixed(2)}</th>
                           <th>
-                            <LineChart color={diff >= 0 ? 'green' : 'red'}
+                            <LineChart color={mvdiff >= 0 ? 'green' : 'red'}
                                        data={prices[stock.stock.id]} x='date'
                                        y='price'/>
                           </th>
@@ -511,7 +512,7 @@ class Stocks extends Component {
           <Modal title="Info" toggle={this.toggleInfo}>
             <div className="container text-muted" style={{ textAlign: 'left' }}>
               <ul>
-                <li>Price (MV): Current price, 200 day mean variance</li>
+                <li>Price (1D): Current price, Regular Market Change (%)</li>
                 <li>Market Cap: Market Capitalization</li>
                 <li>P/E: Price to Earnings Ratio</li>
                 <li>P/B: Price to Book Ratio</li>
