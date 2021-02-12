@@ -12,6 +12,7 @@ import {faPlay} from "@fortawesome/free-solid-svg-icons/faPlay";
 import {faCommentAlt} from "@fortawesome/free-solid-svg-icons/faCommentAlt";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import parse from "../util/DateParse";
+import {faLink} from "@fortawesome/free-solid-svg-icons";
 
 class Project extends Component {
   render() {
@@ -23,10 +24,15 @@ class Project extends Component {
     const keys = String(keywords).split(', ');
     const loading = this.props.loading;
     let linksP = undefined;
+    let link = "https://drive.google.com/drive/folders/1pw6KKoYoUCNwJvs2xh250k6_NNINo5Dd?usp=sharing";
+    let git = false;
     if (links) {
-      const obj = JSON.parse(String(links));
-      if (obj.git) {
-        linksP = JSON.parse(String(links))
+      linksP = JSON.parse(String(links));
+      if (linksP) {
+        if (linksP.git) {
+          link = linksP.git;
+          git = true;
+        }
       }
     }
 
@@ -104,12 +110,17 @@ class Project extends Component {
                 </Fragment>
                 }
                 {linksP &&
-                <a href={linksP.git} target="_blank" rel="noopener noreferrer">
-                  <button style={{ fontSize: '13px', padding: '2px' }}
-                          className="btn btn-git"
-                  >
-                    <FontAwesomeIcon size="lg" style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGithub}/>
-                  </button>
+                <a href={link} target="_blank" rel="noopener noreferrer">
+                  {git ?
+                    <button style={{ fontSize: '13px', padding: '2px' }}
+                            className="btn btn-git"
+                    >
+                      <FontAwesomeIcon size="lg" style={{ paddingTop: '1px', minWidth: '20px' }} icon={faGithub}/>
+                    </button> :
+                    <button style={{ fontSize: '13px', padding: '2px' }}
+                            className="btn btn-info">
+                      <FontAwesomeIcon style={{ paddingTop: '1px', minWidth: '20px' }} icon={faLink}/>
+                    </button>}
                 </a>
                 }
               </div>

@@ -6,8 +6,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
   faAddressCard,
   faCode,
+  faDiceD20,
   faDragon,
-  faSitemap
 } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends Component {
@@ -63,8 +63,7 @@ class Header extends Component {
               }}
               to={"/"}
             >
-
-              <FontAwesomeIcon icon={faSitemap}/>
+              <FontAwesomeIcon style={{ marginRight: '2px' }} icon={faDiceD20}/> Portfolio
               {/*<span style={{ fontFamily: 'monospace', fontWeight: 'bold' }}>{'</>'}</span>*/}
             </Link>
             <Nav className="nav navbar-nav">

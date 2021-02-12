@@ -31,7 +31,7 @@ const workexp = [
     period: "July 2018 - September 2019",
     institution: "Self-employed",
     description: [
-      "Worked on several short term projects involving prototyping and web development using HTML, JS.",
+      "Worked on several short term projects involving prototyping and web development using primitive web technologies.",
       "Taught beginners Java, Python and web development online.",
     ]
   },

@@ -42,11 +42,11 @@ class LineChart extends Component {
 
   makePath() {
     const { data, color, x, y } = this.props;
-    let pathD = ` M  ${this.getSvgX(data[0][x])} ${this.getSvgY(data[0][y])} `
+    let pathD = `M ${this.getSvgX(data[0][x])} ${this.getSvgY(data[0][y])} `
 
-    pathD += data.map((point, i) => {
-      return `L ${this.getSvgX(point[x])} ${this.getSvgY(point[y])}  `
-    })
+    pathD += data.map((point) => {
+      return `L ${this.getSvgX(point[x])} ${this.getSvgY(point[y])}`
+    }).join(' ');
 
     return (
       <path style={{ strokeWidth: 2, fill: 'none', stroke: color }} d={pathD}/>
