@@ -1,15 +1,15 @@
 const languages = [
   {
     name: "Java",
-    proficiency: 95,
+    proficiency: 100,
   },
   {
     name: "Python",
-    proficiency: 90,
+    proficiency: 100,
   },
   {
     name: "C",
-    proficiency: 85,
+    proficiency: 90,
   },
   {
     name: "C#",
@@ -19,20 +19,20 @@ const languages = [
 
 const frameworks = [
   {
+    name: "Tensorflow",
+    proficiency: 90,
+  },
+  {
+    name: "Django",
+    proficiency: 90,
+  },
+  {
     name: "React",
     proficiency: 85,
   },
   {
-    name: "Django",
-    proficiency: 80,
-  },
-  {
     name: ".NET",
     proficiency: 70,
-  },
-  {
-    name: "Tensorflow",
-    proficiency: 60,
   },
 ];
 
@@ -68,23 +68,23 @@ const languageExtra = ['Haskell', 'Kotlin', 'Go', 'SQL', 'Bash', '...'];
 
 const frameworkDetails = [
   {
+    name: 'Tensorflow',
+    small: '10+',
+    large: '2'
+  },
+  {
+    name: 'Django',
+    small: '4',
+    large: '2'
+  },
+  {
     name: 'React',
     small: '6',
     large: '2'
   },
   {
-    name: 'Django',
-    small: '3',
-    large: '1'
-  },
-  {
     name: '.NET',
     small: '2',
-    large: '1'
-  },
-  {
-    name: 'Tensorflow',
-    small: '4',
     large: '1'
   },
 ];

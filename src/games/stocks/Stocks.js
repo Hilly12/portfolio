@@ -402,7 +402,8 @@ class Stocks extends Component {
                       let prev = stock.mean_price_200;
                       let mvdiff = ((stock.current_price - prev) / prev);
                       let diff = (stock.regular_market_change / stock.current_price) * 100;
-                      let pdiff = Math.abs(diff).toFixed(2);
+                      let pdiff = Math.abs(Math.round(diff * 100) / 100).toFixed(2);
+                      let displayPrice = (Math.round(parseFloat(stock.current_price) * 100) / 100).toFixed(2)
                       return (
                         <tr key={key}>
                           <th style={{ textAlign: "left", width: '80px' }}>
@@ -414,7 +415,7 @@ class Stocks extends Component {
                             </a>
                           </th>
                           <th className="line" style={{ textAlign: "left" }}>
-                            {indexes[this.state.index].currency}{stock.current_price} {' '}
+                            {indexes[this.state.index].currency}{displayPrice} {' '}
                             {diff !== 0 && (diff > 0 ?
                               <span style={{ color: 'green' }}>(+{pdiff})</span> :
                               <span style={{ color: 'red' }}>(-{pdiff})</span>)

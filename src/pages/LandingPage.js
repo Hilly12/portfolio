@@ -148,7 +148,7 @@ class LandingPage extends Component {
             </div>
             <div style={{ margin: '12px 0 0 0' }}>
               <TypingEffect className="lead" typingSpeed={50} pauseBeforeDeleting={2000} pauseBeforeRestarting={50}
-                            data={["Software Developer", "Computer Scientist"]}/>
+                            data={["Software Engineer", "Machine Learning Engineer", "Computer Scientist"]}/>
             </div>
             {/*<p className="bio">Hi</p>*/}
             {/*<br className="noselect"/>*/}

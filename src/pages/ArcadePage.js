@@ -33,7 +33,7 @@ const cards = [
   },
   {
     title: "Cave Generator",
-    description: "A procedural cavern generator",
+    description: "Cellular Automata",
     img: "https://lh3.googleusercontent.com/pw/ACtC-3fWyu5XkGuUMw717XCo8bANgnFv7K9Q2UbVyLhKXWfOwlbekxM32VljhUiKJKtgfCSaDYosby_zLvncMqGrHGhRfwMLvdyWwfMgzZlREmAMrup7yDYOp5kG2ZzANTf6oM7sYVeVdTCKUV8O_FUtHd8V=w1281-h721",
     link: "sandbox/cavegen",
   },

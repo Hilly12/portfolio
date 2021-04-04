@@ -1,8 +1,14 @@
 const workexp = [
   {
-    title: "Teaching Assistant for CO120.x",
+    title: "Machine Learning Engineer Intern",
+    institution: "Synthesized",
+    period: "April 2021 - Present",
+    description: [],
+  },
+  {
+    title: "Teaching Assistant CO120.X",
     institution: "Imperial College London",
-    period: "October 2020 - Present",
+    period: "October 2020 - March 2021",
     description: [
       "Ran weekly sessions for first year Computing students covering concepts such as higher order functions, " +
       "polymorphism, object-oriented programming, and concurrency, in Haskell, Kotlin and Java.",
@@ -10,7 +16,7 @@ const workexp = [
     ],
   },
   {
-    title: "Software Engineering Intern",
+    title: "Software Engineer Intern",
     institution: "Scribetech",
     period: "July 2020 - September 2020",
     description: [
@@ -49,7 +55,7 @@ const workexp = [
 
 const education = [
   {
-    title: "Computing MEng (hons)",
+    title: "Computing MEng (Hons)",
     institution: "Imperial College London",
     period: "October 2018 - Present",
     description: [
