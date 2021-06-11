@@ -28,3 +28,5 @@ yarn-error.log*
 .idea/
 .eslintcache
 debug.log
+
+.vscode/settings.json
